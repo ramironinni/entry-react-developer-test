@@ -1,6 +1,9 @@
 .navItem {
     padding-right: 1rem;
     text-transform: uppercase;
+    padding-bottom: 2rem;
+    position: relative;
+    top: 1rem;
 }
 
 .navItem a {
@@ -9,5 +12,9 @@
 }
 
 .navItem a:active {
-    color: #5ece7b;
+    color: var(--c-primary);
+    border-color: var(--c-primary);
+    border-style: solid;
+    border-width: 0;
+    border-bottom-width: 2px;
 }

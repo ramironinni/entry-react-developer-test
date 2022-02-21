@@ -352,3 +352,7 @@ template {
 [hidden] {
     display: none;
 }
+
+:root {
+    --c-primary: #5ece7b;
+}
