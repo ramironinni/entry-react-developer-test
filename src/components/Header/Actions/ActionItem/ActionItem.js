@@ -2,7 +2,9 @@ import { Component } from 'react';
 
 class ActionItem extends Component {
     render() {
-        return <div>Item</div>;
+        return (
+            <div className={this.props.className}>{this.props.children}</div>
+        );
     }
 }
 

@@ -1,0 +1,13 @@
+.navItem {
+    padding-right: 1rem;
+    text-transform: uppercase;
+}
+
+.navItem a {
+    color: inherit;
+    text-decoration: none;
+}
+
+.navItem a:active {
+    color: #5ece7b;
+}

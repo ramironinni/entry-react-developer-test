@@ -1,5 +1,6 @@
 import { Component } from 'react';
 import NavItem from './NavItem';
+import styles from './NavCard.module.css';
 
 class NavCard extends Component {
     DUMMY_CATEGORIES = ['Women', 'Men', 'Kids'];
@@ -7,7 +8,7 @@ class NavCard extends Component {
     render() {
         return (
             <nav>
-                <ul>
+                <ul className={styles.navCardList}>
                     {this.DUMMY_CATEGORIES.map((category, i) => {
                         return <NavItem category={category} key={i} />;
                     })}

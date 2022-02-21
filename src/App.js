@@ -7,26 +7,30 @@ import Header from './components/Header/Header';
 import NotFound from './components/NotFound/NotFound';
 import ProductPage from './components/ProductPage/ProductPage';
 
+import styles from './App.module.css';
+
 class App extends Component {
     render() {
         return (
             <Router>
-                <div className="App">
-                    <Header />
-                    <Switch>
-                        <Route exact path="/">
-                            <CategoryPage />
-                        </Route>
-                        <Route exact path="/product/:id">
-                            <ProductPage />
-                        </Route>
-                        <Route exact path="/cart">
-                            <CartPage />
-                        </Route>
-                        <Route path="*">
-                            <NotFound />
-                        </Route>
-                    </Switch>
+                <div className={styles.app}>
+                    <div className={styles.mainContainer}>
+                        <Header />
+                        <Switch>
+                            <Route exact path="/">
+                                <CategoryPage />
+                            </Route>
+                            <Route exact path="/product/:id">
+                                <ProductPage />
+                            </Route>
+                            <Route exact path="/cart">
+                                <CartPage />
+                            </Route>
+                            <Route path="*">
+                                <NotFound />
+                            </Route>
+                        </Switch>
+                    </div>
                 </div>
             </Router>
         );

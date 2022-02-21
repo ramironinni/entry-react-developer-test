@@ -1,0 +1,8 @@
+.currencyCard {
+    display: flex;
+    margin-right: 0.5rem;
+}
+
+.currencyCard > div {
+    margin-right: 0.4rem;
+}
