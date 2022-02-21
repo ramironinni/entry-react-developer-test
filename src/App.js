@@ -7,8 +7,6 @@ import Header from './components/Header/Header';
 import NotFound from './components/NotFound/NotFound';
 import ProductPage from './components/ProductPage/ProductPage';
 
-// import './App.css';
-
 class App extends Component {
     render() {
         return (
