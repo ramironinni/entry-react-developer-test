@@ -6,12 +6,12 @@
     top: 1rem;
 }
 
-.navItem a {
+a {
     color: inherit;
     text-decoration: none;
 }
 
-.navItem a:active {
+a:active {
     color: var(--c-primary);
     border-color: var(--c-primary);
     border-style: solid;
