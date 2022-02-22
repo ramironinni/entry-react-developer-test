@@ -1,16 +1,20 @@
-article {
+.container {
+    position: relative;
+    width: 29%;
+    margin: 2%;
+}
+
+.article {
     display: flex;
     flex-wrap: wrap;
     flex-direction: column;
     align-content: center;
-    width: 26%;
-    margin: 2%;
-    padding: 1.5%;
+    padding: 5%;
     color: var(--c-white);
     background-color: var(--c-white);
 }
 
-article:hover {
+.article:hover {
     box-shadow: 0px 4px 35px #a8acb030;
     cursor: pointer;
 }
@@ -22,10 +26,19 @@ article:hover {
 }
 
 .cartGreenIcon {
+    display: none;
     position: absolute;
     bottom: -12%;
     right: 5%;
     width: 22%;
+}
+
+.article:hover .cartGreenIcon {
+    display: block;
+}
+
+.article.unavailable:hover .cartGreenIcon {
+    display: none;
 }
 
 .image {
