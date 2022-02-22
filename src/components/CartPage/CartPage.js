@@ -2,7 +2,7 @@ import { Component } from 'react';
 
 class CartPage extends Component {
     render() {
-        return <div>Cart Page</div>;
+        return <main>Cart Page</main>;
     }
 }
 

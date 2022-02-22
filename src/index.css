@@ -150,6 +150,7 @@ sup {
 
 img {
     border-style: none;
+    display: block;
 }
 
 /* Forms
@@ -355,4 +356,6 @@ template {
 
 :root {
     --c-primary: #5ece7b;
+    --c-black: #1d1f22;
+    --c-white: #ffffff;
 }

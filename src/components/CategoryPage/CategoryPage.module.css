@@ -1,0 +1,10 @@
+.title {
+    font-size: 42px;
+    margin: 50px 0;
+}
+
+.productsContainer {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}

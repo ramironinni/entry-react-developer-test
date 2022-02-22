@@ -2,7 +2,7 @@ import { Component } from 'react';
 
 class ProductPage extends Component {
     render() {
-        return <div>Product Page</div>;
+        return <main>Product Page</main>;
     }
 }
 

@@ -1,0 +1,47 @@
+article {
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: column;
+    align-content: center;
+    width: 26%;
+    margin: 2%;
+    padding: 1.5%;
+    color: var(--c-white);
+    background-color: var(--c-white);
+}
+
+article:hover {
+    box-shadow: 0px 4px 35px #a8acb030;
+    cursor: pointer;
+}
+
+.imageContainer {
+    width: 100%;
+    margin-bottom: 12%;
+    position: relative;
+}
+
+.cartGreenIcon {
+    position: absolute;
+    bottom: -12%;
+    right: 5%;
+    width: 22%;
+}
+
+.image {
+    width: 100%;
+}
+
+p {
+    margin: 0;
+    size: 18px;
+    color: var(--c-black);
+}
+
+.descriptionName {
+    font-weight: 300;
+}
+
+.descriptionPrice {
+    font-weight: 500;
+}
