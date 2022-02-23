@@ -1,7 +1,9 @@
 .currencyCard {
     display: flex;
     align-items: center;
-    margin-right: 0.5rem;
+    margin-right: 30px;
+    position: absolute;
+    right: 50px;
 }
 
 .currencyCard > div {

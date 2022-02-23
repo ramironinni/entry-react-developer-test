@@ -1,6 +1,6 @@
 import { Component } from 'react';
-import Cart from './Cart';
-import CurrencyDisplayer from './Currency/Currency';
+import Cart from './Cart/Cart';
+import CurrencyDisplayer from './CurrencyDisplayer/CurrencyDisplayer';
 import styles from './Actions.module.css';
 
 class Actions extends Component {

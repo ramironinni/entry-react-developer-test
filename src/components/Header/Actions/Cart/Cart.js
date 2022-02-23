@@ -1,15 +1,15 @@
 import { Component } from 'react';
-import ActionItem from './ActionItem/ActionItem';
-import cart from '../../../assets/cart.svg';
+import cart from '../../../../assets/cart.svg';
+import styles from './Cart.module.css';
 
 class Cart extends Component {
     render() {
         return (
-            <ActionItem>
+            <div className={styles.cart}>
                 <div>
                     <img src={cart} alt="cart" />
                 </div>
-            </ActionItem>
+            </div>
         );
     }
 }
