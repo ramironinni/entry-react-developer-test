@@ -4,6 +4,10 @@
     align-items: center;
     padding: 10px 0;
     width: 100%;
+    position: absolute;
+    top: 0;
+    right: 0;
     font-size: 16px;
     background-color: var(--c-white);
+    z-index: 4;
 }

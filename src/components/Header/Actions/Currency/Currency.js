@@ -2,6 +2,7 @@ import { Component } from 'react';
 import ActionItem from '../ActionItem/ActionItem';
 import arrow from '../../../../assets/arrow.svg';
 import styles from './Currency.module.css';
+import Modal from '../ActionsModal/Modal';
 
 class CurrencyDisplayer extends Component {
     render() {
@@ -11,6 +12,7 @@ class CurrencyDisplayer extends Component {
                 <div>
                     <img src={arrow} alt="currency switcher" />
                 </div>
+                <Modal>content</Modal>
             </ActionItem>
         );
     }
