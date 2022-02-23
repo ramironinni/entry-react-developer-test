@@ -1,8 +1,9 @@
 import { Component } from 'react';
+import Page from '../Page';
 
 class ProductPage extends Component {
     render() {
-        return <main>Product Page</main>;
+        return <Page>Product Page</Page>;
     }
 }
 

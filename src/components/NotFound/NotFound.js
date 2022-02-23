@@ -1,14 +1,15 @@
 import { Component } from 'react';
+import Page from '../Page';
 
 class NotFound extends Component {
     render() {
         return (
-            <div>
+            <Page>
                 <div>
                     <p>Oops!</p>
                     <p>This page doesn't exist.</p>
                 </div>
-            </div>
+            </Page>
         );
     }
 }

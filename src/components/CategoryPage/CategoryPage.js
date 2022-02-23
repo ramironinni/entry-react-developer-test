@@ -1,4 +1,5 @@
 import { Component } from 'react';
+import Page from '../Page';
 import styles from './CategoryPage.module.css';
 import ProductCard from './ProductCard/ProductCard';
 
@@ -13,7 +14,7 @@ class CategoryPage extends Component {
     ];
     render() {
         return (
-            <main>
+            <Page>
                 <div className={styles.title}>Category Name</div>
                 <div className={styles.productsContainer}>
                     {this.DUMMY_PRODUCTS.map((product, i) => {
@@ -26,7 +27,7 @@ class CategoryPage extends Component {
                         );
                     })}
                 </div>
-            </main>
+            </Page>
         );
     }
 }
