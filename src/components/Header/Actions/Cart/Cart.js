@@ -1,6 +1,8 @@
 import { Component } from 'react';
 import cart from '../../../../assets/cart.svg';
+import Modal from '../ActionsModal/Modal';
 import styles from './Cart.module.css';
+import CartOverlay from './CartOverlay/CartOverlay';
 
 class Cart extends Component {
     render() {
@@ -9,6 +11,9 @@ class Cart extends Component {
                 <div>
                     <img src={cart} alt="cart" />
                 </div>
+                <Modal>
+                    <CartOverlay />
+                </Modal>
             </div>
         );
     }

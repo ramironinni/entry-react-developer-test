@@ -11,10 +11,10 @@
 .modalOverlay {
     position: fixed;
     top: 70px;
-    right: 80px;
+    right: 40px;
     width: 325px;
     background-color: var(--c-white);
-    padding: 1rem;
+    padding: 16px;
     z-index: 3;
     /* animation: slide-down 300ms ease-out forwards; */
 }
