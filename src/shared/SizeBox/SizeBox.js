@@ -6,7 +6,7 @@ class SizeBox extends Component {
     render() {
         return (
             <div className={styles.sizeBox}>
-                <SquaredBox selected={this.props.selected}>
+                <SquaredBox type={'size'} selected={this.props.selected}>
                     {this.props.sizeName.toUpperCase()}
                 </SquaredBox>
             </div>

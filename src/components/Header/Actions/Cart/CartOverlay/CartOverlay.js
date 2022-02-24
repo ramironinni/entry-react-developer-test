@@ -42,7 +42,10 @@ class CartOverlay extends Component {
                         );
                     })}
                 </div>
-                <p className={styles.grandTotal}>Total $100</p>
+                <div className={styles.grandTotal}>
+                    <p>Total</p>
+                    <p>$100</p>
+                </div>
                 <CartOverlayButtons text={'View Bag'} />
                 <CartOverlayButtons text={'Check Out'} />
             </div>

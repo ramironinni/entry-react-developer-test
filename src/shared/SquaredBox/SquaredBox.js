@@ -6,7 +6,9 @@ class SquaredBox extends Component {
         return (
             <div
                 className={`${styles.squaredBox} ${
-                    !this.props.selected && styles.nonSelected
+                    this.props.type === 'size' &&
+                    !this.props.selected &&
+                    styles.nonSelected
                 }`}
             >
                 {this.props.children}

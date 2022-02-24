@@ -1,4 +1,9 @@
-.title,
+.title {
+    font-weight: 700;
+}
+
 .grandTotal {
+    display: flex;
+    justify-content: space-between;
     font-weight: 700;
 }
