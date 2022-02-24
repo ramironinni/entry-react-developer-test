@@ -24,11 +24,15 @@ class CartOverlay extends Component {
     render() {
         return (
             <div className={styles.cartOverlay}>
-                <p>My Bag, {this.cartAmount} items</p>
+                <p>
+                    <span className={styles.title}>My Bag,&nbsp;</span>
+                    {this.cartAmount} items
+                </p>
                 <div>
-                    {this.DUMMY_CART.map((item) => {
+                    {this.DUMMY_CART.map((item, i) => {
                         return (
                             <CartOverlayItem
+                                key={i}
                                 name={item.name}
                                 price={item.price}
                                 amount={item.amount}
@@ -38,7 +42,7 @@ class CartOverlay extends Component {
                         );
                     })}
                 </div>
-                <p>Total $100</p>
+                <p className={styles.grandTotal}>Total $100</p>
                 <CartOverlayButtons text={'View Bag'} />
                 <CartOverlayButtons text={'Check Out'} />
             </div>

@@ -1,2 +1,4 @@
-.cartOverlay {
+.title,
+.grandTotal {
+    font-weight: 700;
 }

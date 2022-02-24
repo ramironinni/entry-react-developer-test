@@ -45,7 +45,7 @@
     width: 100%;
 }
 
-p {
+.descriptionContainer {
     margin: 0;
     size: 18px;
     color: var(--c-black);

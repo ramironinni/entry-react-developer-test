@@ -1,13 +1,17 @@
 import { Component } from 'react';
+import SizeBoxGroup from '../../../../../../../shared/SizeBoxGroup/SizeBoxGroup';
 import styles from './InfoCard.module.css';
 
 class InfoCard extends Component {
     render() {
         return (
-            <div className={styles.InfoCard}>
+            <div className={styles.infoCard}>
                 <div>{this.props.name}</div>
-                <div>{this.props.price}</div>
-                <div>{this.props.size}</div>
+                <div className={styles.price}>
+                    &#36;
+                    {this.props.price.toFixed(2)}
+                </div>
+                <SizeBoxGroup size={this.props.size} />
             </div>
         );
     }

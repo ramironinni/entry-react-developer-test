@@ -1,0 +1,14 @@
+.squaredBox {
+    border: 1px solid var(--c-black);
+    width: 24px;
+    height: 24px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.nonSelected {
+    color: var(--c-grey);
+    background-color: rgba(166, 166, 166, 0.2);
+    border: 1px solid var(--c-grey);
+}

@@ -7,7 +7,7 @@ import Thumbnail from './Thumbnail/Thumbnail';
 class CartOverlayItem extends Component {
     render() {
         return (
-            <div className={styles.cartOverlay}>
+            <div className={styles.cartOverlayItem}>
                 <InfoCard
                     name={this.props.name}
                     price={this.props.price}

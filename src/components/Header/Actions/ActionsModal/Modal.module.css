@@ -9,7 +9,7 @@
 }
 
 .modalOverlay {
-    position: fixed;
+    position: absolute;
     top: 70px;
     right: 40px;
     width: 325px;
