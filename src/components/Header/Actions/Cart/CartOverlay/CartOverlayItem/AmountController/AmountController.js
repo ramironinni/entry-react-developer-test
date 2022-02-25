@@ -6,9 +6,9 @@ class AmountController extends Component {
     render() {
         return (
             <div className={styles.amountController}>
-                <AmountButtonController sign="-" />
-                <div>{this.props.amount}</div>
                 <AmountButtonController sign="+" />
+                <div>{this.props.amount}</div>
+                <AmountButtonController sign="-" />
             </div>
         );
     }

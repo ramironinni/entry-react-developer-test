@@ -24,8 +24,8 @@ class CartOverlay extends Component {
     render() {
         return (
             <div className={styles.cartOverlay}>
-                <p>
-                    <span className={styles.title}>My Bag,&nbsp;</span>
+                <p className={styles.title}>
+                    <span className={styles.myBag}>My Bag,&nbsp;</span>
                     {this.cartAmount} items
                 </p>
                 <div>
@@ -44,10 +44,9 @@ class CartOverlay extends Component {
                 </div>
                 <div className={styles.grandTotal}>
                     <p>Total</p>
-                    <p>$100</p>
+                    <p>$100.00</p>
                 </div>
-                <CartOverlayButtons text={'View Bag'} />
-                <CartOverlayButtons text={'Check Out'} />
+                <CartOverlayButtons />
             </div>
         );
     }

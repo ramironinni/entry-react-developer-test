@@ -1,0 +1,21 @@
+.button {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    width: 140px;
+    height: 43px;
+    padding: 13px 0;
+    border: 1px solid var(--c-black);
+    background-color: var(--c-white);
+    font-size: 14px;
+    font-weight: 600;
+    text-transform: uppercase;
+    cursor: pointer;
+}
+
+.checkout {
+    background-color: var(--c-primary);
+    border: none;
+    color: var(--c-white);
+}
