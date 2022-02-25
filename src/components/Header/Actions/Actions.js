@@ -1,13 +1,13 @@
 import { Component } from 'react';
 import Cart from './Cart/Cart';
-import CurrencyDisplayer from './CurrencyDisplayer/CurrencyDisplayer';
 import styles from './Actions.module.css';
+import CurrencySwitcher from './CurrencySwitcher/CurrencySwitcher';
 
 class Actions extends Component {
     render() {
         return (
             <div className={styles.actions}>
-                <CurrencyDisplayer />
+                <CurrencySwitcher />
                 <Cart />
             </div>
         );

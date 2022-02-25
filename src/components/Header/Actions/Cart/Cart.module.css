@@ -2,3 +2,8 @@
     position: absolute;
     right: 50px;
 }
+
+.modalOverlay {
+    right: 40px;
+    width: 325px;
+}

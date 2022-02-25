@@ -11,9 +11,9 @@ class Cart extends Component {
                 <div>
                     <img src={cart} alt="cart" />
                 </div>
-                <Modal>
+                {/* <Modal overlayClasses={styles.modalOverlay}>
                     <CartOverlay />
-                </Modal>
+                </Modal> */}
             </div>
         );
     }
