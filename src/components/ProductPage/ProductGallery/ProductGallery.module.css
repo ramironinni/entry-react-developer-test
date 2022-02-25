@@ -1,0 +1,4 @@
+.productGallery {
+    display: flex;
+    flex-wrap: wrap;
+}

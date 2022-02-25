@@ -3,7 +3,11 @@ import styles from './Page.module.css';
 
 class Page extends Component {
     render() {
-        return <main className={styles.page}>{this.props.children}</main>;
+        return (
+            <main className={`${styles.page} ${this.props.pageClasses}`}>
+                {this.props.children}
+            </main>
+        );
     }
 }
 

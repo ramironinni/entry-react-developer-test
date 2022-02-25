@@ -16,7 +16,7 @@ class CurrencySwitcher extends Component {
                 <div>
                     <img src={arrow} alt="currency switcher" />
                 </div>
-                <Modal
+                {/* <Modal
                     overlayClasses={styles.modalOverlay}
                     backdropClasses={styles.backdrop}
                 >
@@ -27,7 +27,7 @@ class CurrencySwitcher extends Component {
                             </p>
                         );
                     })}
-                </Modal>
+                </Modal> */}
             </div>
         );
     }

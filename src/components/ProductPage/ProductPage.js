@@ -1,9 +1,16 @@
 import { Component } from 'react';
 import Page from '../Page';
+import ProductGallery from './ProductGallery/ProductGallery';
+import styles from './ProductPage.module.css';
 
 class ProductPage extends Component {
     render() {
-        return <Page>Product Page</Page>;
+        return (
+            // <Page pageClasses={styles.page}>
+            <Page>
+                <ProductGallery />
+            </Page>
+        );
     }
 }
 
