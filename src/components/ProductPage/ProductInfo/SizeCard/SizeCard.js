@@ -6,7 +6,7 @@ class SizeCard extends Component {
     render() {
         return (
             <div>
-                <p>SIZE:</p>
+                <p className={styles.sizeTitle}>SIZE:</p>
                 <SizeGroup sizes={this.props.sizes} />
             </div>
         );

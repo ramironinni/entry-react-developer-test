@@ -4,11 +4,7 @@ import styles from './Button.module.css';
 class Button extends Component {
     render() {
         return (
-            <button
-                className={`${styles.button} ${
-                    this.props.type === 'checkout' ? styles.checkout : ''
-                }`}
-            >
+            <button className={`${styles.button} ${this.props.extraClasses}`}>
                 {this.props.text}
             </button>
         );

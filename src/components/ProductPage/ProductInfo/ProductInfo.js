@@ -1,16 +1,29 @@
 import { Component } from 'react';
+import Button from '../../../shared/Button/Button';
 import styles from './ProductInfo.module.css';
 import SizeCard from './SizeCard/SizeCard';
-import SizeGroup from './SizeCard/SizeGroup/SizeGroup';
 
 class ProductInfo extends Component {
     render() {
         return (
             <div className={styles.productInfo}>
-                <p>{this.props.product.name}</p>
-                <p>{this.props.product.shortDesc}</p>
+                <p className={styles.productName}>{this.props.product.name}</p>
+                <p className={styles.productShortDesc}>
+                    {this.props.product.shortDesc}
+                </p>
 
                 <SizeCard sizes={this.props.product.sizes} />
+                <p className={styles.priceTitle}>PRICE: </p>
+                <p className={styles.price}>$50.00</p>
+                {/* <Button
+                    type="checkout"
+                    text="Add to cart"
+                    extraClasses={styles.button}
+                /> */}
+                <button className={styles.button}>Add to cart</button>
+                <p className={styles.productLongDesc}>
+                    {this.props.product.longDesc}
+                </p>
             </div>
         );
     }

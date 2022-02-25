@@ -13,9 +13,3 @@
     text-transform: uppercase;
     cursor: pointer;
 }
-
-.checkout {
-    background-color: var(--c-primary);
-    border: none;
-    color: var(--c-white);
-}
