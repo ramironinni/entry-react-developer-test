@@ -1,0 +1,25 @@
+.infoCard {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    width: 136px;
+}
+
+.name.page,
+.shortDesc.page {
+    font-size: 30px;
+    line-height: 27px;
+}
+
+.name.page {
+    font-weight: 600;
+}
+
+.price {
+    font-weight: 500;
+}
+
+.price.page {
+    font-weight: bold;
+    line-height: 18px;
+}

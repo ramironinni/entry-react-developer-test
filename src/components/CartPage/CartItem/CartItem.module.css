@@ -1,0 +1,17 @@
+.cartOverlayItem {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    margin: 25px 0;
+}
+
+.cartOverlayItem {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    margin: 25px 0;
+}
+
+.cartOverlayItem:last-child {
+    margin: 0;
+}

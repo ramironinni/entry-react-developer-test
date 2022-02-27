@@ -8,8 +8,23 @@
     cursor: pointer;
 }
 
-.nonSelected {
+.squaredBox.page.size {
+    width: 63px;
+    height: 45px;
+}
+
+.squaredBox.page.amount {
+    width: 45px;
+    height: 45px;
+}
+
+.size.nonSelected {
     color: var(--c-grey);
-    background-color: rgba(166, 166, 166, 0.2);
+    background-color: #a6a6a633;
     border: 1px solid var(--c-grey);
+}
+
+.size.nonSelected.page {
+    background-color: var(--c-black);
+    color: var(--c-white);
 }

@@ -11,9 +11,23 @@ class SizeBoxGroup extends Component {
                 {this.DUMMY_SIZES_NAMES.map((name, i) => {
                     if (this.props.size === name) {
                         console.log(name);
-                        return <SizeBox sizeName={name} selected={true} />;
+                        return (
+                            <SizeBox
+                                sizeName={name}
+                                selected={true}
+                                cartType={this.props.cartType}
+                                squareType="size"
+                            />
+                        );
                     }
-                    return <SizeBox sizeName={name} selected={false} />;
+                    return (
+                        <SizeBox
+                            sizeName={name}
+                            selected={false}
+                            cartType={this.props.cartType}
+                            squareType="size"
+                        />
+                    );
                 })}
             </div>
         );
