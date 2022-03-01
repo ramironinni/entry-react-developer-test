@@ -5,16 +5,16 @@ import styles from './Cart.module.css';
 import CartOverlay from './CartOverlay/CartOverlay';
 
 class Cart extends Component {
-    constructor() {
-        super();
-        this.state = { showOverlay: false };
-    }
+    // constructor() {
+    //     super();
+    //     this.state = { showOverlay: false };
+    // }
 
-    toggleCartHandler() {
-        this.setState((curState) => {
-            return { showOverlay: !curState.showOverlay };
-        });
-    }
+    // toggleCartHandler() {
+    //     this.setState((curState) => {
+    //         return { showOverlay: !curState.showOverlay };
+    //     });
+    // }
 
     render() {
         return (
@@ -23,13 +23,13 @@ class Cart extends Component {
                     <img
                         src={cart}
                         alt="cart"
-                        onClick={this.toggleCartHandler.bind(this)}
+                        onClick={this.props.onToggleOverlayHandler.bind(this)}
                     />
                 </div>
-                {this.state.showOverlay && (
+                {this.props.showOverlay && (
                     <Modal
                         overlayClasses={styles.modalOverlay}
-                        onBackdropClickHandler={this.toggleCartHandler.bind(
+                        onBackdropClickHandler={this.props.onToggleOverlayHandler.bind(
                             this
                         )}
                     >

@@ -4,16 +4,16 @@ import styles from './CurrencySwitcher.module.css';
 import Modal from '../ActionsModal/Modal';
 
 class CurrencySwitcher extends Component {
-    constructor() {
-        super();
-        this.state = { showOverlay: false };
-    }
+    // constructor() {
+    //     super();
+    //     this.state = { showOverlay: false };
+    // }
 
-    toggleCurrencySwitcherHandler() {
-        this.setState((curState) => {
-            return { showOverlay: !curState.showOverlay };
-        });
-    }
+    // toggleCurrencySwitcherHandler() {
+    //     this.setState((curState) => {
+    //         return { showOverlay: !curState.showOverlay };
+    //     });
+    // }
 
     DUMMY_CURRENCIES = [
         { symbol: '$', code: 'USD' },
@@ -22,18 +22,23 @@ class CurrencySwitcher extends Component {
     ];
     render() {
         return (
-            <div
-                className={styles.currencySwitcher}
-                onClick={this.toggleCurrencySwitcherHandler.bind(this)}
-            >
-                <div className={styles.currencyCurrent}>&#36;</div>
-                <div>
-                    <img src={arrow} alt="currency switcher" />
+            <div>
+                <div
+                    className={styles.currencySwitcher}
+                    onClick={this.props.onToggleOverlayHandler}
+                >
+                    <div className={styles.currencyCurrent}>&#36;</div>
+                    <div>
+                        <img src={arrow} alt="currency switcher" />
+                    </div>
                 </div>
-                {this.state.showOverlay && (
+                {this.props.showOverlay && (
                     <Modal
                         overlayClasses={styles.modalOverlay}
                         backdropClasses={styles.backdrop}
+                        onBackdropClickHandler={
+                            this.props.onToggleOverlayHandler
+                        }
                     >
                         {this.DUMMY_CURRENCIES.map((currency, i) => {
                             return (
