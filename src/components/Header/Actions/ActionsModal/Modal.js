@@ -7,6 +7,7 @@ class Backdrop extends Component {
         return (
             <div
                 className={`${styles.backdrop} ${this.props.backdropClasses}`}
+                onClick={this.props.onBackdropClickHandler}
             ></div>
         );
     }
@@ -28,7 +29,12 @@ class Modal extends Component {
         return (
             <>
                 {ReactDOM.createPortal(
-                    <Backdrop backdropClasses={this.props.backdropClasses} />,
+                    <Backdrop
+                        backdropClasses={this.props.backdropClasses}
+                        onBackdropClickHandler={
+                            this.props.onBackdropClickHandler
+                        }
+                    />,
                     this.portalElement
                 )}
                 {ReactDOM.createPortal(

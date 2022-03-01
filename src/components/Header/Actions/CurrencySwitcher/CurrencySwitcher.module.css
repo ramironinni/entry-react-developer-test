@@ -4,6 +4,7 @@
     margin-right: 30px;
     position: absolute;
     right: 60px;
+    cursor: pointer;
 }
 
 .currencySwitcher > div {

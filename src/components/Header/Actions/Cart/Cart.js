@@ -5,15 +5,37 @@ import styles from './Cart.module.css';
 import CartOverlay from './CartOverlay/CartOverlay';
 
 class Cart extends Component {
+    constructor() {
+        super();
+        this.state = { showOverlay: false };
+    }
+
+    toggleCartHandler() {
+        this.setState((curState) => {
+            return { showOverlay: !curState.showOverlay };
+        });
+    }
+
     render() {
         return (
             <div className={styles.cart}>
                 <div>
-                    <img src={cart} alt="cart" />
+                    <img
+                        src={cart}
+                        alt="cart"
+                        onClick={this.toggleCartHandler.bind(this)}
+                    />
                 </div>
-                <Modal overlayClasses={styles.modalOverlay}>
-                    <CartOverlay />
-                </Modal>
+                {this.state.showOverlay && (
+                    <Modal
+                        overlayClasses={styles.modalOverlay}
+                        onBackdropClickHandler={this.toggleCartHandler.bind(
+                            this
+                        )}
+                    >
+                        <CartOverlay />
+                    </Modal>
+                )}
             </div>
         );
     }
