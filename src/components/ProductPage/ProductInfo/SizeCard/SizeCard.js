@@ -7,7 +7,10 @@ class SizeCard extends Component {
         return (
             <div>
                 <p className={styles.sizeTitle}>SIZE:</p>
-                <SizeCheckboxGroup sizes={this.props.sizes} />
+                <SizeCheckboxGroup
+                    sizes={this.props.sizes}
+                    itemNumber={this.props.itemNumber}
+                />
             </div>
         );
     }

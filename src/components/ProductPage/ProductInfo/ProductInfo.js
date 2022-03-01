@@ -12,7 +12,10 @@ class ProductInfo extends Component {
                     {this.props.product.shortDesc}
                 </p>
 
-                <SizeCard sizes={this.props.product.sizes} />
+                <SizeCard
+                    sizes={this.props.product.sizes}
+                    itemNumber={'product-page'}
+                />
                 <p className={styles.priceTitle}>PRICE: </p>
                 <p className={styles.price}>$50.00</p>
                 {/* <Button
