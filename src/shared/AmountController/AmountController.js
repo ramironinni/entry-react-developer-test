@@ -8,6 +8,7 @@ class AmountController extends Component {
                 <div className={`${styles.button} ${this.props.extraClasses}`}>
                     +
                 </div>
+                <div>{this.props.amount}</div>
                 <div className={`${styles.button} ${this.props.extraClasses}`}>
                     -
                 </div>

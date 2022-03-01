@@ -29,6 +29,7 @@
     left: 0;
     height: 45px;
     width: 63px;
+    margin-right: 12px;
     border: 1px solid var(--c-black);
     font-family: 'Source Sans Pro', sans-serif;
     text-transform: uppercase;

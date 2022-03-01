@@ -14,7 +14,7 @@ class CartPage extends Component {
                 { name: 's', available: true, selected: false },
                 { name: 'm', available: true, selected: true },
             ],
-            img: 'https://dummyimage.com/105x137/4cb7bf/fff',
+            img: 'https://dummyimage.com/141x185/cfa40b/fff',
         },
         {
             name: 'Jupiter',
@@ -25,7 +25,7 @@ class CartPage extends Component {
                 { name: 's', available: true, selected: false },
                 { name: 'm', available: true, selected: true },
             ],
-            img: 'https://dummyimage.com/105x137/4cb7bf/fff',
+            img: 'https://dummyimage.com/141x185/cfa40b/fff',
         },
     ];
 
