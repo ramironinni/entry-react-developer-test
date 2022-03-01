@@ -1,13 +1,13 @@
 import { Component } from 'react';
+import SizeCheckboxGroup from '../../../../shared/SizeCheckboxGroup/SizeCheckboxGroup';
 import styles from './SizeCard.module.css';
-import SizeGroup from './SizeGroup/SizeGroup';
 
 class SizeCard extends Component {
     render() {
         return (
             <div>
                 <p className={styles.sizeTitle}>SIZE:</p>
-                <SizeGroup sizes={this.props.sizes} />
+                <SizeCheckboxGroup sizes={this.props.sizes} />
             </div>
         );
     }

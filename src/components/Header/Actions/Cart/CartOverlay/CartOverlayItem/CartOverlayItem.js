@@ -1,5 +1,5 @@
 import { Component } from 'react';
-import AmountController from './AmountController/AmountController';
+import AmountController from '../../../../../../shared/AmountController/AmountController';
 import styles from './CartOverlayItem.module.css';
 import InfoCard from './InfoCard/InfoCard';
 import Thumbnail from './Thumbnail/Thumbnail';
@@ -13,7 +13,10 @@ class CartOverlayItem extends Component {
                     price={this.props.price}
                     size={this.props.size}
                 />
-                <AmountController amount={this.props.amount} />
+                <AmountController
+                    amount={this.props.amount}
+                    extraClasses={styles.amountButton}
+                />
                 <Thumbnail img={this.props.img} />
             </div>
         );

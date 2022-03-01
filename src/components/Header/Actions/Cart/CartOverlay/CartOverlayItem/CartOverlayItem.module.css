@@ -15,3 +15,8 @@
 .cartOverlayItem:last-child {
     margin: 0;
 }
+
+.amountButton {
+    width: 24px;
+    height: 24px;
+}

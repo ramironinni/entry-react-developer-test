@@ -1,14 +1,14 @@
 import { Component } from 'react';
-import styles from './SizeItem.module.css';
+import styles from './SizeCheckboxItem.module.css';
 
-class SizeItem extends Component {
+class SizeCheckboxItem extends Component {
     render() {
         return (
             <label className={styles.container}>
                 <input
                     type="radio"
                     checked={this.props.size.selected ? 'checked' : ''}
-                    name="size"
+                    name={`size-${this.props.itemNumber}`}
                 />
                 <span
                     className={`${styles.checkmark} ${
@@ -24,4 +24,4 @@ class SizeItem extends Component {
     }
 }
 
-export default SizeItem;
+export default SizeCheckboxItem;

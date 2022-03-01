@@ -10,7 +10,10 @@ class CartPage extends Component {
             shortDesc: 'Running Short',
             price: 50,
             amount: 1,
-            size: 's',
+            sizes: [
+                { name: 's', available: true, selected: false },
+                { name: 'm', available: true, selected: true },
+            ],
             img: 'https://dummyimage.com/105x137/4cb7bf/fff',
         },
         {
@@ -18,7 +21,10 @@ class CartPage extends Component {
             shortDesc: 'Wayfarer',
             price: 75,
             amount: 2,
-            size: 's',
+            sizes: [
+                { name: 's', available: true, selected: false },
+                { name: 'm', available: true, selected: true },
+            ],
             img: 'https://dummyimage.com/105x137/4cb7bf/fff',
         },
     ];
@@ -26,9 +32,10 @@ class CartPage extends Component {
     render() {
         return (
             <Page>
+                {console.log()}
                 <p className={styles.title}>Cart</p>
                 {this.DUMMY_CART.map((item, i) => {
-                    return <CartItem key={i} item={item} />;
+                    return <CartItem key={i} item={item} itemNumber={i} />;
                 })}
             </Page>
         );

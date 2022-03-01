@@ -5,21 +5,18 @@
     width: 136px;
 }
 
-.name.page,
-.shortDesc.page {
+.name,
+.shortDesc {
     font-size: 30px;
     line-height: 27px;
 }
 
-.name.page {
+.name {
     font-weight: 600;
 }
 
 .price {
     font-weight: 500;
-}
-
-.price.page {
     font-weight: bold;
     line-height: 18px;
 }
