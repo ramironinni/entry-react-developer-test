@@ -2,6 +2,10 @@ import { Component } from 'react';
 import styles from './SizeCheckboxItem.module.css';
 
 class SizeCheckboxItem extends Component {
+    unavailableStyles = !this.props.size.available
+        ? styles.checkmarkUnavailable
+        : '';
+
     render() {
         return (
             <label className={styles.container}>
@@ -11,11 +15,7 @@ class SizeCheckboxItem extends Component {
                     name={`size-${this.props.itemNumber}`}
                 />
                 <span
-                    className={`${styles.checkmark} ${
-                        !this.props.size.available
-                            ? styles.checkmarkUnavailable
-                            : ''
-                    }`}
+                    className={`${styles.checkmark} ${this.unavailableStyles} ${this.props.extraClasses}`}
                 >
                     {this.props.size.name}
                 </span>

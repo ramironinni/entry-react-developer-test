@@ -1,5 +1,6 @@
 import { Component } from 'react';
-import SizeBoxGroup from '../../../../../../../shared/SizeBoxGroup/SizeBoxGroup';
+// import SizeBoxGroup from '../../../../../../../shared/SizeBoxGroup/SizeBoxGroup';
+import SizeCheckboxGroup from '../../../../../../../shared/SizeCheckboxGroup/SizeCheckboxGroup';
 import styles from './InfoCard.module.css';
 
 class InfoCard extends Component {
@@ -11,7 +12,12 @@ class InfoCard extends Component {
                     &#36;
                     {this.props.price.toFixed(2)}
                 </div>
-                <SizeBoxGroup size={this.props.size} />
+                {/* <SizeBoxGroup size={this.props.size} /> */}
+                <SizeCheckboxGroup
+                    sizes={this.props.sizes}
+                    itemNumber={this.props.itemNumber}
+                    extraClasses={styles.size}
+                />
             </div>
         );
     }

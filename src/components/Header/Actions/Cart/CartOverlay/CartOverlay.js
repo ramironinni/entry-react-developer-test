@@ -10,14 +10,20 @@ class CartOverlay extends Component {
             name: 'Apollo Running Short',
             price: 50,
             amount: 1,
-            size: 's',
+            sizes: [
+                { name: 's', available: true, selected: false },
+                { name: 'm', available: true, selected: true },
+            ],
             img: 'https://dummyimage.com/105x137/4cb7bf/fff',
         },
         {
             name: 'Jupiter Wayfarer',
             price: 75,
             amount: 2,
-            size: 's',
+            sizes: [
+                { name: 's', available: true, selected: false },
+                { name: 'm', available: true, selected: true },
+            ],
             img: 'https://dummyimage.com/105x137/4cb7bf/fff',
         },
     ];
@@ -36,8 +42,9 @@ class CartOverlay extends Component {
                                 name={item.name}
                                 price={item.price}
                                 amount={item.amount}
-                                size={item.size}
+                                sizes={item.sizes}
                                 img={item.img}
+                                itemNumber={i}
                             />
                         );
                     })}

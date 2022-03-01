@@ -12,6 +12,7 @@ class SizeCheckboxGroup extends Component {
                             key={i}
                             size={size}
                             itemNumber={this.props.itemNumber}
+                            extraClasses={this.props.extraClasses}
                         />
                     );
                 })}

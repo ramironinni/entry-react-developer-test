@@ -3,3 +3,9 @@
     flex-wrap: wrap;
     justify-content: space-between;
 }
+
+.buttonCheckout {
+    border: none;
+    background-color: var(--c-primary);
+    color: var(--c-white);
+}

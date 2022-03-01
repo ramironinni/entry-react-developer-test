@@ -11,7 +11,8 @@ class CartOverlayItem extends Component {
                 <InfoCard
                     name={this.props.name}
                     price={this.props.price}
-                    size={this.props.size}
+                    sizes={this.props.sizes}
+                    itemNumber={this.props.itemNumber}
                 />
                 <AmountController
                     amount={this.props.amount}

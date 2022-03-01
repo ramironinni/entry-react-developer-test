@@ -8,3 +8,15 @@
 .price {
     font-weight: 500;
 }
+
+.size {
+    width: 24px;
+    height: 24px;
+}
+
+/* .size.unavailable {
+    width: 24px;
+    height: 24px;
+    color: var(--c-grey);
+    background-color: #a6a6a633;
+} */

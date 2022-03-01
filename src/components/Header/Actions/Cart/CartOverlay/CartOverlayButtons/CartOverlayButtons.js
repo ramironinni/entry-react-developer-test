@@ -7,7 +7,7 @@ class CartOverlayButtons extends Component {
         return (
             <div className={styles.cartOverlayButtons}>
                 <Button text="view bag" />
-                <Button text="check out" type="checkout" />
+                <Button text="check out" extraClasses={styles.buttonCheckout} />
             </div>
         );
     }
