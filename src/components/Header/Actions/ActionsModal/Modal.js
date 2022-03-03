@@ -6,7 +6,7 @@ class Backdrop extends Component {
     render() {
         return (
             <div
-                className={`${styles.backdrop} ${this.props.backdropClasses}`}
+                className={`${styles.backdropTransparent} ${this.props.backdropClasses}`}
                 onClick={this.props.onBackdropClickHandler}
             ></div>
         );

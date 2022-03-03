@@ -27,14 +27,18 @@ class Cart extends Component {
                     />
                 </div>
                 {this.props.showOverlay && (
-                    <Modal
-                        overlayClasses={styles.modalOverlay}
-                        onBackdropClickHandler={this.props.onToggleOverlayHandler.bind(
-                            this
-                        )}
-                    >
-                        <CartOverlay />
-                    </Modal>
+                    <>
+                        <Modal
+                            overlayClasses={styles.modalOverlay}
+                            backdropClasses={styles.backdrop}
+                            onBackdropClickHandler={this.props.onToggleOverlayHandler.bind(
+                                this
+                            )}
+                        >
+                            <CartOverlay />
+                        </Modal>
+                        <div className={styles.backdrop}></div>
+                    </>
                 )}
             </div>
         );

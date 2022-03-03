@@ -1,18 +1,18 @@
-.backdrop {
+.backdropTransparent {
     position: fixed;
     top: 0;
     left: 0;
     width: 100%;
     height: 100vh;
-    z-index: 2;
-    background-color: #39374838;
+    z-index: 1000;
+    background-color: transparent;
 }
 
 .modalOverlay {
     position: absolute;
-    top: 70px;
+    top: var(--header-height);
     background-color: var(--c-white);
     padding: 16px;
-    z-index: 3;
+    z-index: 4;
     /* animation: slide-down 300ms ease-out forwards; */
 }

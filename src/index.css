@@ -368,4 +368,5 @@ template {
     --c-white: #ffffff;
     --c-grey: #a6a6a6;
     --c-dark-grey: #8d8f9a;
+    --header-height: 70px;
 }
