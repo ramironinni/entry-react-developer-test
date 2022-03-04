@@ -24,25 +24,25 @@ class ModalOverlay extends Component {
     }
 }
 class Modal extends Component {
-    portalElement = document.getElementById('overlays');
+    // portalElement = document.getElementById('overlays');
     render() {
         return (
             <>
-                {ReactDOM.createPortal(
-                    <Backdrop
-                        backdropClasses={this.props.backdropClasses}
-                        onBackdropClickHandler={
-                            this.props.onBackdropClickHandler
-                        }
-                    />,
+                {/* {ReactDOM.createPortal( */}
+                <Backdrop
+                    backdropClasses={this.props.backdropClasses}
+                    onBackdropClickHandler={this.props.onBackdropClickHandler}
+                />
+                {/* ,
                     this.portalElement
-                )}
-                {ReactDOM.createPortal(
-                    <ModalOverlay overlayClasses={this.props.overlayClasses}>
-                        {this.props.children}
-                    </ModalOverlay>,
+                )} */}
+                {/* {ReactDOM.createPortal( */}
+                <ModalOverlay overlayClasses={this.props.overlayClasses}>
+                    {this.props.children}
+                </ModalOverlay>
+                {/* ,
                     this.portalElement
-                )}
+                )} */}
             </>
         );
     }

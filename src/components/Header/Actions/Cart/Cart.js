@@ -5,21 +5,33 @@ import styles from './Cart.module.css';
 import CartOverlay from './CartOverlay/CartOverlay';
 
 class Cart extends Component {
-    // constructor() {
-    //     super();
-    //     this.state = { showOverlay: false };
-    // }
-
-    // toggleCartHandler() {
-    //     this.setState((curState) => {
-    //         return { showOverlay: !curState.showOverlay };
-    //     });
-    // }
+    DUMMY_CART = [
+        {
+            name: 'Apollo Running Short',
+            price: 50,
+            amount: 1,
+            sizes: [
+                { name: 's', available: true, selected: false },
+                { name: 'm', available: true, selected: true },
+            ],
+            img: 'https://dummyimage.com/105x137/4cb7bf/fff',
+        },
+        {
+            name: 'Jupiter Wayfarer',
+            price: 75,
+            amount: 2,
+            sizes: [
+                { name: 's', available: true, selected: false },
+                { name: 'm', available: true, selected: true },
+            ],
+            img: 'https://dummyimage.com/105x137/4cb7bf/fff',
+        },
+    ];
 
     render() {
         return (
-            <div className={styles.cart}>
-                <div>
+            <>
+                <div className={styles.cart}>
                     <img
                         src={cart}
                         alt="cart"
@@ -35,12 +47,12 @@ class Cart extends Component {
                                 this
                             )}
                         >
-                            <CartOverlay />
+                            <CartOverlay cart={this.DUMMY_CART} />
                         </Modal>
-                        <div className={styles.backdrop}></div>
+                        <div className={styles.backdropGrey} />
                     </>
                 )}
-            </div>
+            </>
         );
     }
 }

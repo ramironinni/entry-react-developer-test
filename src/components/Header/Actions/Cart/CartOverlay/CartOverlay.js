@@ -4,38 +4,15 @@ import CartOverlayButtons from './CartOverlayButtons/CartOverlayButtons';
 import CartOverlayItem from './CartOverlayItem/CartOverlayItem';
 
 class CartOverlay extends Component {
-    cartAmount = 2;
-    DUMMY_CART = [
-        {
-            name: 'Apollo Running Short',
-            price: 50,
-            amount: 1,
-            sizes: [
-                { name: 's', available: true, selected: false },
-                { name: 'm', available: true, selected: true },
-            ],
-            img: 'https://dummyimage.com/105x137/4cb7bf/fff',
-        },
-        {
-            name: 'Jupiter Wayfarer',
-            price: 75,
-            amount: 2,
-            sizes: [
-                { name: 's', available: true, selected: false },
-                { name: 'm', available: true, selected: true },
-            ],
-            img: 'https://dummyimage.com/105x137/4cb7bf/fff',
-        },
-    ];
     render() {
         return (
             <div className={styles.cartOverlay}>
                 <p className={styles.title}>
                     <span className={styles.myBag}>My Bag,&nbsp;</span>
-                    {this.cartAmount} items
+                    {this.props.cart.length} items
                 </p>
                 <div>
-                    {this.DUMMY_CART.map((item, i) => {
+                    {this.props.cart.map((item, i) => {
                         return (
                             <CartOverlayItem
                                 key={i}

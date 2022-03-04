@@ -4,17 +4,6 @@ import styles from './CurrencySwitcher.module.css';
 import Modal from '../ActionsModal/Modal';
 
 class CurrencySwitcher extends Component {
-    // constructor() {
-    //     super();
-    //     this.state = { showOverlay: false };
-    // }
-
-    // toggleCurrencySwitcherHandler() {
-    //     this.setState((curState) => {
-    //         return { showOverlay: !curState.showOverlay };
-    //     });
-    // }
-
     DUMMY_CURRENCIES = [
         { symbol: '$', code: 'USD' },
         { symbol: '€', code: 'EUR' },
@@ -22,7 +11,7 @@ class CurrencySwitcher extends Component {
     ];
     render() {
         return (
-            <div>
+            <>
                 <div
                     className={styles.currencySwitcher}
                     onClick={this.props.onToggleOverlayHandler}
@@ -49,7 +38,7 @@ class CurrencySwitcher extends Component {
                         })}
                     </Modal>
                 )}
-            </div>
+            </>
         );
     }
 }
