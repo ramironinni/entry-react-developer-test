@@ -1,8 +1,8 @@
 import { Component } from 'react';
 import AmountController from '../../../shared/AmountController/AmountController';
 import styles from './CartItem.module.css';
+import ImageSlider from './ImageSlider/ImageSlider';
 import InfoCard from './InfoCard/InfoCard';
-import Thumbnail from './Thumbnail/Thumbnail';
 
 class CartItem extends Component {
     render() {
@@ -20,7 +20,8 @@ class CartItem extends Component {
                     extraClasses={styles.amountButton}
                 />
 
-                <Thumbnail img={this.props.item.img} />
+                {/* <Thumbnail images={this.props.item.images} /> */}
+                <ImageSlider images={this.props.item.images} />
             </div>
         );
     }
