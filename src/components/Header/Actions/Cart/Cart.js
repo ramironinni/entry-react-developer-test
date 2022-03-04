@@ -37,6 +37,9 @@ class Cart extends Component {
                         alt="cart"
                         onClick={this.props.onToggleOverlayHandler.bind(this)}
                     />
+                    <div className={styles.cartAmount}>
+                        {this.DUMMY_CART.length}
+                    </div>
                 </div>
                 {this.props.showOverlay && (
                     <>
