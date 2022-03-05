@@ -1,10 +1,11 @@
 .slider {
     position: relative;
+    width: 141px;
+    height: 185px;
 }
 
 .slide {
     opacity: 0;
-    width: 141px;
 }
 
 .current {

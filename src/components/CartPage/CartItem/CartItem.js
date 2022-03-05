@@ -19,8 +19,6 @@ class CartItem extends Component {
                     amount={this.props.item.amount}
                     extraClasses={styles.amountButton}
                 />
-
-                {/* <Thumbnail images={this.props.item.images} /> */}
                 <ImageSlider images={this.props.item.images} />
             </div>
         );

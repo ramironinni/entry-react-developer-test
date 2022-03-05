@@ -40,7 +40,6 @@ class CartPage extends Component {
     render() {
         return (
             <Page>
-                {console.log()}
                 <p className={styles.title}>Cart</p>
                 {this.DUMMY_CART.map((item, i) => {
                     return <CartItem key={i} item={item} itemNumber={i} />;

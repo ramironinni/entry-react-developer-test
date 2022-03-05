@@ -33,8 +33,6 @@ class ImageSlider extends Component {
     }
 
     render() {
-        console.log(this.state.currentImg);
-
         return (
             <div className={styles.slider}>
                 <div className={styles.arrowLeftContainer}>
