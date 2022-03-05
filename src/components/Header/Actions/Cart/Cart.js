@@ -31,12 +31,11 @@ class Cart extends Component {
     render() {
         return (
             <>
-                <div className={styles.cart}>
-                    <img
-                        src={cart}
-                        alt="cart"
-                        onClick={this.props.onToggleOverlayHandler.bind(this)}
-                    />
+                <div
+                    className={styles.cart}
+                    onClick={this.props.onToggleOverlayHandler.bind(this)}
+                >
+                    <img src={cart} alt="cart" />
                     <div className={styles.cartAmount}>
                         {this.DUMMY_CART.length}
                     </div>
@@ -45,7 +44,6 @@ class Cart extends Component {
                     <>
                         <Modal
                             overlayClasses={styles.modalOverlay}
-                            backdropClasses={styles.backdrop}
                             onBackdropClickHandler={this.props.onToggleOverlayHandler.bind(
                                 this
                             )}

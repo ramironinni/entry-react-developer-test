@@ -24,7 +24,6 @@ class CurrencySwitcher extends Component {
                 {this.props.showOverlay && (
                     <Modal
                         overlayClasses={styles.modalOverlay}
-                        backdropClasses={styles.backdrop}
                         onBackdropClickHandler={
                             this.props.onToggleOverlayHandler
                         }

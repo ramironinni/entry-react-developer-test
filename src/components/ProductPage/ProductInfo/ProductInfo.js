@@ -18,11 +18,6 @@ class ProductInfo extends Component {
                 />
                 <p className={styles.priceTitle}>PRICE: </p>
                 <p className={styles.price}>$50.00</p>
-                {/* <Button
-                    type="checkout"
-                    text="Add to cart"
-                    extraClasses={styles.button}
-                /> */}
                 <button className={styles.button}>Add to cart</button>
                 <p className={styles.productLongDesc}>
                     {this.props.product.longDesc}
