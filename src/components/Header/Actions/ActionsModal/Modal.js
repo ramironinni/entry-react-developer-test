@@ -1,6 +1,6 @@
 import { Component } from 'react';
 import styles from './Modal.module.css';
-
+import ReactDOM from 'react-dom';
 class Backdrop extends Component {
     render() {
         return (
@@ -9,6 +9,12 @@ class Backdrop extends Component {
                 onClick={this.props.onBackdropClickHandler}
             ></div>
         );
+    }
+}
+
+class BackdropGrey extends Component {
+    render() {
+        return <div className={styles.backdropGrey}></div>;
     }
 }
 class ModalOverlay extends Component {
@@ -23,16 +29,28 @@ class ModalOverlay extends Component {
     }
 }
 class Modal extends Component {
+    portalElement = document.getElementById('overlays');
+
     render() {
         return (
             <>
-                <Backdrop
-                    backdropClasses={this.props.backdropClasses}
-                    onBackdropClickHandler={this.props.onBackdropClickHandler}
-                />
-                <ModalOverlay overlayClasses={this.props.overlayClasses}>
-                    {this.props.children}
-                </ModalOverlay>
+                {ReactDOM.createPortal(
+                    <div className={styles.modal}>
+                        <Backdrop
+                            backdropClasses={this.props.backdropClasses}
+                            onBackdropClickHandler={
+                                this.props.onBackdropClickHandler
+                            }
+                        />
+                        {this.props.backdropGrey && <BackdropGrey />}
+                        <ModalOverlay
+                            overlayClasses={this.props.overlayClasses}
+                        >
+                            {this.props.children}
+                        </ModalOverlay>
+                    </div>,
+                    this.portalElement
+                )}
             </>
         );
     }

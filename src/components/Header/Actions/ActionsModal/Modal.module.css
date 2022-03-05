@@ -8,11 +8,21 @@
     background-color: transparent;
 }
 
+.backdropGrey {
+    position: fixed;
+    /* top: var(--header-height); */
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+    background-color: #39374838;
+}
+
 .modalOverlay {
     position: absolute;
     top: var(--header-height);
     background-color: var(--c-white);
     padding: 16px;
-    z-index: 4;
+    z-index: 5;
     /* animation: slide-down 300ms ease-out forwards; */
 }

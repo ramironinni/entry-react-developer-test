@@ -29,13 +29,3 @@
     width: 325px;
     /* display: none; */
 }
-
-.backdropGrey {
-    position: fixed;
-    top: var(--header-height);
-    left: 0;
-    width: 100%;
-    height: 100vh;
-    z-index: 3;
-    background-color: #39374838;
-}

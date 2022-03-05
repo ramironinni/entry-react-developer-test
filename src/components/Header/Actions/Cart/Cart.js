@@ -47,10 +47,10 @@ class Cart extends Component {
                             onBackdropClickHandler={this.props.onToggleOverlayHandler.bind(
                                 this
                             )}
+                            backdropGrey={true}
                         >
                             <CartOverlay cart={this.DUMMY_CART} />
                         </Modal>
-                        <div className={styles.backdropGrey} />
                     </>
                 )}
             </>
