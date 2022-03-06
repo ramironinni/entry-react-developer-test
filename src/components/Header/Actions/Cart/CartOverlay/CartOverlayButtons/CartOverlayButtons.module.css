@@ -9,3 +9,7 @@
     background-color: var(--c-primary);
     color: var(--c-white);
 }
+
+.link {
+    text-decoration: none;
+}

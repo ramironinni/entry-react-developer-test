@@ -30,7 +30,9 @@ class CartOverlay extends Component {
                     <p>Total</p>
                     <p>$100.00</p>
                 </div>
-                <CartOverlayButtons />
+                <CartOverlayButtons
+                    onCloseOverlayHandler={this.props.onCloseOverlayHandler}
+                />
             </div>
         );
     }

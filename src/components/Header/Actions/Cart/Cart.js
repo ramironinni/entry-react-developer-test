@@ -49,7 +49,12 @@ class Cart extends Component {
                             )}
                             backdropGrey={true}
                         >
-                            <CartOverlay cart={this.DUMMY_CART} />
+                            <CartOverlay
+                                cart={this.DUMMY_CART}
+                                onCloseOverlayHandler={this.props.onToggleOverlayHandler.bind(
+                                    this
+                                )}
+                            />
                         </Modal>
                     </>
                 )}
