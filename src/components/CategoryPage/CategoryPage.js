@@ -22,6 +22,7 @@ class CategoryPage extends Component {
                             <ProductCard
                                 key={i}
                                 name={product.name}
+                                id={product.id}
                                 stock={product.stock}
                             />
                         );

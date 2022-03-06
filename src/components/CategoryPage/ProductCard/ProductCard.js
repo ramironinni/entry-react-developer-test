@@ -2,6 +2,7 @@ import { Component } from 'react';
 import styles from './ProductCard.module.css';
 import cartGreenIcon from '../../../assets/cart-green-icon.svg';
 import OutOfStock from './OutOfStock';
+import { Link } from 'react-router-dom';
 
 class ProductCard extends Component {
     outOfStockTextStyles = this.props.stock === 0 ? styles.outOfStockText : '';
@@ -9,7 +10,10 @@ class ProductCard extends Component {
 
     render() {
         return (
-            <article className={`${styles.article} ${this.outOfStockArticle}`}>
+            <Link
+                className={`${styles.article} ${this.outOfStockArticle}`}
+                to={`/product/${this.props.id}`}
+            >
                 <div className={styles.imageContainer}>
                     {this.props.stock === 0 && <OutOfStock />}
                     <div>
@@ -37,7 +41,7 @@ class ProductCard extends Component {
                         $00.00
                     </p>
                 </div>
-            </article>
+            </Link>
         );
     }
 }
