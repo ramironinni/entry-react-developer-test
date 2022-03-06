@@ -42,7 +42,13 @@ class CartPage extends Component {
             <Page>
                 <p className={styles.title}>Cart</p>
                 {this.DUMMY_CART.map((item, i) => {
-                    return <CartItem key={i} item={item} itemNumber={i} />;
+                    return (
+                        <CartItem
+                            key={i}
+                            item={item}
+                            inputName={`${i}-CartPage`}
+                        />
+                    );
                 })}
             </Page>
         );

@@ -12,7 +12,7 @@ class CartOverlayItem extends Component {
                     name={this.props.name}
                     price={this.props.price}
                     sizes={this.props.sizes}
-                    itemNumber={this.props.itemNumber}
+                    inputName={this.props.inputName}
                 />
                 <AmountController
                     amount={this.props.amount}

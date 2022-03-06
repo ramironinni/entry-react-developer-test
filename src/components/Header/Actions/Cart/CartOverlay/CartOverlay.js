@@ -21,7 +21,7 @@ class CartOverlay extends Component {
                                 amount={item.amount}
                                 sizes={item.sizes}
                                 img={item.img}
-                                itemNumber={i}
+                                inputName={`${i}-cartOverlay`}
                             />
                         );
                     })}

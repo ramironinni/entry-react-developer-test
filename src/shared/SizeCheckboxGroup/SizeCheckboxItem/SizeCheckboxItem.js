@@ -6,6 +6,8 @@ class SizeCheckboxItem extends Component {
         ? styles.checkmarkUnavailable
         : '';
 
+    extraClasses = this.props.extraClasses ? this.props.extraClasses : '';
+
     render() {
         return (
             <label className={styles.container}>
@@ -14,14 +16,14 @@ class SizeCheckboxItem extends Component {
                     checked={
                         this.props.checked === this.props.name ? 'checked' : ''
                     }
-                    name={`size-${this.props.itemNumber}`}
+                    name={`size-${this.props.inputName}`}
                     disabled={!this.props.available}
                     onChange={() => {
                         this.props.onChange(this.props.name);
                     }}
                 />
                 <span
-                    className={`${styles.checkmark} ${this.unavailableStyles} ${this.props.extraClasses}`}
+                    className={`${styles.checkmark} ${this.unavailableStyles} ${this.extraClasses}`}
                 >
                     {this.props.name}
                 </span>

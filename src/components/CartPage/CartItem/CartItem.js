@@ -13,7 +13,7 @@ class CartItem extends Component {
                     price={this.props.item.price}
                     sizes={this.props.item.sizes}
                     shortDesc={this.props.item.shortDesc}
-                    itemNumber={this.props.itemNumber}
+                    inputName={this.props.inputName}
                 />
                 <AmountController
                     amount={this.props.item.amount}

@@ -13,7 +13,7 @@ class ProductInfo extends Component {
 
                 <SizeCard
                     sizes={this.props.product.sizes}
-                    itemNumber={'product-page'}
+                    inputName={'ProductPage'}
                 />
                 <p className={styles.priceTitle}>PRICE: </p>
                 <p className={styles.price}>$50.00</p>
