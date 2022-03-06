@@ -15,8 +15,10 @@ class ProductInfo extends Component {
                     sizes={this.props.product.sizes}
                     inputName={'ProductPage'}
                 />
-                <p className={styles.priceTitle}>PRICE: </p>
-                <p className={styles.price}>$50.00</p>
+                <div className={styles.priceContainer}>
+                    <p className={styles.priceTitle}>PRICE: </p>
+                    <p className={styles.price}>$50.00</p>
+                </div>
                 <button className={styles.button}>Add to cart</button>
                 <p className={styles.productLongDesc}>
                     {this.props.product.longDesc}

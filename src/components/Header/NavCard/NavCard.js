@@ -3,7 +3,7 @@ import NavItem from './NavItem';
 import styles from './NavCard.module.css';
 
 class NavCard extends Component {
-    DUMMY_CATEGORIES = ['Women', 'Men', 'Kids'];
+    DUMMY_CATEGORIES = ['women', 'men', 'kids'];
 
     render() {
         return (
