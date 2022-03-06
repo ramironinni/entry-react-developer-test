@@ -2,7 +2,7 @@ import { Component } from 'react';
 import styles from './SizeCheckboxItem.module.css';
 
 class SizeCheckboxItem extends Component {
-    unavailableStyles = !this.props.size.available
+    unavailableStyles = !this.props.available
         ? styles.checkmarkUnavailable
         : '';
 
@@ -11,13 +11,19 @@ class SizeCheckboxItem extends Component {
             <label className={styles.container}>
                 <input
                     type="radio"
-                    checked={this.props.size.selected ? 'checked' : ''}
+                    checked={
+                        this.props.checked === this.props.name ? 'checked' : ''
+                    }
                     name={`size-${this.props.itemNumber}`}
+                    disabled={!this.props.available}
+                    onChange={() => {
+                        this.props.onChange(this.props.name);
+                    }}
                 />
                 <span
                     className={`${styles.checkmark} ${this.unavailableStyles} ${this.props.extraClasses}`}
                 >
-                    {this.props.size.name}
+                    {this.props.name}
                 </span>
             </label>
         );

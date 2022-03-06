@@ -1,5 +1,4 @@
 import { Component } from 'react';
-import Button from '../../../shared/Button/Button';
 import styles from './ProductInfo.module.css';
 import SizeCard from './SizeCard/SizeCard';
 

@@ -3,7 +3,6 @@ import Page from '../Page';
 import ProductGallery from './ProductGallery/ProductGallery';
 import ProductInfo from './ProductInfo/ProductInfo';
 import styles from './ProductPage.module.css';
-import Button from '../../shared/Button/Button';
 
 class ProductPage extends Component {
     DUMMY_PRODUCT = {
