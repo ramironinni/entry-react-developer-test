@@ -16,12 +16,16 @@ class CartOverlay extends Component {
                         return (
                             <CartOverlayItem
                                 key={i}
+                                id={item.id}
                                 name={item.name}
+                                shortDesc={item.shortDesc}
                                 price={item.price}
                                 amount={item.amount}
                                 sizes={item.sizes}
-                                img={item.img}
+                                img={item.images[3]}
                                 inputName={`${i}-cartOverlay`}
+                                onAddToCart={this.props.onAddToCart}
+                                onRemoveFromCart={this.props.onRemoveFromCart}
                             />
                         );
                     })}

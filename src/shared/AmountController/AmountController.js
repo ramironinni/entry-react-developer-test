@@ -5,13 +5,19 @@ class AmountController extends Component {
     render() {
         return (
             <div className={styles.amountController}>
-                <div className={`${styles.button} ${this.props.extraClasses}`}>
+                <button
+                    className={`${styles.button} ${this.props.extraClasses}`}
+                    onClick={() => this.props.onAddToCart(this.props.id)}
+                >
                     +
-                </div>
+                </button>
                 <div>{this.props.amount}</div>
-                <div className={`${styles.button} ${this.props.extraClasses}`}>
+                <button
+                    className={`${styles.button} ${this.props.extraClasses}`}
+                    onClick={() => this.props.onRemoveFromCart(this.props.id)}
+                >
                     -
-                </div>
+                </button>
             </div>
         );
     }

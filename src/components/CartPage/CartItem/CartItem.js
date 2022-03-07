@@ -16,8 +16,11 @@ class CartItem extends Component {
                     inputName={this.props.inputName}
                 />
                 <AmountController
+                    id={this.props.item.id}
                     amount={this.props.item.amount}
                     extraClasses={styles.amountButton}
+                    onAddToCart={this.props.onAddToCart}
+                    onRemoveFromCart={this.props.onRemoveFromCart}
                 />
                 <ImageSlider images={this.props.item.images} />
             </div>
