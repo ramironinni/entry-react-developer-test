@@ -1,4 +1,6 @@
 import { Component } from 'react';
+import { connect } from 'react-redux';
+
 import Page from '../Page';
 import styles from './Cart.module.css';
 import CartItem from './CartItem/CartItem';
@@ -37,10 +39,23 @@ class CartPage extends Component {
         },
     ];
 
+    addToCartHandler() {
+        this.props.add();
+    }
+
+    removeFromCartHandler() {
+        this.props.remove();
+    }
+
     render() {
         return (
             <Page>
-                <p className={styles.title}>Cart</p>
+                {this.props.cart}
+                <p className={styles.title}>Cart </p>
+                <button onClick={this.addToCartHandler.bind(this)}>Add</button>
+                <button onClick={this.removeFromCartHandler.bind(this)}>
+                    Remove
+                </button>
                 {this.DUMMY_CART.map((item, i) => {
                     return (
                         <CartItem
@@ -55,4 +70,17 @@ class CartPage extends Component {
     }
 }
 
-export default CartPage;
+const mapStateToProps = (state) => {
+    return {
+        cart: state.cart,
+    };
+};
+
+const mapDispatchToProps = (dispatch) => {
+    return {
+        add: () => dispatch({ type: 'add' }),
+        remove: () => dispatch({ type: 'remove' }),
+    };
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(CartPage);

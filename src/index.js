@@ -1,5 +1,8 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import { Provider } from 'react-redux';
+import store from './store/index';
+
 import App from './App';
 
 import './index.css';
@@ -32,10 +35,17 @@ client
     .then((result) => console.log(result));
 
 ReactDOM.render(
-    <React.StrictMode>
-        {/* <ApolloProvider client={client}> */}
+    <Provider store={store}>
         <App />
-        {/* </ApolloProvider> */}
-    </React.StrictMode>,
+    </Provider>,
     document.getElementById('root')
+
+    // <React.StrictMode>
+    //     {/* <ApolloProvider client={client}> */}
+    //     <Provider store={store}>
+    //         <App />
+    //     </Provider>
+    //     {/* </ApolloProvider> */}
+    // </React.StrictMode>,
+    // document.getElementById('root')
 );
