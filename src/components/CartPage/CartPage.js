@@ -1,5 +1,6 @@
 import { Component } from 'react';
 import { connect } from 'react-redux';
+import { cartActions } from '../../store';
 
 import Page from '../Page';
 import styles from './Cart.module.css';
@@ -47,14 +48,13 @@ class CartPage extends Component {
         this.props.remove(id);
     }
 
-    changeSizeHandler(size) {
-        this.props.changeSize(size);
+    changeSizeHandler(id, size) {
+        this.props.changeSize(id, size);
     }
 
     render() {
         return (
             <Page>
-                {/* {this.props.cart} */}
                 <p className={styles.title}>Cart </p>
                 {this.props.cart.map((item, i) => {
                     return (
@@ -83,9 +83,10 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
     return {
-        add: (id) => dispatch({ type: 'add', id }),
-        remove: (id) => dispatch({ type: 'remove', id }),
-        changeSize: (size) => dispatch({ type: 'changeSize', size }),
+        add: (id) => dispatch(cartActions.add({ id })),
+        remove: (id) => dispatch(cartActions.remove({ id })),
+        changeSize: (id, size) =>
+            dispatch(cartActions.changeSize({ id, size })),
     };
 };
 

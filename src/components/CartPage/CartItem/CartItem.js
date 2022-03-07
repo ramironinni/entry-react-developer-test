@@ -9,6 +9,7 @@ class CartItem extends Component {
         return (
             <div className={styles.cartItem}>
                 <InfoCard
+                    id={this.props.item.id}
                     name={this.props.item.name}
                     price={this.props.item.price}
                     sizes={this.props.item.sizes}

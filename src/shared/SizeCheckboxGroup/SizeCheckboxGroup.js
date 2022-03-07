@@ -20,6 +20,7 @@ class SizeCheckboxGroup extends Component {
                 {this.props.sizes.map((size, i) => {
                     return (
                         <SizeCheckboxItem
+                            id={this.props.id}
                             key={i}
                             name={size.name}
                             available={size.available}

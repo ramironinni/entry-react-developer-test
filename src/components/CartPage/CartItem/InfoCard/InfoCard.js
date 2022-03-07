@@ -13,6 +13,7 @@ class InfoCard extends Component {
                     {this.props.price.toFixed(2)}
                 </div>
                 <SizeCheckboxGroup
+                    id={this.props.id}
                     sizes={this.props.sizes}
                     inputName={this.props.inputName}
                     onChangeSize={this.props.onChangeSize}

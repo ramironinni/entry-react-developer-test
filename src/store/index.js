@@ -1,4 +1,4 @@
-import { createStore } from 'redux';
+import { configureStore, createSlice } from '@reduxjs/toolkit';
 
 const initialCart = {
     cart: [
@@ -39,36 +39,76 @@ const initialCart = {
     ],
 };
 
-const cartReducer = (state = initialCart, action) => {
-    if (action.type === 'add') {
-        console.log(action.id, 'Added to cart');
-        return {
-            // cart: state.cart + 1,
-            cart: state.cart,
-        };
-    }
+const cartSlice = createSlice({
+    name: 'cart',
+    initialState: initialCart,
+    reducers: {
+        add(state, action) {
+            const itemToUpdateIndex = state.cart.findIndex(
+                (item) => item.id === action.payload.id
+            );
 
-    if (action.type === 'remove') {
-        console.log(action.id, 'Removed from cart');
+            state.cart[itemToUpdateIndex].amount++;
+        },
+        remove(state, action) {
+            const itemToUpdateIndex = state.cart.findIndex(
+                (item) => item.id === action.payload.id
+            );
 
-        return {
-            // cart: state.cart - 1,
-            cart: state.cart,
-        };
-    }
+            const itemToUpdate = state.cart[itemToUpdateIndex];
 
-    if (action.type === 'changeSize') {
-        console.log('New size is: ', action.size);
+            if (itemToUpdate.amount < 1) {
+                return;
+            }
 
-        return {
-            // cart: state.cart - 1,
-            cart: state.cart,
-        };
-    }
+            state.cart[itemToUpdateIndex].amount--;
+        },
+        changeSize(state, action) {
+            const itemToUpdateIndex = state.cart.findIndex(
+                (item) => item.id === action.payload.id
+            );
 
-    return state;
-};
+            console.log(state.cart[itemToUpdateIndex].amount);
 
-const store = createStore(cartReducer);
+            // state.cart[itemToUpdateIndex].sizes.forEach(
+            //     (size) => (size.available = false)
+            // );
+        },
+    },
+});
+
+// const cartReducer = (state = initialCart, action) => {
+//     if (action.type === 'add') {
+//         console.log(action.id, 'Added to cart');
+//         return {
+//             // cart: state.cart + 1,
+//             cart: state.cart,
+//         };
+//     }
+
+//     if (action.type === 'remove') {
+//         console.log(action.id, 'Removed from cart');
+
+//         return {
+//             // cart: state.cart - 1,
+//             cart: state.cart,
+//         };
+//     }
+
+//     if (action.type === 'changeSize') {
+//         console.log('New size is: ', action.size);
+
+//         return {
+//             // cart: state.cart - 1,
+//             cart: state.cart,
+//         };
+//     }
+
+//     return state;
+// };
+
+const store = configureStore({ reducer: cartSlice.reducer });
+
+export const cartActions = cartSlice.actions;
 
 export default store;
