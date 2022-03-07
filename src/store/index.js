@@ -57,6 +57,15 @@ const cartReducer = (state = initialCart, action) => {
         };
     }
 
+    if (action.type === 'changeSize') {
+        console.log('New size is: ', action.size);
+
+        return {
+            // cart: state.cart - 1,
+            cart: state.cart,
+        };
+    }
+
     return state;
 };
 

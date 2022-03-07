@@ -14,6 +14,7 @@ class CartItem extends Component {
                     sizes={this.props.item.sizes}
                     shortDesc={this.props.item.shortDesc}
                     inputName={this.props.inputName}
+                    onChangeSize={this.props.onChangeSize}
                 />
                 <AmountController
                     id={this.props.item.id}

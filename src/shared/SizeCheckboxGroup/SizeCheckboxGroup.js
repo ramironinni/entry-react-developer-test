@@ -26,7 +26,8 @@ class SizeCheckboxGroup extends Component {
                             checked={this.state.checked}
                             inputName={this.props.inputName}
                             extraClasses={this.props.extraClasses}
-                            onChange={this.onChangelHandler.bind(this)}
+                            // onChange={this.onChangelHandler.bind(this)}
+                            onChangeSize={this.props.onChangeSize}
                         />
                     );
                 })}

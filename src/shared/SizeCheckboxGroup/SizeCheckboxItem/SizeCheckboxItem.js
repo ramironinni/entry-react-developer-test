@@ -19,7 +19,7 @@ class SizeCheckboxItem extends Component {
                     name={`size-${this.props.inputName}`}
                     disabled={!this.props.available}
                     onChange={() => {
-                        this.props.onChange(this.props.name);
+                        this.props.onChangeSize(this.props.name);
                     }}
                 />
                 <span

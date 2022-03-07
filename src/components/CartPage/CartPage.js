@@ -47,6 +47,10 @@ class CartPage extends Component {
         this.props.remove(id);
     }
 
+    changeSizeHandler(size) {
+        this.props.changeSize(size);
+    }
+
     render() {
         return (
             <Page>
@@ -62,6 +66,7 @@ class CartPage extends Component {
                             onRemoveFromCart={this.removeFromCartHandler.bind(
                                 this
                             )}
+                            onChangeSize={this.changeSizeHandler.bind(this)}
                         />
                     );
                 })}
@@ -80,6 +85,7 @@ const mapDispatchToProps = (dispatch) => {
     return {
         add: (id) => dispatch({ type: 'add', id }),
         remove: (id) => dispatch({ type: 'remove', id }),
+        changeSize: (size) => dispatch({ type: 'changeSize', size }),
     };
 };
 

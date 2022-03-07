@@ -15,6 +15,7 @@ class InfoCard extends Component {
                 <SizeCheckboxGroup
                     sizes={this.props.sizes}
                     inputName={this.props.inputName}
+                    onChangeSize={this.props.onChangeSize}
                 />
             </div>
         );
