@@ -15,7 +15,7 @@ import {
     gql,
 } from '@apollo/client';
 
-const client = new ApolloClient({
+export const client = new ApolloClient({
     uri: 'http://localhost:4000/',
     cache: new InMemoryCache(),
 });
@@ -74,7 +74,7 @@ const client = new ApolloClient({
 ReactDOM.render(
     <Provider store={store}>
         <ApolloProvider client={client}>
-            <App client={client} />
+            <App />
         </ApolloProvider>
     </Provider>,
     document.getElementById('root')

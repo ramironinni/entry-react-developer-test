@@ -6,7 +6,7 @@ class NavItem extends Component {
     render() {
         return (
             <li className={styles.navItem}>
-                {/* <NavLink
+                <NavLink
                     className={(isActive) =>
                         isActive
                             ? `${styles.active} ${styles.navLink}`
@@ -15,15 +15,15 @@ class NavItem extends Component {
                     to={`/category/${this.props.category}`}
                 >
                     {this.props.category}
-                </NavLink> */}
-                <NavLink
+                </NavLink>
+                {/* <NavLink
                     className={`${
                         this.props.category === 'women' ? styles.active : ''
                     } ${styles.navLink}`}
                     to={'#'}
                 >
                     {this.props.category}
-                </NavLink>
+                </NavLink> */}
             </li>
         );
     }

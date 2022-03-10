@@ -1,14 +1,45 @@
 import { Component } from 'react';
+import { withApollo } from '@apollo/react-hoc';
+
+import { GET_CURRENCIES } from '../../../../GraphQl/queries';
+
 import arrow from '../../../../assets/arrow.svg';
 import styles from './CurrencySwitcher.module.css';
 import Modal from '../ActionsModal/Modal';
 
 class CurrencySwitcher extends Component {
-    DUMMY_CURRENCIES = [
-        { symbol: '$', code: 'USD' },
-        { symbol: '€', code: 'EUR' },
-        { symbol: '¥', code: 'JPY' },
-    ];
+    constructor(props) {
+        super(props);
+        this.state = { currencies: [], loading: true, error: false };
+        this.client = props.client;
+    }
+
+    async getCategories() {
+        const { loading, error, data } = await this.client.query({
+            query: GET_CURRENCIES,
+        });
+
+        if (loading) {
+            this.setState({ loading: true, error: false });
+        }
+
+        if (error) {
+            this.setState({ loading: false, error: error });
+            console.log(error);
+        }
+
+        this.setState({
+            currencies: data.currencies,
+            loading: data.loading,
+        });
+
+        // console.log(error, loading, data);
+    }
+
+    componentDidMount() {
+        this.getCategories();
+    }
+
     render() {
         return (
             <>
@@ -28,13 +59,14 @@ class CurrencySwitcher extends Component {
                             this.props.onToggleOverlayHandler
                         }
                     >
-                        {this.DUMMY_CURRENCIES.map((currency, i) => {
-                            return (
-                                <p className={styles.currencyItem} key={i}>
-                                    {currency.symbol} {currency.code}
-                                </p>
-                            );
-                        })}
+                        {!this.state.loading &&
+                            this.state.currencies.map((currency, i) => {
+                                return (
+                                    <p className={styles.currencyItem} key={i}>
+                                        {currency.symbol} {currency.label}
+                                    </p>
+                                );
+                            })}
                     </Modal>
                 )}
             </>
@@ -42,4 +74,4 @@ class CurrencySwitcher extends Component {
     }
 }
 
-export default CurrencySwitcher;
+export default withApollo(CurrencySwitcher);
