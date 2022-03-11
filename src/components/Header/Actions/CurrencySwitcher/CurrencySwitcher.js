@@ -7,7 +7,7 @@ import { GET_CURRENCIES } from '../../../../GraphQl/queries';
 
 import arrow from '../../../../assets/arrow.svg';
 import styles from './CurrencySwitcher.module.css';
-import Modal from '../ActionsModal/Modal';
+import CurrencyOverlay from './CurrencyOverlay/CurrencyOverlay';
 
 class CurrencySwitcher extends Component {
     constructor(props) {
@@ -20,7 +20,7 @@ class CurrencySwitcher extends Component {
         this.props.store(currencies);
     }
 
-    changeCurrency(label) {
+    switchCurrencyHandler(label) {
         this.props.change(label);
     }
 
@@ -61,21 +61,14 @@ class CurrencySwitcher extends Component {
                     </div>
                 </div>
                 {this.props.showOverlay && (
-                    <Modal
-                        overlayClasses={styles.modalOverlay}
+                    <CurrencyOverlay
                         onBackdropClickHandler={
                             this.props.onToggleOverlayHandler
                         }
-                    >
-                        {!this.state.loading &&
-                            this.props.currencies.map((currency, i) => {
-                                return (
-                                    <p className={styles.currencyItem} key={i}>
-                                        {currency.symbol} {currency.label}
-                                    </p>
-                                );
-                            })}
-                    </Modal>
+                        isLoading={this.state.loading}
+                        currencies={this.props.currencies}
+                        onSwitchCurrency={this.switchCurrencyHandler.bind(this)}
+                    />
                 )}
             </>
         );
@@ -96,7 +89,6 @@ const mapDispatchToProps = (dispatch) => {
     };
 };
 
-// export default withApollo(CurrencySwitcher);
 export default withApollo(
     connect(mapStateToProps, mapDispatchToProps)(CurrencySwitcher)
 );

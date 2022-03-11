@@ -7,6 +7,8 @@ import Page from '../Page';
 import styles from './CategoryPage.module.css';
 import ProductCard from './ProductCard/ProductCard';
 import capitalizeString from '../../utils/capitalizeString';
+import { connect } from 'react-redux';
+import { currenciesActions } from '../../store/currencies-slice';
 
 class CategoryPage extends Component {
     DUMMY_PRODUCTS = [
@@ -68,20 +70,27 @@ class CategoryPage extends Component {
 
     render() {
         const categoryName = capitalizeString(this.state.categoryName);
+        const selectedCurrency = this.props.currencies.find(
+            (currency) => currency.selected
+        );
 
         return (
             <Page>
                 <div className={styles.title}>{categoryName}</div>
                 <div className={styles.productsContainer}>
                     {this.state.items.map((product, i) => {
+                        const price = product.prices.find(
+                            (price) =>
+                                price.currency.label === selectedCurrency.label
+                        );
                         return (
                             <ProductCard
                                 key={i}
                                 name={product.name}
                                 id={product.id}
                                 stock={product.inStock}
-                                priceSymbol={'$'}
-                                priceAmount={'00.00'}
+                                priceSymbol={price.currency.symbol}
+                                priceAmount={price.amount}
                             />
                         );
                     })}
@@ -91,4 +100,10 @@ class CategoryPage extends Component {
     }
 }
 
-export default withApollo(withRouter(CategoryPage));
+const mapStateToProps = (state) => {
+    return {
+        currencies: state.currencies.currencies,
+    };
+};
+
+export default withApollo(withRouter(connect(mapStateToProps)(CategoryPage)));

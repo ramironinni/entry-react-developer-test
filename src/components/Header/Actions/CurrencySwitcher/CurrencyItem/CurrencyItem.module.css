@@ -1,0 +1,9 @@
+.currencyItem {
+    margin: 0;
+    font-weight: 500;
+    size: 18px;
+    line-height: 40px;
+    cursor: pointer;
+    border: none;
+    background-color: var(--c-white);
+}
