@@ -8,7 +8,6 @@ import styles from './CategoryPage.module.css';
 import ProductCard from './ProductCard/ProductCard';
 import capitalizeString from '../../utils/capitalizeString';
 import { connect } from 'react-redux';
-import { currenciesActions } from '../../store/currencies-slice';
 
 class CategoryPage extends Component {
     DUMMY_PRODUCTS = [
