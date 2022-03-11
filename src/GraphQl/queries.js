@@ -34,25 +34,12 @@ export const GET_ITEMS = gql`
 `;
 
 export const GET_ITEMS_BY_CATEGORY = gql`
-    query {
-        category {
+    query GetCategoryByName($title: String!) {
+        category(input: { title: $title }) {
             products {
                 id
                 name
                 inStock
-                gallery
-                description
-                category
-                attributes {
-                    id
-                    name
-                    type
-                    items {
-                        displayValue
-                        value
-                        id
-                    }
-                }
                 prices {
                     currency {
                         label
@@ -60,7 +47,6 @@ export const GET_ITEMS_BY_CATEGORY = gql`
                     }
                     amount
                 }
-                brand
             }
         }
     }

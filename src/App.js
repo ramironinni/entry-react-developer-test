@@ -27,7 +27,7 @@ class App extends Component {
                     <div className={styles.mainContainer}>
                         <Header />
                         <Switch>
-                            <Route exact path="/">
+                            <Route exact path="/category/:name">
                                 <CategoryPage />
                             </Route>
                             <Route exact path="/product/:id">

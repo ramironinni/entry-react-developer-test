@@ -14,7 +14,7 @@ class CurrencySwitcher extends Component {
         this.client = props.client;
     }
 
-    async getCategories() {
+    async getCurrencies() {
         const { loading, error, data } = await this.client.query({
             query: GET_CURRENCIES,
         });
@@ -37,7 +37,7 @@ class CurrencySwitcher extends Component {
     }
 
     componentDidMount() {
-        this.getCategories();
+        this.getCurrencies();
     }
 
     render() {
