@@ -9,6 +9,9 @@ const currenciesSlice = createSlice({
     initialState: initialCurrenciesState,
     reducers: {
         change(state, action) {},
+        store(state, action) {
+            state.currencies = action.payload.currencies;
+        },
     },
 });
 

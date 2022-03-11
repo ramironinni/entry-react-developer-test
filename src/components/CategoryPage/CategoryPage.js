@@ -51,7 +51,7 @@ class CategoryPage extends Component {
             loading: data.loading,
         });
 
-        console.log(error, loading, data);
+        // console.log(error, loading, data);
     }
 
     componentDidMount() {

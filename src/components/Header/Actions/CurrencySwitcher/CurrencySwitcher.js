@@ -1,5 +1,7 @@
 import { Component } from 'react';
 import { withApollo } from '@apollo/react-hoc';
+import { connect } from 'react-redux';
+import { currenciesActions } from '../../../../store/currencies-slice';
 
 import { GET_CURRENCIES } from '../../../../GraphQl/queries';
 
@@ -10,8 +12,16 @@ import Modal from '../ActionsModal/Modal';
 class CurrencySwitcher extends Component {
     constructor(props) {
         super(props);
-        this.state = { currencies: [], loading: true, error: false };
+        this.state = { loading: true, error: false };
         this.client = props.client;
+    }
+
+    storeCurrencies(currencies) {
+        this.props.store(currencies);
+    }
+
+    changeCurrency(label) {
+        this.props.change(label);
     }
 
     async getCurrencies() {
@@ -28,10 +38,8 @@ class CurrencySwitcher extends Component {
             console.log(error);
         }
 
-        this.setState({
-            currencies: data.currencies,
-            loading: data.loading,
-        });
+        this.setState({ loading: false, error: false });
+        this.storeCurrencies(data.currencies);
 
         // console.log(error, loading, data);
     }
@@ -60,7 +68,7 @@ class CurrencySwitcher extends Component {
                         }
                     >
                         {!this.state.loading &&
-                            this.state.currencies.map((currency, i) => {
+                            this.props.currencies.map((currency, i) => {
                                 return (
                                     <p className={styles.currencyItem} key={i}>
                                         {currency.symbol} {currency.label}
@@ -74,4 +82,21 @@ class CurrencySwitcher extends Component {
     }
 }
 
-export default withApollo(CurrencySwitcher);
+const mapStateToProps = (state) => {
+    return {
+        currencies: state.currencies.currencies,
+    };
+};
+
+const mapDispatchToProps = (dispatch) => {
+    return {
+        store: (currencies) =>
+            dispatch(currenciesActions.store({ currencies })),
+        change: (label) => dispatch(currenciesActions.change({ label })),
+    };
+};
+
+// export default withApollo(CurrencySwitcher);
+export default withApollo(
+    connect(mapStateToProps, mapDispatchToProps)(CurrencySwitcher)
+);
