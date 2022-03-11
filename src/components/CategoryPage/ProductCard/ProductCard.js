@@ -38,7 +38,8 @@ class ProductCard extends Component {
                     <p
                         className={`${styles.descriptionPrice} ${this.outOfStockTextStyles}`}
                     >
-                        $00.00
+                        {this.props.priceSymbol}
+                        {this.props.priceAmount}
                     </p>
                 </div>
             </Link>

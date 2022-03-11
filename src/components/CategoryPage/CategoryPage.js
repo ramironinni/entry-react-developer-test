@@ -80,6 +80,8 @@ class CategoryPage extends Component {
                                 name={product.name}
                                 id={product.id}
                                 stock={product.inStock}
+                                priceSymbol={'$'}
+                                priceAmount={'00.00'}
                             />
                         );
                     })}

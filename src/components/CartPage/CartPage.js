@@ -44,7 +44,7 @@ class CartPage extends Component {
 
 const mapStateToProps = (state) => {
     return {
-        cart: state.cart,
+        cart: state.cart.cart,
     };
 };
 
