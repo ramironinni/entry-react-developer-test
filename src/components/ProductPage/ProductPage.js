@@ -57,7 +57,7 @@ class ProductPage extends Component {
             loading: data.loading,
         });
 
-        console.log(error, loading, data);
+        // console.log(error, loading, data);
     }
 
     componentDidMount() {
@@ -69,12 +69,11 @@ class ProductPage extends Component {
             <Page pageClasses={styles.page}>
                 {this.state.product && (
                     <>
-                        <ProductGallery />
+                        <ProductGallery gallery={this.state.product.gallery} />
                         <ProductInfo
                             id={this.state.product.id}
                             name={this.state.product.name}
                             inStock={this.state.product.inStock}
-                            gallery={this.state.product.gallery}
                             description={this.state.product.description}
                             category={this.state.product.category}
                             attributes={this.state.product.attributes}

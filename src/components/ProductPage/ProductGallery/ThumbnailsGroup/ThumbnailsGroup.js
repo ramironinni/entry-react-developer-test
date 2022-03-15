@@ -5,9 +5,18 @@ class ThumbnailsGroup extends Component {
     render() {
         return (
             <div>
-                <Thumbnail />
-                <Thumbnail />
-                <Thumbnail />
+                {this.props.gallery.map((img, i) => {
+                    return (
+                        <Thumbnail
+                            img={img}
+                            index={i}
+                            key={i}
+                            onSelectImageHandler={
+                                this.props.onSelectImageHandler
+                            }
+                        />
+                    );
+                })}
             </div>
         );
     }
