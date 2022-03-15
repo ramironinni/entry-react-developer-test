@@ -1,6 +1,7 @@
 import { Component } from 'react';
 import styles from './ProductInfo.module.css';
 import DOMPurify from 'dompurify';
+import AttributesCard from './AttributesCard/AttributesCard';
 
 class ProductInfo extends Component {
     dirty = this.props.description;
@@ -21,7 +22,17 @@ class ProductInfo extends Component {
                     {this.props.description}
                 </p> */}
 
-                {/* <SizeCard sizes={this.props.sizes} inputName={'ProductPage'} /> */}
+                {this.props.attributes.map((attributeSet, i) => {
+                    return (
+                        <AttributesCard
+                            key={i}
+                            index={i}
+                            attributeSet={attributeSet}
+                            inputName={'ProductPage'}
+                        />
+                    );
+                })}
+
                 <div className={styles.priceContainer}>
                     <p className={styles.priceTitle}>PRICE: </p>
                     <p className={styles.price}>$50.00</p>

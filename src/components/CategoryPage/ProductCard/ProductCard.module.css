@@ -24,12 +24,20 @@
 }
 
 .imageContainer {
-    width: 100%;
+    /* width: 354px;
+    height: 330px; */
     margin-bottom: 12%;
     position: relative;
     display: flex;
     justify-content: center;
     align-items: center;
+}
+
+.image {
+    width: 354px;
+    height: 330px;
+    object-fit: cover;
+    object-position: 20% 10%;
 }
 
 .cartGreenIcon {
@@ -46,10 +54,6 @@
 
 .article.outOfStockArticle:hover .cartGreenIcon {
     display: none;
-}
-
-.image {
-    width: 100%;
 }
 
 .descriptionContainer {

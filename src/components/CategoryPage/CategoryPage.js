@@ -88,7 +88,7 @@ class CategoryPage extends Component {
                                 name={product.name}
                                 id={product.id}
                                 inStock={product.inStock}
-                                gallery={product.gallery}
+                                image={product.gallery[0]}
                                 priceSymbol={price.currency.symbol}
                                 priceAmount={price.amount}
                             />

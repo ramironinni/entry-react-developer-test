@@ -18,15 +18,15 @@ class ProductCard extends Component {
                     {!this.props.inStock && <OutOfStock />}
                     <div>
                         <img
+                            className={styles.cartGreenIcon}
                             src={cartGreenIcon}
                             alt="cart icon"
-                            className={styles.cartGreenIcon}
                         />
                     </div>
                     <img
-                        src="https://dummyimage.com/350/884bcf/8accae"
-                        alt="product"
                         className={styles.image}
+                        src={this.props.image}
+                        alt="product"
                     />
                 </div>
                 <div className={styles.descriptionContainer}>
