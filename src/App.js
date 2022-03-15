@@ -8,6 +8,7 @@ import NotFound from './components/NotFound/NotFound';
 import ProductPage from './components/ProductPage/ProductPage';
 
 import styles from './App.module.css';
+import { Redirect } from 'react-router-dom';
 
 class App extends Component {
     componentDidMount = async () => {
@@ -27,6 +28,7 @@ class App extends Component {
                     <div className={styles.mainContainer}>
                         <Header />
                         <Switch>
+                            <Redirect exact from="/" to="/category/all" />
                             <Route exact path="/category/:name">
                                 <CategoryPage />
                             </Route>

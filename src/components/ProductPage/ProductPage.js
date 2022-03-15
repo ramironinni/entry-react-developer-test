@@ -48,6 +48,10 @@ class ProductPage extends Component {
             console.log(error);
         }
 
+        // if(!data.product) {
+        //  this.setState( {error: "Invalid Id"})
+        // }
+
         this.setState({
             product: data.product,
             loading: data.loading,
