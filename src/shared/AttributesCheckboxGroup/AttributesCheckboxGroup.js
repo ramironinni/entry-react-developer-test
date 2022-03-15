@@ -22,6 +22,7 @@ class AttributesCheckboxGroup extends Component {
                         <AttributeCheckboxItem
                             key={i}
                             id={item.id}
+                            setId={this.props.setId}
                             index={this.props.index}
                             value={item.value}
                             checked={

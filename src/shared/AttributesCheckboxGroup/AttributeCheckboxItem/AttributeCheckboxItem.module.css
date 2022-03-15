@@ -35,6 +35,15 @@
     font-size: 16px;
 }
 
+.checkmarkColor {
+    display: block;
+    width: 40px;
+    height: 40px;
+    margin-right: 12px;
+    border-radius: 20px;
+    border: 3px solid var(--c-grey);
+}
+
 /* On mouse-over, add a grey background color */
 /* .container:hover input ~ .checkmark:not(.checkmarkUnavailable) {
     background-color: #ccc;
@@ -45,6 +54,12 @@
     background-color: var(--c-black);
     color: var(--c-white);
 }
+
+.container input:checked ~ .checkmarkColor {
+    border: 3px solid var(--c-white);
+    box-shadow: 0 0 4px 3px var(--c-black);
+}
+
 /* 
 .checkmarkUnavailable {
     border: 1px solid var(--c-grey);

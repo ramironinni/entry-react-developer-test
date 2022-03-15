@@ -13,6 +13,7 @@ class AttributesCard extends Component {
                 <AttributesCheckboxGroup
                     // sizes={this.props.sizes}
                     index={this.props.index}
+                    setId={this.props.attributeSet.id}
                     items={this.props.attributeSet.items}
                     inputName={this.props.inputName}
                 />
