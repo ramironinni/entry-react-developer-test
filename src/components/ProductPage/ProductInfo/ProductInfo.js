@@ -10,6 +10,10 @@ class ProductInfo extends Component {
     }
 
     render() {
+        const outOfStockButton = !this.props.inStock
+            ? styles.outOfStockButton
+            : '';
+
         return (
             <div className={styles.productInfo}>
                 <p className={styles.productName}>{this.props.name}</p>
@@ -22,7 +26,9 @@ class ProductInfo extends Component {
                     <p className={styles.priceTitle}>PRICE: </p>
                     <p className={styles.price}>$50.00</p>
                 </div>
-                <button className={styles.button}>Add to cart</button>
+                <button className={`${styles.button} ${outOfStockButton}`}>
+                    {this.props.inStock ? 'Add to cart' : 'Out of stock'}
+                </button>
                 <div
                     className={styles.productLongDesc}
                     dangerouslySetInnerHTML={this.getHTMLDescription()}

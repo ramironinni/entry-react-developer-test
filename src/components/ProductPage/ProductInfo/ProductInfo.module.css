@@ -49,6 +49,12 @@
     cursor: pointer;
 }
 
+.outOfStockButton {
+    background-color: var(--c-grey);
+
+    cursor: not-allowed;
+}
+
 @import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
 .productLongDesc {
     font-family: 'Roboto', sans-serif;

@@ -52,7 +52,7 @@ class CategoryPage extends Component {
             loading: data.loading,
         });
 
-        // console.log(error, loading, data);
+        console.log(error, loading, data);
     }
 
     componentDidMount() {
@@ -87,7 +87,8 @@ class CategoryPage extends Component {
                                 key={i}
                                 name={product.name}
                                 id={product.id}
-                                stock={product.inStock}
+                                inStock={product.inStock}
+                                gallery={product.gallery}
                                 priceSymbol={price.currency.symbol}
                                 priceAmount={price.amount}
                             />

@@ -5,8 +5,8 @@ import OutOfStock from './OutOfStock';
 import { Link } from 'react-router-dom';
 
 class ProductCard extends Component {
-    outOfStockTextStyles = this.props.stock === 0 ? styles.outOfStockText : '';
-    outOfStockArticle = this.props.stock === 0 ? styles.outOfStockArticle : '';
+    outOfStockTextStyles = !this.props.inStock ? styles.outOfStockText : '';
+    outOfStockArticle = !this.props.inStock ? styles.outOfStockArticle : '';
 
     render() {
         return (
@@ -15,7 +15,7 @@ class ProductCard extends Component {
                 to={`/product/${this.props.id}`}
             >
                 <div className={styles.imageContainer}>
-                    {this.props.stock === 0 && <OutOfStock />}
+                    {!this.props.inStock && <OutOfStock />}
                     <div>
                         <img
                             src={cartGreenIcon}
