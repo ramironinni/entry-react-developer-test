@@ -1,7 +1,7 @@
 import { Component } from 'react';
-import Cart from './Cart/Cart';
 import styles from './Actions.module.css';
-import CurrencySwitcher from './CurrencySwitcher/CurrencySwitcher';
+import CurrencySwitcherAction from './CurrencySwitcherAction/CurrencySwitcherAction';
+import CartAction from './CartAction/CartAction';
 
 class Actions extends Component {
     constructor() {
@@ -37,13 +37,13 @@ class Actions extends Component {
     render() {
         return (
             <div className={styles.actions}>
-                <CurrencySwitcher
+                <CurrencySwitcherAction
                     onToggleOverlayHandler={this.toggleCurrencyOverlayHandler.bind(
                         this
                     )}
                     showOverlay={this.state.showCurrencyOverlay}
                 />
-                <Cart
+                <CartAction
                     onToggleOverlayHandler={this.toggleCartOverlayHandler.bind(
                         this
                     )}

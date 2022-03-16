@@ -32,6 +32,15 @@ export const GET_ITEMS = gql`
         }
     }
 `;
+export const GET_ITEMS_FOR_DUMMY_CART = gql`
+    query GetCategoryByName($title: String!) {
+        category(input: { title: $title }) {
+            products {
+                id
+            }
+        }
+    }
+`;
 
 export const GET_ITEMS_BY_CATEGORY = gql`
     query GetCategoryByName($title: String!) {

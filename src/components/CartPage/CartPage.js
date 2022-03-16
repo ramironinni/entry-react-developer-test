@@ -4,7 +4,7 @@ import { cartActions } from '../../store/cart-slice';
 
 import Page from '../Page';
 import styles from './Cart.module.css';
-import CartItem from './CartItem/CartItem';
+import CartItem from '../../shared/Cart/CartItem/CartItem';
 
 class CartPage extends Component {
     addToCartHandler(id) {

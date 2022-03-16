@@ -1,9 +1,18 @@
 import { createSlice } from '@reduxjs/toolkit';
 
-import { DUMMY_CART } from './dummy-cart';
-
 const initialCartState = {
-    cart: DUMMY_CART,
+    cart: [
+        {
+            id: 'ps-5',
+            amount: 1,
+            attributes: { color: 'Green', capacity: '512G' },
+        },
+        {
+            id: 'xbox-series-s',
+            amount: 2,
+            attributes: { color: 'Cyan', capacity: '1T' },
+        },
+    ],
 };
 
 const cartSlice = createSlice({

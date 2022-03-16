@@ -6,10 +6,10 @@ import { currenciesActions } from '../../../../store/currencies-slice';
 import { GET_CURRENCIES } from '../../../../GraphQl/queries';
 
 import arrow from '../../../../assets/arrow.svg';
-import styles from './CurrencySwitcher.module.css';
+import styles from './CurrencySwitcherAction.module.css';
 import CurrencyOverlay from './CurrencyOverlay/CurrencyOverlay';
 
-class CurrencySwitcher extends Component {
+class CurrencySwitcherAction extends Component {
     constructor(props) {
         super(props);
         this.state = { loading: true, error: false };
@@ -90,5 +90,5 @@ const mapDispatchToProps = (dispatch) => {
 };
 
 export default withApollo(
-    connect(mapStateToProps, mapDispatchToProps)(CurrencySwitcher)
+    connect(mapStateToProps, mapDispatchToProps)(CurrencySwitcherAction)
 );

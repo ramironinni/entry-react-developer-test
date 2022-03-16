@@ -9,13 +9,15 @@ class CartItem extends Component {
         return (
             <div className={styles.cartItem}>
                 <InfoCard
-                    id={this.props.item.id}
-                    name={this.props.item.name}
-                    price={this.props.item.price}
-                    sizes={this.props.item.sizes}
-                    shortDesc={this.props.item.shortDesc}
+                    id={this.props.id}
+                    name={this.props.name}
+                    inStock={this.props.inStock}
+                    image={this.props.gallery[0]}
+                    description={this.props.description}
+                    attributes={this.props.attributes}
+                    prices={this.props.prices}
                     inputName={this.props.inputName}
-                    onChangeSize={this.props.onChangeSize}
+                    // onChangeSize={this.props.onChangeSize}
                 />
                 <AmountController
                     id={this.props.item.id}

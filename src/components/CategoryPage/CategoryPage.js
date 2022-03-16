@@ -10,15 +10,6 @@ import capitalizeString from '../../utils/capitalizeString';
 import { connect } from 'react-redux';
 
 class CategoryPage extends Component {
-    DUMMY_PRODUCTS = [
-        { id: 1, name: 'something 1', stock: 5 },
-        { id: 2, name: 'something 2', stock: 5 },
-        { id: 3, name: 'something 3', stock: 0 },
-        { id: 4, name: 'something 4', stock: 5 },
-        { id: 5, name: 'something 5', stock: 5 },
-        { id: 6, name: 'something 6', stock: 5 },
-    ];
-
     constructor(props) {
         super(props);
         this.state = {
@@ -52,7 +43,7 @@ class CategoryPage extends Component {
             loading: data.loading,
         });
 
-        console.log(error, loading, data);
+        // console.log(error, loading, data);
     }
 
     componentDidMount() {
