@@ -1,7 +1,9 @@
 import { Component } from 'react';
-import styles from './ProductInfo.module.css';
 import DOMPurify from 'dompurify';
-import AttributesCard from './AttributesCard/AttributesCard';
+import { connect } from 'react-redux';
+
+import styles from './ProductInfo.module.css';
+import AttributesCard from '../../../shared/AttributesCard/AttributesCard';
 
 class ProductInfo extends Component {
     dirty = this.props.description;
@@ -10,10 +12,20 @@ class ProductInfo extends Component {
         return { __html: DOMPurify.sanitize(this.dirty) };
     }
 
+    getPrice() {}
+
     render() {
         const outOfStockButton = !this.props.inStock
             ? styles.outOfStockButton
             : '';
+
+        const selectedCurrency = this.props.currencies.find(
+            (currency) => currency.selected
+        );
+
+        const price = this.props.prices.find(
+            (price) => price.currency.label === selectedCurrency.label
+        );
 
         return (
             <div className={styles.productInfo}>
@@ -35,7 +47,9 @@ class ProductInfo extends Component {
 
                 <div className={styles.priceContainer}>
                     <p className={styles.priceTitle}>PRICE: </p>
-                    <p className={styles.price}>$50.00</p>
+                    <p className={styles.price}>
+                        {price.currency.label} {price.amount}
+                    </p>
                 </div>
                 <button className={`${styles.button} ${outOfStockButton}`}>
                     {this.props.inStock ? 'Add to cart' : 'Out of stock'}
@@ -52,4 +66,10 @@ class ProductInfo extends Component {
     }
 }
 
-export default ProductInfo;
+const mapStateToProps = (state) => {
+    return {
+        currencies: state.currencies.currencies,
+    };
+};
+
+export default connect(mapStateToProps)(ProductInfo);

@@ -1,5 +1,5 @@
 import { Component } from 'react';
-import AttributesCheckboxGroup from '../../../../shared/AttributesCheckboxGroup/AttributesCheckboxGroup';
+import AttributesCheckboxGroup from './AttributesCheckboxGroup/AttributesCheckboxGroup';
 import styles from './AttributesCard.module.css';
 
 class AttributesCard extends Component {

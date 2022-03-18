@@ -30,14 +30,14 @@ class CartItem extends Component {
                     inputName={inputName}
                     // onChangeSize={this.props.onChangeSize}
                 />
-                <AmountController
+                {/* <AmountController
                     id={id}
                     amount={this.props.item.amount}
                     extraClasses={styles.amountButton}
                     onAddToCart={this.props.onAddToCart}
                     onRemoveFromCart={this.props.onRemoveFromCart}
                 />
-                <ImageSlider images={this.props.item.images} />
+                <ImageSlider images={this.props.item.images} /> */}
             </div>
         );
     }
