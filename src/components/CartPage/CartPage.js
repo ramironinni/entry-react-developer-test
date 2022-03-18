@@ -1,6 +1,7 @@
 import { Component } from 'react';
 import { connect } from 'react-redux';
 import CartItem from '../../shared/CartItemsGroup/CartItem/CartItem';
+import CartItemsGroup from '../../shared/CartItemsGroup/CartItemsGroup';
 import { cartActions } from '../../store/cart-slice';
 
 import Page from '../Page';
@@ -23,20 +24,7 @@ class CartPage extends Component {
         return (
             <Page>
                 <p className={styles.title}>Cart </p>
-                {this.props.cart.map((item, i) => {
-                    return (
-                        <CartItem
-                            key={i}
-                            item={item}
-                            inputName={`${i}-CartPage`}
-                            onAddToCart={this.addToCartHandler.bind(this)}
-                            onRemoveFromCart={this.removeFromCartHandler.bind(
-                                this
-                            )}
-                            onChangeSize={this.changeSizeHandler.bind(this)}
-                        />
-                    );
-                })}
+                <CartItemsGroup isPage={true} />
             </Page>
         );
     }

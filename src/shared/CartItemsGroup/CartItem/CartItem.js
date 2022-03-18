@@ -19,8 +19,9 @@ class CartItem extends Component {
             amount,
             onAddToCart,
             onRemoveFromCart,
-            page,
         } = this.props.item;
+
+        const { isPage } = this.props;
 
         return (
             <div className={styles.cartItem}>
@@ -42,8 +43,8 @@ class CartItem extends Component {
                     onAddToCart={onAddToCart}
                     onRemoveFromCart={onRemoveFromCart}
                 />
-                {page && <ImageSlider images={gallery} />}
-                {!page && <Thumbnail image={gallery[0]} />}
+                {isPage && <ImageSlider images={gallery} />}
+                {!isPage && <Thumbnail image={gallery[0]} />}
             </div>
         );
     }
