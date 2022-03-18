@@ -69,7 +69,8 @@ class CartItemsGroup extends Component {
         this.props.remove(id);
     }
     render() {
-        const { onAddToCart, onRemoveFromCart, isPage } = this.props;
+        const { onAddToCart, onRemoveFromCart, isPage, inputNameComp } =
+            this.props;
         return (
             <div>
                 <div>
@@ -79,7 +80,7 @@ class CartItemsGroup extends Component {
                                 <CartItem
                                     key={i}
                                     item={item}
-                                    inputName={`${i}-cartOverlay`}
+                                    inputName={`${i}-${inputNameComp}`}
                                     onAddToCart={onAddToCart}
                                     onRemoveFromCart={onRemoveFromCart}
                                     isPage={isPage}

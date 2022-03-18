@@ -72,17 +72,17 @@ export const client = new ApolloClient({
 //     .then((result) => console.log(result));
 
 ReactDOM.render(
-    <Provider store={store}>
-        <ApolloProvider client={client}>
-            <App />
-        </ApolloProvider>
-    </Provider>,
+    <React.StrictMode>
+        <Provider store={store}>
+            <ApolloProvider client={client}>
+                <App />
+            </ApolloProvider>
+        </Provider>
+    </React.StrictMode>,
     document.getElementById('root')
 
-    // <React.StrictMode>
     //     <Provider store={store}>
     //         <App />
     //     </Provider>
-    // </React.StrictMode>,
     // document.getElementById('root')
 );

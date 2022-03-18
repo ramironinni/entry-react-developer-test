@@ -4,6 +4,7 @@ import styles from './AttributesCard.module.css';
 
 class AttributesCard extends Component {
     render() {
+        console.log(this.props.index, this.props.attributeSet.id);
         return (
             <div>
                 <p className={styles.sizeTitle}>

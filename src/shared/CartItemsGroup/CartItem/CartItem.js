@@ -1,5 +1,5 @@
 import { Component } from 'react';
-import AmountController from '../../../shared/AmountController/AmountController';
+import AmountController from './AmountController/AmountController';
 import styles from './CartItem.module.css';
 import ImageSlider from './ImageSlider/ImageSlider';
 import InfoCard from './InfoCard/InfoCard';
@@ -15,13 +15,12 @@ class CartItem extends Component {
             description,
             attributes,
             prices,
-            inputName,
             amount,
             onAddToCart,
             onRemoveFromCart,
         } = this.props.item;
 
-        const { isPage } = this.props;
+        const { isPage, inputName } = this.props;
 
         return (
             <div className={styles.cartItem}>

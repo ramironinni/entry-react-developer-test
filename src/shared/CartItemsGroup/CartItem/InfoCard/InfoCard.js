@@ -5,28 +5,30 @@ import styles from './InfoCard.module.css';
 
 class InfoCard extends Component {
     render() {
+        const { name, prices, attributes, inputName } = this.props;
+
         const selectedCurrency = this.props.currencies.find(
             (currency) => currency.selected
         );
 
-        const price = this.props.prices.find(
+        const price = prices.find(
             (price) => price.currency.label === selectedCurrency.label
         );
 
         return (
             <div className={styles.infoCard}>
-                <div className={styles.name}>{this.props.name}</div>
+                <div className={styles.name}>{name}</div>
                 {/* <div className={styles.shortDesc}>{this.props.description}</div> */}
                 <div className={styles.price}>
                     {price.currency.label} {price.amount}
                 </div>
-                {this.props.attributes.map((attributeSet, i) => {
+                {attributes.map((attributeSet, i) => {
                     return (
                         <AttributesCard
                             key={i}
                             index={i}
                             attributeSet={attributeSet}
-                            inputName={'CartOverlay'}
+                            inputName={inputName}
                         />
                     );
                 })}
