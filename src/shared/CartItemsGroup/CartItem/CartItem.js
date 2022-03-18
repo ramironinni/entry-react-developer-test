@@ -15,6 +15,9 @@ class CartItem extends Component {
             attributes,
             prices,
             inputName,
+            amount,
+            onAddToCart,
+            onRemoveFromCart,
         } = this.props.item;
 
         return (
@@ -30,14 +33,14 @@ class CartItem extends Component {
                     inputName={inputName}
                     // onChangeSize={this.props.onChangeSize}
                 />
-                {/* <AmountController
+                <AmountController
                     id={id}
-                    amount={this.props.item.amount}
+                    amount={amount}
                     extraClasses={styles.amountButton}
-                    onAddToCart={this.props.onAddToCart}
-                    onRemoveFromCart={this.props.onRemoveFromCart}
+                    onAddToCart={onAddToCart}
+                    onRemoveFromCart={onRemoveFromCart}
                 />
-                <ImageSlider images={this.props.item.images} /> */}
+                <ImageSlider images={gallery} />
             </div>
         );
     }

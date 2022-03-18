@@ -62,7 +62,11 @@ class ImageSlider extends Component {
                             key={i}
                         >
                             {i === this.state.currentImg && (
-                                <img src={img} alt="product" />
+                                <img
+                                    className={styles.image}
+                                    src={img}
+                                    alt="product"
+                                />
                             )}
                         </div>
                     );

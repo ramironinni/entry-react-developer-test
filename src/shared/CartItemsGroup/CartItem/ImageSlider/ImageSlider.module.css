@@ -2,10 +2,18 @@
     position: relative;
     width: 141px;
     height: 185px;
+    display: flex;
+    background-color: red;
 }
 
 .slide {
     opacity: 0;
+}
+
+.image {
+    width: 141px;
+    height: 185px; /* height of container */
+    object-fit: cover;
 }
 
 .current {
@@ -31,13 +39,15 @@
 }
 
 .arrowLeft {
-    filter: invert(1);
     transform: rotate(90deg);
-    width: 100%;
 }
 
 .arrowRight {
-    filter: invert(1);
     transform: rotate(270deg);
+}
+
+.arrowLeft,
+.arrowRight {
     width: 100%;
+    filter: invert(1) drop-shadow(0px 0px 2px var(--c-black));
 }
