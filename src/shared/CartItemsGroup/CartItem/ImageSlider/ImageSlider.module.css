@@ -3,7 +3,6 @@
     width: 141px;
     height: 185px;
     display: flex;
-    background-color: red;
 }
 
 .slide {
@@ -12,7 +11,7 @@
 
 .image {
     width: 141px;
-    height: 185px; /* height of container */
+    height: 185px;
     object-fit: cover;
 }
 

@@ -3,6 +3,7 @@ import AmountController from '../../../shared/AmountController/AmountController'
 import styles from './CartItem.module.css';
 import ImageSlider from './ImageSlider/ImageSlider';
 import InfoCard from './InfoCard/InfoCard';
+import Thumbnail from './Thumbnail/Thumbnail';
 
 class CartItem extends Component {
     render() {
@@ -18,6 +19,7 @@ class CartItem extends Component {
             amount,
             onAddToCart,
             onRemoveFromCart,
+            page,
         } = this.props.item;
 
         return (
@@ -40,7 +42,8 @@ class CartItem extends Component {
                     onAddToCart={onAddToCart}
                     onRemoveFromCart={onRemoveFromCart}
                 />
-                <ImageSlider images={gallery} />
+                {page && <ImageSlider images={gallery} />}
+                {!page && <Thumbnail image={gallery[0]} />}
             </div>
         );
     }

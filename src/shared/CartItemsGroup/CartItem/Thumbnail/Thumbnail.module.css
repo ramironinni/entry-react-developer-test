@@ -1,0 +1,12 @@
+.container {
+    position: relative;
+    width: 141px;
+    height: 185px;
+    display: flex;
+}
+
+.image {
+    width: 141px;
+    height: 185px;
+    object-fit: cover;
+}
