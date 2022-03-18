@@ -1,6 +1,6 @@
 import { Component } from 'react';
 import { Link } from 'react-router-dom';
-import Button from '../../../../../../shared/Button/Button';
+import Button from '../../../../../../../shared/Button/Button';
 import styles from './CartOverlayButtons.module.css';
 
 class CartOverlayButtons extends Component {

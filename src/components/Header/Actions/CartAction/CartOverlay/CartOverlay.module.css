@@ -1,14 +1,5 @@
-.title {
-    margin: 0;
-}
-
-.myBag {
-    font-weight: 700;
-}
-
-.grandTotal {
-    display: flex;
-    justify-content: space-between;
-    font-weight: 700;
-    margin: 20px 0;
+.modalOverlay {
+    right: 40px;
+    width: 325px;
+    /* display: none; */
 }

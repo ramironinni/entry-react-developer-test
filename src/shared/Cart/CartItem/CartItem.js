@@ -6,21 +6,32 @@ import InfoCard from './InfoCard/InfoCard';
 
 class CartItem extends Component {
     render() {
+        const {
+            id,
+            name,
+            inStock,
+            gallery,
+            description,
+            attributes,
+            prices,
+            inputName,
+        } = this.props.item;
+
         return (
             <div className={styles.cartItem}>
                 <InfoCard
-                    id={this.props.id}
-                    name={this.props.name}
-                    inStock={this.props.inStock}
-                    image={this.props.gallery[0]}
-                    description={this.props.description}
-                    attributes={this.props.attributes}
-                    prices={this.props.prices}
-                    inputName={this.props.inputName}
+                    id={id}
+                    name={name}
+                    inStock={inStock}
+                    gallery={gallery}
+                    description={description}
+                    attributes={attributes}
+                    prices={prices}
+                    inputName={inputName}
                     // onChangeSize={this.props.onChangeSize}
                 />
                 <AmountController
-                    id={this.props.item.id}
+                    id={id}
                     amount={this.props.item.amount}
                     extraClasses={styles.amountButton}
                     onAddToCart={this.props.onAddToCart}

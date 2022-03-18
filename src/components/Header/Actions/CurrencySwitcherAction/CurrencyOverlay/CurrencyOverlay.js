@@ -1,5 +1,5 @@
 import { Component } from 'react';
-import Modal from '../../ActionsModal/Modal';
+import Modal from '../../Modal/Modal';
 import CurrencyItem from '../CurrencyItem/CurrencyItem';
 import styles from './CurrencyOverlay.module.css';
 
