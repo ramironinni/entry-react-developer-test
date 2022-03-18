@@ -16,11 +16,9 @@ class CartItem extends Component {
             attributes,
             prices,
             amount,
-            onAddToCart,
-            onRemoveFromCart,
         } = this.props.item;
 
-        const { isPage, inputName } = this.props;
+        const { isPage, inputName, onAddToCart, onRemoveFromCart } = this.props;
 
         return (
             <div className={styles.cartItem}>

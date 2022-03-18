@@ -24,6 +24,15 @@ const cartSlice = createSlice({
                 (item) => item.id === action.payload.id
             );
 
+            if (itemToUpdateIndex === -1) {
+                state.cart.push({
+                    id: action.payload.id,
+                    amount: 1,
+                    selectedAttributes: action.payload.selectedAttributes,
+                });
+                return;
+            }
+
             state.cart[itemToUpdateIndex].amount++;
         },
         remove(state, action) {
@@ -31,15 +40,21 @@ const cartSlice = createSlice({
                 (item) => item.id === action.payload.id
             );
 
-            const itemToUpdate = state.cart[itemToUpdateIndex];
-
-            if (itemToUpdate.amount < 1) {
+            if (itemToUpdateIndex === -1) {
                 return;
             }
 
-            state.cart[itemToUpdateIndex].amount--;
+            if (state.cart[itemToUpdateIndex].amount > 1) {
+                state.cart[itemToUpdateIndex].amount--;
+                return;
+            }
+
+            if (state.cart[itemToUpdateIndex].amount === 1) {
+                state.cart.splice(itemToUpdateIndex, 1);
+                return;
+            }
         },
-        changeSize(state, action) {
+        changeAttributes(state, action) {
             const itemToUpdateIndex = state.cart.findIndex(
                 (item) => item.id === action.payload.id
             );

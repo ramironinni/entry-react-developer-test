@@ -61,6 +61,14 @@ class CartItemsGroup extends Component {
         this.setState({ currentCart: currentCart });
     }
 
+    async componentDidUpdate(prevProps) {
+        if (this.props.cart !== prevProps.cart) {
+            const currentCart = await this.updateCart();
+            this.setState({ currentCart: currentCart });
+            console.log('UPDATED', currentCart);
+        }
+    }
+
     addToCartHandler(id) {
         this.props.add(id);
     }
@@ -69,8 +77,7 @@ class CartItemsGroup extends Component {
         this.props.remove(id);
     }
     render() {
-        const { onAddToCart, onRemoveFromCart, isPage, inputNameComp } =
-            this.props;
+        const { isPage, inputNameComp } = this.props;
         return (
             <div>
                 <div>
@@ -81,8 +88,12 @@ class CartItemsGroup extends Component {
                                     key={i}
                                     item={item}
                                     inputName={`${i}-${inputNameComp}`}
-                                    onAddToCart={onAddToCart}
-                                    onRemoveFromCart={onRemoveFromCart}
+                                    onAddToCart={this.addToCartHandler.bind(
+                                        this
+                                    )}
+                                    onRemoveFromCart={this.removeFromCartHandler.bind(
+                                        this
+                                    )}
                                     isPage={isPage}
                                 />
                             );
