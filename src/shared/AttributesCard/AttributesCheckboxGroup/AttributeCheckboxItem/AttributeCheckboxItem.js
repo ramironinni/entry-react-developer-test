@@ -42,7 +42,7 @@ class AttributeCheckboxItem extends Component {
                     checked={checked}
                     name={`${inputName}-${index}`}
                     onChange={() => {
-                        onChangeAttribute(id, setId);
+                        onChangeAttribute(setId, id);
                     }}
                 />
                 {valueToDisplay}

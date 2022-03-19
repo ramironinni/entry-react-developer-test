@@ -14,9 +14,9 @@ class AttributesCheckboxGroup extends Component {
         };
     }
 
-    updateAttributes(attributeId, setId) {
-        this.setState({ checked: attributeId });
-        this.props.updateAttributes(attributeId, setId);
+    updateAttributes(setId, itemId) {
+        this.setState({ checked: itemId });
+        this.props.updateAttributes(setId, itemId);
     }
 
     // async componentDidUpdate(prevProps, prevState) {
@@ -58,8 +58,8 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
     return {
-        updateAttributes: (attributeId, setId) =>
-            dispatch(cartActions.updateAttributes({ attributeId, setId })),
+        updateAttributes: (setId, itemId) =>
+            dispatch(cartActions.updateAttributes({ setId, itemId })),
     };
 };
 

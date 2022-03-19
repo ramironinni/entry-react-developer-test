@@ -4,7 +4,6 @@ import { connect } from 'react-redux';
 import { withApollo } from '@apollo/react-hoc';
 
 import { GET_ITEM_BY_ID } from '../../GraphQl/queries';
-import { cartActions } from '../../store/cart-slice';
 
 import CartItem from './CartItem/CartItem';
 
@@ -42,35 +41,37 @@ class CartItemsGroup extends Component {
     }
 
     async updateCart() {
-        // const cb = async (item) => {
-        //     return {
-        //         ...(await this.getItemById(item.id)).product,
-        //         amount: item.amount,
-        //         selectedAttributes: item.selectedAttributes,
-        //     };
-        // };
-
-        // const currentCart = await Promise.all(this.props.cart.map(cb));
-
         const currentCart = [];
         for (const cartProduct of this.props.cart) {
-            const product = {
+            const productFromDb = {
                 ...(await this.getItemById(cartProduct.id)).product,
             };
 
-            // console.log(cartProduct.selectedAttributes);
+            const newCartProduct = JSON.parse(JSON.stringify(productFromDb));
 
-            // const found = cartProduct.selectedAttributes.map((att) => {
-            //     return product.attributes.find(
-            //         (attribute) => attribute.id === att.attSetId
-            //     );
-            // });
-            // console.log(found, 'FOUND');
+            newCartProduct.amount = cartProduct.amount;
 
-            currentCart.push(product);
+            cartProduct.selectedAttributes.forEach((cartAttributeSet) => {
+                const foundProdDbAttribute = newCartProduct.attributes.find(
+                    (attribute) =>
+                        attribute.id.toUpperCase() ===
+                        cartAttributeSet.setId.toUpperCase()
+                );
+
+                foundProdDbAttribute.items.forEach((item) => {
+                    if (item.id === cartAttributeSet.itemId) {
+                        item.selected = true;
+                    } else {
+                        item.selected = false;
+                    }
+                });
+            });
+
+            currentCart.push(newCartProduct);
         }
 
-        console.log(currentCart);
+        console.log('currentCart', currentCart);
+        console.log('redux cart', this.props.cart);
         return currentCart;
     }
 

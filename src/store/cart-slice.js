@@ -6,16 +6,16 @@ const initialCartState = {
             id: 'ps-5',
             amount: 1,
             selectedAttributes: [
-                { attSetId: 'color', attributeId: 'Green' },
-                { attSetId: 'capacity', attributeId: '512G' },
+                { setId: 'Color', itemId: 'Green' },
+                { setId: 'Capacity', itemId: '512G' },
             ],
         },
         {
             id: 'xbox-series-s',
             amount: 2,
             selectedAttributes: [
-                { attSetId: 'color', attributeId: 'Cyan' },
-                { attSetId: 'capacity', attributeId: '1T' },
+                { setId: 'Color', itemId: 'Cyan' },
+                { setId: 'Capacity', itemId: '1T' },
             ],
         },
     ],
@@ -61,7 +61,7 @@ const cartSlice = createSlice({
             }
         },
         updateAttributes(state, action) {
-            console.log(action.payload.attributeId, action.payload.setId);
+            console.log(action.payload.setId, action.payload.itemId);
             const itemToUpdateIndex = state.cart.findIndex(
                 (item) => item.id === action.payload.id
             );
