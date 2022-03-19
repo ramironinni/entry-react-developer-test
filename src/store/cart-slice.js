@@ -2,22 +2,22 @@ import { createSlice } from '@reduxjs/toolkit';
 
 const initialCartState = {
     cart: [
-        {
-            id: 'ps-5',
-            amount: 1,
-            selectedAttributes: [
-                { setId: 'Color', itemId: 'Green' },
-                { setId: 'Capacity', itemId: '512G' },
-            ],
-        },
-        {
-            id: 'xbox-series-s',
-            amount: 2,
-            selectedAttributes: [
-                { setId: 'Color', itemId: 'Cyan' },
-                { setId: 'Capacity', itemId: '1T' },
-            ],
-        },
+        // {
+        //     id: 'ps-5',
+        //     amount: 1,
+        //     selectedAttributes: [
+        //         { setId: 'Color', itemId: 'Green' },
+        //         { setId: 'Capacity', itemId: '512G' },
+        //     ],
+        // },
+        // {
+        //     id: 'xbox-series-s',
+        //     amount: 2,
+        //     selectedAttributes: [
+        //         { setId: 'Color', itemId: 'Cyan' },
+        //         { setId: 'Capacity', itemId: '1T' },
+        //     ],
+        // },
     ],
 };
 

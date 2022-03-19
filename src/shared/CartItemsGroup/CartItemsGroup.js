@@ -91,6 +91,7 @@ class CartItemsGroup extends Component {
         const { isPage, inputNameComp } = this.props;
         return (
             <div>
+                {this.props.cart.length === 0 && <div>Cart is empty.</div>}
                 <div>
                     {this.state.currentCart.length > 0 &&
                         this.state.currentCart.map((item, i) => {

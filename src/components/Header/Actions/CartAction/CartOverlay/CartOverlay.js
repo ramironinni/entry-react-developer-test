@@ -14,7 +14,7 @@ class CartOverlay extends Component {
                 onBackdropClickHandler={onToggleOverlayHandler}
                 backdropGrey={true}
             >
-                {cart.length === 0 && <div>Cart is empty</div>}
+                {cart.length === 0 && <div>Cart is empty.</div>}
                 {cart.length > 0 && (
                     <CartOverlayContent
                         cart={cart}
