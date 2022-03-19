@@ -9,16 +9,27 @@ class AttributeCheckboxItem extends Component {
     extraClasses = this.props.extraClasses ? this.props.extraClasses : '';
 
     render() {
-        let value = (
+        const {
+            id,
+            setId,
+            index,
+            value,
+            checked,
+            inputName,
+            extraClasses,
+            onChangeAttribute,
+        } = this.props;
+
+        let valueToDisplay = (
             <span className={`${styles.checkmark} ${this.extraClasses}`}>
-                {this.props.value}
+                {value}
             </span>
         );
 
-        if (this.props.setId === 'Color') {
-            value = (
+        if (setId === 'Color') {
+            valueToDisplay = (
                 <span
-                    style={{ backgroundColor: this.props.value }}
+                    style={{ backgroundColor: value }}
                     className={`${styles.checkmarkColor} ${this.extraClasses}`}
                 ></span>
             );
@@ -28,13 +39,13 @@ class AttributeCheckboxItem extends Component {
             <label className={styles.container}>
                 <input
                     type="radio"
-                    checked={this.props.checked}
-                    name={`${this.props.inputName}-${this.props.index}`}
+                    checked={checked}
+                    name={`${inputName}-${index}`}
                     onChange={() => {
-                        this.props.onChangeAttribute(this.props.id);
+                        onChangeAttribute(id, setId);
                     }}
                 />
-                {value}
+                {valueToDisplay}
             </label>
         );
     }

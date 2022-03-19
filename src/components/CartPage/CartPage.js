@@ -8,18 +8,6 @@ import Page from '../Page';
 import styles from './Cart.module.css';
 
 class CartPage extends Component {
-    // addToCartHandler(id) {
-    //     this.props.add(id);
-    // }
-
-    // removeFromCartHandler(id) {
-    //     this.props.remove(id);
-    // }
-
-    // changeSizeHandler(id, size) {
-    //     this.props.changeSize(id, size);
-    // }
-
     render() {
         return (
             <Page>
@@ -30,20 +18,4 @@ class CartPage extends Component {
     }
 }
 
-// const mapStateToProps = (state) => {
-//     return {
-//         cart: state.cart.cart,
-//     };
-// };
-
-// const mapDispatchToProps = (dispatch) => {
-//     return {
-//         add: (id) => dispatch(cartActions.add({ id })),
-//         remove: (id) => dispatch(cartActions.remove({ id })),
-//         changeSize: (id, size) =>
-//             dispatch(cartActions.changeSize({ id, size })),
-//     };
-// };
-
-// export default connect(mapStateToProps, mapDispatchToProps)(CartPage);
 export default CartPage;

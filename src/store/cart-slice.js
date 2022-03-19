@@ -54,12 +54,11 @@ const cartSlice = createSlice({
                 return;
             }
         },
-        changeAttributes(state, action) {
+        updateAttributes(state, action) {
+            console.log(action.payload.attributeId, action.payload.setId);
             const itemToUpdateIndex = state.cart.findIndex(
                 (item) => item.id === action.payload.id
             );
-
-            console.log(state.cart[itemToUpdateIndex].amount);
 
             // state.cart[itemToUpdateIndex].sizes.forEach(
             //     (size) => (size.available = false)

@@ -18,7 +18,7 @@ class CartItem extends Component {
             amount,
         } = this.props.item;
 
-        const { isPage, inputName, onAddToCart, onRemoveFromCart } = this.props;
+        const { isPage, inputName } = this.props;
 
         return (
             <div className={styles.cartItem}>
@@ -31,14 +31,11 @@ class CartItem extends Component {
                     attributes={attributes}
                     prices={prices}
                     inputName={inputName}
-                    // onChangeSize={this.props.onChangeSize}
                 />
                 <AmountController
                     id={id}
                     amount={amount}
                     extraClasses={styles.amountButton}
-                    onAddToCart={onAddToCart}
-                    onRemoveFromCart={onRemoveFromCart}
                 />
                 {isPage && <ImageSlider images={gallery} />}
                 {!isPage && <Thumbnail image={gallery[0]} />}

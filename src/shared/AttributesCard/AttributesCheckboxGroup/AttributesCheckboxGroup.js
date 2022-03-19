@@ -1,6 +1,10 @@
 import { Component } from 'react';
-import styles from './AttributesCheckboxGroup.module.css';
+import { withApollo } from '@apollo/react-hoc';
+import { connect } from 'react-redux';
+import { cartActions } from '../../../store/cart-slice';
+
 import AttributeCheckboxItem from './AttributeCheckboxItem/AttributeCheckboxItem';
+import styles from './AttributesCheckboxGroup.module.css';
 
 class AttributesCheckboxGroup extends Component {
     constructor(props) {
@@ -10,9 +14,16 @@ class AttributesCheckboxGroup extends Component {
         };
     }
 
-    onChangelHandler(id) {
-        this.setState({ checked: id });
+    updateAttributes(attributeId, setId) {
+        this.setState({ checked: attributeId });
+        this.props.updateAttributes(attributeId, setId);
     }
+
+    // async componentDidUpdate(prevProps, prevState) {
+    //     if (this.state.checked !== prevState.checked) {
+    //         console.log('UPDATED');
+    //     }
+    // }
 
     render() {
         return (
@@ -30,7 +41,7 @@ class AttributesCheckboxGroup extends Component {
                             }
                             inputName={this.props.inputName}
                             extraClasses={this.props.extraClasses}
-                            onChangeAttribute={this.onChangelHandler.bind(this)}
+                            onChangeAttribute={this.updateAttributes.bind(this)}
                         />
                     );
                 })}
@@ -39,4 +50,19 @@ class AttributesCheckboxGroup extends Component {
     }
 }
 
-export default AttributesCheckboxGroup;
+const mapStateToProps = (state) => {
+    return {
+        cart: state.cart.cart,
+    };
+};
+
+const mapDispatchToProps = (dispatch) => {
+    return {
+        updateAttributes: (attributeId, setId) =>
+            dispatch(cartActions.updateAttributes({ attributeId, setId })),
+    };
+};
+
+export default withApollo(
+    connect(mapStateToProps, mapDispatchToProps)(AttributesCheckboxGroup)
+);

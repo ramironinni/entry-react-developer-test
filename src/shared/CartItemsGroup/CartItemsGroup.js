@@ -65,17 +65,9 @@ class CartItemsGroup extends Component {
         if (this.props.cart !== prevProps.cart) {
             const currentCart = await this.updateCart();
             this.setState({ currentCart: currentCart });
-            console.log('UPDATED', currentCart);
         }
     }
 
-    addToCartHandler(id) {
-        this.props.add(id);
-    }
-
-    removeFromCartHandler(id) {
-        this.props.remove(id);
-    }
     render() {
         const { isPage, inputNameComp } = this.props;
         return (
@@ -88,12 +80,6 @@ class CartItemsGroup extends Component {
                                     key={i}
                                     item={item}
                                     inputName={`${i}-${inputNameComp}`}
-                                    onAddToCart={this.addToCartHandler.bind(
-                                        this
-                                    )}
-                                    onRemoveFromCart={this.removeFromCartHandler.bind(
-                                        this
-                                    )}
                                     isPage={isPage}
                                 />
                             );
@@ -110,13 +96,4 @@ const mapStateToProps = (state) => {
     };
 };
 
-const mapDispatchToProps = (dispatch) => {
-    return {
-        add: (id) => dispatch(cartActions.add({ id })),
-        remove: (id) => dispatch(cartActions.remove({ id })),
-    };
-};
-
-export default withApollo(
-    connect(mapStateToProps, mapDispatchToProps)(CartItemsGroup)
-);
+export default withApollo(connect(mapStateToProps)(CartItemsGroup));
