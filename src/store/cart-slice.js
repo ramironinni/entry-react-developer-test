@@ -5,12 +5,18 @@ const initialCartState = {
         {
             id: 'ps-5',
             amount: 1,
-            selectedAttributes: { color: 'Green', capacity: '512G' },
+            selectedAttributes: [
+                { attSetId: 'color', attributeId: 'Green' },
+                { attSetId: 'capacity', attributeId: '512G' },
+            ],
         },
         {
             id: 'xbox-series-s',
             amount: 2,
-            selectedAttributes: { color: 'Cyan', capacity: '1T' },
+            selectedAttributes: [
+                { attSetId: 'color', attributeId: 'Cyan' },
+                { attSetId: 'capacity', attributeId: '1T' },
+            ],
         },
     ],
 };

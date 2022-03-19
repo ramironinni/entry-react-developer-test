@@ -42,17 +42,35 @@ class CartItemsGroup extends Component {
     }
 
     async updateCart() {
-        const currentCart = await Promise.all(
-            this.props.cart.map(async (item) => {
-                return {
-                    ...(await this.getItemById(item.id)).product,
-                    amount: item.amount,
-                    selectedAttributes: item.selectedAttributes,
-                };
-            })
-        );
+        // const cb = async (item) => {
+        //     return {
+        //         ...(await this.getItemById(item.id)).product,
+        //         amount: item.amount,
+        //         selectedAttributes: item.selectedAttributes,
+        //     };
+        // };
 
-        // console.log(currentCart);
+        // const currentCart = await Promise.all(this.props.cart.map(cb));
+
+        const currentCart = [];
+        for (const cartProduct of this.props.cart) {
+            const product = {
+                ...(await this.getItemById(cartProduct.id)).product,
+            };
+
+            // console.log(cartProduct.selectedAttributes);
+
+            // const found = cartProduct.selectedAttributes.map((att) => {
+            //     return product.attributes.find(
+            //         (attribute) => attribute.id === att.attSetId
+            //     );
+            // });
+            // console.log(found, 'FOUND');
+
+            currentCart.push(product);
+        }
+
+        console.log(currentCart);
         return currentCart;
     }
 
