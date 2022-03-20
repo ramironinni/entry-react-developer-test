@@ -10,7 +10,9 @@ class AttributesCard extends Component {
             attributeSet,
             inputName,
             onGetSelectedAttributes,
+            // onGetProductAttribute,
         } = this.props;
+
         return (
             <div>
                 <p className={styles.sizeTitle}>
@@ -23,6 +25,7 @@ class AttributesCard extends Component {
                     items={attributeSet.items}
                     inputName={inputName}
                     onGetSelectedAttributes={onGetSelectedAttributes}
+                    // onGetProductAttribute={onGetProductAttribute}
                 />
             </div>
         );

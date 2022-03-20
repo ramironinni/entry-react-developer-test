@@ -16,18 +16,22 @@ class AttributesCheckboxGroup extends Component {
 
     updateAttributesHandler(setId, itemId, prodId) {
         this.setState({ checked: itemId });
-        this.props.update(setId, itemId, prodId);
+
+        if (this.props.inputName === 'ProductPage') {
+            this.props.onGetSelectedAttributes(setId, itemId);
+        }
+
+        if (this.props.inputName !== 'ProductPage') {
+            this.props.update(setId, itemId, prodId);
+        }
     }
 
     componentDidMount() {
-        const selectedItem = this.props.items.find((item) => item.selected);
-        this.setState({ checked: selectedItem.id });
+        if (this.props.inputName !== 'ProductPage') {
+            const selectedItem = this.props.items.find((item) => item.selected);
+            this.setState({ checked: selectedItem.id });
+        }
     }
-
-    // async componentDidUpdate(prevProps, prevState) {
-    //     if (this.state.checked !== prevState.checked) {
-    //     }
-    // }
 
     render() {
         return (

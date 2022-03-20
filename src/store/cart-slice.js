@@ -39,6 +39,10 @@ const cartSlice = createSlice({
                 return;
             }
 
+            // if(state.cart[itemToUpdateIndex].selectedAttributes.find(attSet => attSet.id ===)){
+
+            // }
+
             state.cart[itemToUpdateIndex].amount++;
         },
         remove(state, action) {

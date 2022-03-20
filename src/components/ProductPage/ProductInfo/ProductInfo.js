@@ -12,8 +12,34 @@ class ProductInfo extends Component {
         this.state = { selectedAtributtes: [] };
     }
 
-    getSelectedAttributesHandler = (selectedAtributtes) => {
-        this.setState({ selectedAtributtes });
+    getSelectedAttributesHandler = (setId, itemId) => {
+        this.setState((prevState) => {
+            console.log(prevState.selectedAtributtes.length);
+            let updatedState = {
+                selectedAtributtes: [
+                    ...prevState.selectedAtributtes,
+                    { setId, itemId },
+                ],
+            };
+
+            // if (prevState.selectedAtributtes.length > 0) {
+            //     // console.log(prevState.selectedAtributtes);
+            //     const foundAttSet = prevState.selectedAttributes.filter(
+            //         (attSet) => attSet.id === setId
+            //     );
+            //     if (foundAttSet) {
+            //         foundAttSet.itemId = itemId;
+            //     }
+            //     const nonModifiedAttSet = prevState.selectedAtributtes.filter(
+            //         (attSet) => attSet.id !== setId
+            //     );
+            //     updatedState = {
+            //         selectedAtributtes: [...nonModifiedAttSet, ...foundAttSet],
+            //     };
+            //     // console.log(foundAttSet, 'FOUND');
+            // }
+            return updatedState;
+        });
     };
 
     dirty = this.props.description;
@@ -22,7 +48,10 @@ class ProductInfo extends Component {
         return { __html: DOMPurify.sanitize(this.dirty) };
     }
 
-    getPrice() {}
+    componentDidUpdate() {
+        console.log(this.state);
+        // console.log('updated');
+    }
 
     render() {
         const { id, name, inStock, attributes, prices, currencies } =
@@ -68,7 +97,16 @@ class ProductInfo extends Component {
                 </div>
                 <button
                     className={`${styles.button} ${outOfStockButton}`}
-                    onClick={() => {}}
+                    onClick={() => {
+                        console.log(
+                            this.props.id,
+                            this.state.selectedAtributtes
+                        );
+                        this.props.add(
+                            this.props.id,
+                            this.state.selectedAtributtes
+                        );
+                    }}
                 >
                     {inStock ? 'Add to cart' : 'Out of stock'}
                 </button>
@@ -92,7 +130,8 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
     return {
-        add: (id, attributes) => dispatch(cartActions.add({ id, attributes })),
+        add: (id, selectedAttributes) =>
+            dispatch(cartActions.add({ id, selectedAttributes })),
     };
 };
 
