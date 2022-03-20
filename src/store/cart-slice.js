@@ -2,22 +2,22 @@ import { createSlice } from '@reduxjs/toolkit';
 
 const initialCartState = {
     cart: [
-        // {
-        //     id: 'ps-5',
-        //     amount: 1,
-        //     selectedAttributes: [
-        //         { setId: 'Color', itemId: 'Green' },
-        //         { setId: 'Capacity', itemId: '512G' },
-        //     ],
-        // },
-        // {
-        //     id: 'xbox-series-s',
-        //     amount: 2,
-        //     selectedAttributes: [
-        //         { setId: 'Color', itemId: 'Cyan' },
-        //         { setId: 'Capacity', itemId: '1T' },
-        //     ],
-        // },
+        {
+            id: 'ps-5',
+            amount: 1,
+            selectedAttributes: [
+                { setId: 'Color', itemId: 'Green' },
+                { setId: 'Capacity', itemId: '512G' },
+            ],
+        },
+        {
+            id: 'xbox-series-s',
+            amount: 2,
+            selectedAttributes: [
+                { setId: 'Color', itemId: 'Cyan' },
+                { setId: 'Capacity', itemId: '1T' },
+            ],
+        },
     ],
 };
 
@@ -60,15 +60,24 @@ const cartSlice = createSlice({
                 return;
             }
         },
-        updateAttributes(state, action) {
-            console.log(action.payload.setId, action.payload.itemId);
+        update(state, action) {
+            // console.log(
+            //     action.payload.setId,
+            //     action.payload.itemId,
+            //     action.payload.prodId
+            // );
+
             const itemToUpdateIndex = state.cart.findIndex(
-                (item) => item.id === action.payload.id
+                (item) => item.id === action.payload.prodId
             );
 
-            // state.cart[itemToUpdateIndex].sizes.forEach(
-            //     (size) => (size.available = false)
-            // );
+            const attributeToBeUpdated = state.cart[
+                itemToUpdateIndex
+            ].selectedAttributes.find(
+                (att) => att.setId === action.payload.setId
+            );
+
+            attributeToBeUpdated.itemId = action.payload.itemId;
         },
     },
 });

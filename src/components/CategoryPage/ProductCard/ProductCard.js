@@ -12,13 +12,12 @@ class ProductCard extends Component {
 
     render() {
         return (
-            <div
-                className={`${styles.productCard} ${this.outOfStockProduct}`}
-                onClick={() => {
-                    this.props.add(this.props.id);
-                }}
-            >
-                <div>
+            <div className={`${styles.productCard} ${this.outOfStockProduct}`}>
+                <div
+                    onClick={() => {
+                        this.props.add(this.props.id);
+                    }}
+                >
                     <img
                         className={styles.cartGreenIcon}
                         src={cartGreenIcon}

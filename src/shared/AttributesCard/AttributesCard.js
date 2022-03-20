@@ -4,7 +4,13 @@ import styles from './AttributesCard.module.css';
 
 class AttributesCard extends Component {
     render() {
-        const { index, attributeSet, inputName } = this.props;
+        const {
+            index,
+            prodId,
+            attributeSet,
+            inputName,
+            onGetSelectedAttributes,
+        } = this.props;
         return (
             <div>
                 <p className={styles.sizeTitle}>
@@ -12,9 +18,11 @@ class AttributesCard extends Component {
                 </p>
                 <AttributesCheckboxGroup
                     index={index}
+                    prodId={prodId}
                     setId={attributeSet.id}
                     items={attributeSet.items}
                     inputName={inputName}
+                    onGetSelectedAttributes={onGetSelectedAttributes}
                 />
             </div>
         );

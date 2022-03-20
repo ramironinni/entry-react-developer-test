@@ -14,14 +14,18 @@ class AttributesCheckboxGroup extends Component {
         };
     }
 
-    updateAttributes(setId, itemId) {
+    updateAttributesHandler(setId, itemId, prodId) {
         this.setState({ checked: itemId });
-        this.props.updateAttributes(setId, itemId);
+        this.props.update(setId, itemId, prodId);
+    }
+
+    componentDidMount() {
+        const selectedItem = this.props.items.find((item) => item.selected);
+        this.setState({ checked: selectedItem.id });
     }
 
     // async componentDidUpdate(prevProps, prevState) {
     //     if (this.state.checked !== prevState.checked) {
-    //         console.log('UPDATED');
     //     }
     // }
 
@@ -35,13 +39,16 @@ class AttributesCheckboxGroup extends Component {
                             id={item.id}
                             setId={this.props.setId}
                             index={this.props.index}
+                            prodId={this.props.prodId}
                             value={item.value}
                             checked={
                                 this.state.checked === item.id ? 'checked' : ''
                             }
                             inputName={this.props.inputName}
                             extraClasses={this.props.extraClasses}
-                            onChangeAttribute={this.updateAttributes.bind(this)}
+                            onChangeAttribute={this.updateAttributesHandler.bind(
+                                this
+                            )}
                         />
                     );
                 })}
@@ -58,8 +65,8 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
     return {
-        updateAttributes: (setId, itemId) =>
-            dispatch(cartActions.updateAttributes({ setId, itemId })),
+        update: (setId, itemId, prodId) =>
+            dispatch(cartActions.update({ setId, itemId, prodId })),
     };
 };
 

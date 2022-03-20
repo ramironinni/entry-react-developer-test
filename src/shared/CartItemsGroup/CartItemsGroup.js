@@ -70,8 +70,8 @@ class CartItemsGroup extends Component {
             currentCart.push(newCartProduct);
         }
 
-        console.log('currentCart', currentCart);
-        console.log('redux cart', this.props.cart);
+        // console.log('redux cart', this.props.cart);
+        // console.log('currentCart', currentCart);
         return currentCart;
     }
 

@@ -13,6 +13,7 @@ class AttributeCheckboxItem extends Component {
             id,
             setId,
             index,
+            prodId,
             value,
             checked,
             inputName,
@@ -42,7 +43,7 @@ class AttributeCheckboxItem extends Component {
                     checked={checked}
                     name={`${inputName}-${index}`}
                     onChange={() => {
-                        onChangeAttribute(setId, id);
+                        onChangeAttribute(setId, id, prodId);
                     }}
                 />
                 {valueToDisplay}

@@ -4,8 +4,18 @@ import { connect } from 'react-redux';
 
 import styles from './ProductInfo.module.css';
 import AttributesCard from '../../../shared/AttributesCard/AttributesCard';
+import { cartActions } from '../../../store/cart-slice';
 
 class ProductInfo extends Component {
+    constructor(props) {
+        super(props);
+        this.state = { selectedAtributtes: [] };
+    }
+
+    getSelectedAttributesHandler = (selectedAtributtes) => {
+        this.setState({ selectedAtributtes });
+    };
+
     dirty = this.props.description;
 
     getHTMLDescription() {
@@ -15,32 +25,37 @@ class ProductInfo extends Component {
     getPrice() {}
 
     render() {
-        const outOfStockButton = !this.props.inStock
-            ? styles.outOfStockButton
-            : '';
+        const { id, name, inStock, attributes, prices, currencies } =
+            this.props;
 
-        const selectedCurrency = this.props.currencies.find(
+        const outOfStockButton = !inStock ? styles.outOfStockButton : '';
+
+        const selectedCurrency = currencies.find(
             (currency) => currency.selected
         );
 
-        const price = this.props.prices.find(
+        const price = prices.find(
             (price) => price.currency.label === selectedCurrency.label
         );
 
         return (
             <div className={styles.productInfo}>
-                <p className={styles.productName}>{this.props.name}</p>
+                <p className={styles.productName}>{name}</p>
                 {/* <p className={styles.productShortDesc}>
-                    {this.props.description}
+                    {description}
                 </p> */}
 
-                {this.props.attributes.map((attributeSet, i) => {
+                {attributes.map((attributeSet, i) => {
                     return (
                         <AttributesCard
                             key={i}
                             index={i}
+                            prodId={id}
                             attributeSet={attributeSet}
                             inputName={'ProductPage'}
+                            onGetSelectedAttributes={this.getSelectedAttributesHandler.bind(
+                                this
+                            )}
                         />
                     );
                 })}
@@ -51,15 +66,18 @@ class ProductInfo extends Component {
                         {price.currency.label} {price.amount}
                     </p>
                 </div>
-                <button className={`${styles.button} ${outOfStockButton}`}>
-                    {this.props.inStock ? 'Add to cart' : 'Out of stock'}
+                <button
+                    className={`${styles.button} ${outOfStockButton}`}
+                    onClick={() => {}}
+                >
+                    {inStock ? 'Add to cart' : 'Out of stock'}
                 </button>
                 <div
                     className={styles.productLongDesc}
                     dangerouslySetInnerHTML={this.getHTMLDescription()}
                 ></div>
                 {/* <p className={styles.productLongDesc}>
-                    {this.props.description}
+                    {description}
                 </p> */}
             </div>
         );
@@ -72,4 +90,10 @@ const mapStateToProps = (state) => {
     };
 };
 
-export default connect(mapStateToProps)(ProductInfo);
+const mapDispatchToProps = (dispatch) => {
+    return {
+        add: (id, attributes) => dispatch(cartActions.add({ id, attributes })),
+    };
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(ProductInfo);
