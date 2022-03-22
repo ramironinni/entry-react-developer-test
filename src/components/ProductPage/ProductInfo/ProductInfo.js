@@ -14,30 +14,38 @@ class ProductInfo extends Component {
 
     getSelectedAttributesHandler = (setId, itemId) => {
         this.setState((prevState) => {
-            console.log(prevState.selectedAtributtes.length);
-            let updatedState = {
+            let updatedState;
+
+            const foundAttribute = prevState.selectedAtributtes.find(
+                (att) => att.setId === setId
+            );
+
+            if (foundAttribute) {
+                const unmodifiedAttributes =
+                    prevState.selectedAtributtes.filter(
+                        (att) => att.setId !== setId
+                    );
+
+                foundAttribute.setId = setId;
+                foundAttribute.itemId = itemId;
+
+                updatedState = {
+                    selectedAtributtes: [
+                        ...unmodifiedAttributes,
+                        foundAttribute,
+                    ],
+                };
+
+                return updatedState;
+            }
+
+            updatedState = {
                 selectedAtributtes: [
                     ...prevState.selectedAtributtes,
                     { setId, itemId },
                 ],
             };
 
-            // if (prevState.selectedAtributtes.length > 0) {
-            //     // console.log(prevState.selectedAtributtes);
-            //     const foundAttSet = prevState.selectedAttributes.filter(
-            //         (attSet) => attSet.id === setId
-            //     );
-            //     if (foundAttSet) {
-            //         foundAttSet.itemId = itemId;
-            //     }
-            //     const nonModifiedAttSet = prevState.selectedAtributtes.filter(
-            //         (attSet) => attSet.id !== setId
-            //     );
-            //     updatedState = {
-            //         selectedAtributtes: [...nonModifiedAttSet, ...foundAttSet],
-            //     };
-            //     // console.log(foundAttSet, 'FOUND');
-            // }
             return updatedState;
         });
     };
@@ -46,11 +54,6 @@ class ProductInfo extends Component {
 
     getHTMLDescription() {
         return { __html: DOMPurify.sanitize(this.dirty) };
-    }
-
-    componentDidUpdate() {
-        console.log(this.state);
-        // console.log('updated');
     }
 
     render() {

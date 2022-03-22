@@ -3,11 +3,12 @@ import { createSlice } from '@reduxjs/toolkit';
 const initialCartState = {
     cart: [
         {
-            id: 'ps-5',
+            id: 'apple-imac-2021',
             amount: 1,
             selectedAttributes: [
-                { setId: 'Color', itemId: 'Green' },
-                { setId: 'Capacity', itemId: '512G' },
+                { setId: 'Capacity', itemId: '256GB' },
+                { setId: 'With USB 3 ports', itemId: 'No' },
+                { setId: 'Touch ID in keyboard', itemId: 'Yes' },
             ],
         },
         {
