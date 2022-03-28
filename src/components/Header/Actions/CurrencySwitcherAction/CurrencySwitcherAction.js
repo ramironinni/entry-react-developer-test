@@ -1,11 +1,11 @@
 import { Component } from 'react';
 import { withApollo } from '@apollo/react-hoc';
 import { connect } from 'react-redux';
+
 import { currenciesActions } from '../../../../store/currencies-slice';
 
 import { GET_CURRENCIES } from '../../../../GraphQl/queries';
 
-import styles from './CurrencySwitcherAction.module.css';
 import CurrencyOverlay from './CurrencyOverlay/CurrencyOverlay';
 import CurrencySwitcherIcon from './CurrencySwitcherIcon/CurrencySwitcherIcon';
 

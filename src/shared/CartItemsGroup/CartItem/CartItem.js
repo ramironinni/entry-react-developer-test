@@ -1,10 +1,11 @@
 import { Component } from 'react';
+
 import AmountController from './AmountController/AmountController';
-import styles from './CartItem.module.css';
 import ImageSlider from './ImageSlider/ImageSlider';
 import InfoCard from './InfoCard/InfoCard';
 import Thumbnail from './Thumbnail/Thumbnail';
 
+import styles from './CartItem.module.css';
 class CartItem extends Component {
     render() {
         const {

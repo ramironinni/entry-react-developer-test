@@ -1,6 +1,8 @@
 import { Component } from 'react';
 import { connect } from 'react-redux';
+
 import AttributesCard from '../../../AttributesCard/AttributesCard';
+
 import styles from './InfoCard.module.css';
 
 class InfoCard extends Component {

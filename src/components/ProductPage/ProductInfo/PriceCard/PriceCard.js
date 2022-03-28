@@ -1,5 +1,6 @@
 import { Component } from 'react';
 import { connect } from 'react-redux';
+
 import styles from './PriceCard.module.css';
 
 class PriceCard extends Component {

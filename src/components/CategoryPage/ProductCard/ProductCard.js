@@ -1,11 +1,14 @@
 import { Component } from 'react';
-import styles from './ProductCard.module.css';
-import cartGreenIcon from '../../../assets/cart-green-icon.svg';
-import OutOfStock from './OutOfStock';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
+
 import { cartActions } from '../../../store/cart-slice';
 
+import cartGreenIcon from '../../../assets/cart-green-icon.svg';
+
+import OutOfStock from './OutOfStock';
+
+import styles from './ProductCard.module.css';
 class ProductCard extends Component {
     outOfStockTextStyles = !this.props.inStock ? styles.outOfStockText : '';
     outOfStockProduct = !this.props.inStock ? styles.outOfStockProduct : '';

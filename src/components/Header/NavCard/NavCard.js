@@ -1,9 +1,11 @@
 import { Component } from 'react';
-import NavItem from './NavItem';
-import styles from './NavCard.module.css';
+import { withApollo } from '@apollo/react-hoc';
+
 import { GET_CATEGORIES } from '../../../GraphQl/queries';
 
-import { withApollo } from '@apollo/react-hoc';
+import NavItem from './NavItem';
+
+import styles from './NavCard.module.css';
 
 class NavCard extends Component {
     constructor(props) {

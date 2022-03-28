@@ -1,6 +1,7 @@
 import { Component } from 'react';
-import styles from './Modal.module.css';
 import ReactDOM from 'react-dom';
+
+import styles from './Modal.module.css';
 class Backdrop extends Component {
     render() {
         return (

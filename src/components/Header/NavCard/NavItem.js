@@ -1,7 +1,7 @@
 import { Component } from 'react';
-import styles from './NavItem.module.css';
 import { NavLink } from 'react-router-dom';
 
+import styles from './NavItem.module.css';
 class NavItem extends Component {
     render() {
         return (

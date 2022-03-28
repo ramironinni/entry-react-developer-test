@@ -1,4 +1,5 @@
 import { Component } from 'react';
+
 import Page from '../Page';
 
 class NotFound extends Component {

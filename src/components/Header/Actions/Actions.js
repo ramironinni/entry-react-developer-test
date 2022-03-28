@@ -1,7 +1,9 @@
 import { Component } from 'react';
-import styles from './Actions.module.css';
+
 import CurrencySwitcherAction from './CurrencySwitcherAction/CurrencySwitcherAction';
 import CartAction from './CartAction/CartAction';
+
+import styles from './Actions.module.css';
 
 class Actions extends Component {
     constructor() {

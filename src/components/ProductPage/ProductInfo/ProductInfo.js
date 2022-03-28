@@ -1,13 +1,14 @@
 import { Component } from 'react';
 import { connect } from 'react-redux';
 
-import styles from './ProductInfo.module.css';
-import AttributesCard from '../../../shared/AttributesCard/AttributesCard';
 import { cartActions } from '../../../store/cart-slice';
+
+import AttributesCard from '../../../shared/AttributesCard/AttributesCard';
 import PriceCard from './PriceCard/PriceCard';
 import Description from './Description/Description';
 import AddToCartButton from './AddToCartButton/AddToCartButton';
 
+import styles from './ProductInfo.module.css';
 class ProductInfo extends Component {
     constructor(props) {
         super(props);

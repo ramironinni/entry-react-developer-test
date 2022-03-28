@@ -1,6 +1,8 @@
 import { Component } from 'react';
+
 import SelectedImage from './SelectedImage/SelectedImage';
 import ThumbnailsGroup from './ThumbnailsGroup/ThumbnailsGroup';
+
 import styles from './ProductGallery.module.css';
 
 class ProductGallery extends Component {

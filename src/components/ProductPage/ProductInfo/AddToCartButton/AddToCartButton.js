@@ -1,4 +1,5 @@
 import { Component } from 'react';
+
 import styles from './AddToCartButton.module.css';
 
 class AddToCartButton extends Component {

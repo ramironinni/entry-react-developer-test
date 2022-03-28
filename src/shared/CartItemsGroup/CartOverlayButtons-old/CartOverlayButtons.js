@@ -1,5 +1,6 @@
 import { Component } from 'react';
 import Button from '../../../../../../shared/Button/Button';
+
 import styles from './CartOverlayButtons.module.css';
 
 class CartOverlayButtons extends Component {

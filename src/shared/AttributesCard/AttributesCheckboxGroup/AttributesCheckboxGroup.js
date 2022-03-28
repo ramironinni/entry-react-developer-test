@@ -1,9 +1,11 @@
 import { Component } from 'react';
 import { withApollo } from '@apollo/react-hoc';
 import { connect } from 'react-redux';
+
 import { cartActions } from '../../../store/cart-slice';
 
 import AttributeCheckboxItem from './AttributeCheckboxItem/AttributeCheckboxItem';
+
 import styles from './AttributesCheckboxGroup.module.css';
 
 class AttributesCheckboxGroup extends Component {

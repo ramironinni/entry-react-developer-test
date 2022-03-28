@@ -1,7 +1,8 @@
 import { Component } from 'react';
-import styles from './ImageSlider.module.css';
+
 import arrow from '../../../../assets/arrow.svg';
 
+import styles from './ImageSlider.module.css';
 class ImageSlider extends Component {
     constructor(props) {
         super(props);

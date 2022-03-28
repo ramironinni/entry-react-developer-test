@@ -1,4 +1,5 @@
 import { Component } from 'react';
+
 import Thumbnail from './Thumbnail/Thumbnail';
 
 class ThumbnailsGroup extends Component {

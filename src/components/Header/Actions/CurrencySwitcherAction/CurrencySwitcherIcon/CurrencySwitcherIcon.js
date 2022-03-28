@@ -1,8 +1,8 @@
 import { Component } from 'react';
-import styles from './CurrencySwitcherIcon.module.css';
 
 import arrow from '../../../../../assets/arrow.svg';
 
+import styles from './CurrencySwitcherIcon.module.css';
 class CurrencySwitcherIcon extends Component {
     render() {
         const invertedArrow = this.props.showOverlay
