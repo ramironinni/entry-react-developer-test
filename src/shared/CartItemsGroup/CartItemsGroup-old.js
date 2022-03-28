@@ -42,44 +42,51 @@ class CartItemsGroup extends Component {
     }
 
     async updateCart() {
-        const currentCart = [];
-        for (const cartProduct of this.props.cart) {
-            const productFromDb = {
-                ...(await this.getItemById(cartProduct.id)).product,
-            };
+        const currentCart = await Promise.all(
+            this.props.cart.map(async (item) => {
+                console.log(item.selectedAttributes);
+                return await this.getItemById(item.id);
+            })
+        );
 
-            // console.log('productFromDb', productFromDb);
+        // const currentCart = [];
+        // for await (const cartProduct of this.props.cart) {
+        //     const productFromDb = {
+        //         ...(await this.getItemById(cartProduct.id)).product,
+        //     };
 
-            const newCartProduct = JSON.parse(JSON.stringify(productFromDb));
+        //     // console.log('productFromDb', productFromDb);
 
-            newCartProduct.amount = cartProduct.amount;
+        //     const newCartProduct = JSON.parse(JSON.stringify(productFromDb));
 
-            console.log('cartProduct.id', cartProduct.id);
-            console.log('newCartProduct', newCartProduct.attributes);
+        //     newCartProduct.amount = cartProduct.amount;
 
-            cartProduct.selectedAttributes.forEach((cartAttributeSet) => {
-                const foundProdDbAttribute = newCartProduct.attributes.find(
-                    (attribute) =>
-                        attribute.id.toUpperCase() ===
-                        cartAttributeSet.setId.toUpperCase()
-                );
+        //     console.log('cartProduct.id', cartProduct.id);
+        //     console.log('newCartProduct', newCartProduct.attributes);
 
-                // console.log('foundProdDbAttribute', foundProdDbAttribute);
+        //     cartProduct.selectedAttributes.forEach((cartAttributeSet) => {
+        //         const foundProdDbAttribute = newCartProduct.attributes.find(
+        //             (attribute) =>
+        //                 attribute.id.toUpperCase() ===
+        //                 cartAttributeSet.setId.toUpperCase()
+        //         );
 
-                foundProdDbAttribute.items.forEach((item) => {
-                    if (item.id === cartAttributeSet.itemId) {
-                        item.selected = true;
-                    } else {
-                        item.selected = false;
-                    }
-                });
-            });
+        //         // console.log('foundProdDbAttribute', foundProdDbAttribute);
 
-            currentCart.push(newCartProduct);
-        }
+        //         foundProdDbAttribute.items.forEach((item) => {
+        //             if (item.id === cartAttributeSet.itemId) {
+        //                 item.selected = true;
+        //             } else {
+        //                 item.selected = false;
+        //             }
+        //         });
+        //     });
+
+        //     currentCart.push(newCartProduct);
+        // }
 
         // console.log('redux cart', this.props.cart);
-        // console.log('currentCart', currentCart);
+        console.log('currentCart', currentCart);
         return currentCart;
     }
 

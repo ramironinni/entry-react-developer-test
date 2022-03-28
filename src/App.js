@@ -11,16 +11,6 @@ import styles from './App.module.css';
 import { Redirect } from 'react-router-dom';
 
 class App extends Component {
-    componentDidMount = async () => {
-        // const response = await client.query({
-        //     query: GET_CURRENCIES,
-        // });
-        // console.log(response);
-        // this.setState({
-        //     products: response.data.currencies,
-        // });
-    };
-
     render() {
         return (
             <Router>

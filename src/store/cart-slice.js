@@ -6,7 +6,7 @@ const initialCartState = {
             id: 'apple-imac-2021',
             amount: 1,
             selectedAttributes: [
-                { setId: 'Capacity', itemId: '256GB' },
+                { setId: 'Capacity', itemId: '512GB' },
                 { setId: 'With USB 3 ports', itemId: 'No' },
                 { setId: 'Touch ID in keyboard', itemId: 'Yes' },
             ],
