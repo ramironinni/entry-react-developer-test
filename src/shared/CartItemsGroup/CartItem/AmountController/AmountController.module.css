@@ -11,12 +11,27 @@
     display: flex;
     justify-content: center;
     align-items: center;
+    width: 45px;
+    height: 45px;
+    margin: 0 10px;
     border: 1px solid var(--c-black);
     background-color: var(--c-white);
+    font-size: 25px;
     cursor: pointer;
+}
+
+.buttonOverlay {
+    width: 24px;
+    height: 24px;
 }
 
 .amount {
     font-size: 24px;
     font-weight: 500;
+}
+
+.amountOverlay {
+    font-style: normal;
+    font-weight: 500;
+    font-size: 16px;
 }

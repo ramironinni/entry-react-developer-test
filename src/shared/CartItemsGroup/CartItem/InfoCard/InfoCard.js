@@ -5,7 +5,7 @@ import styles from './InfoCard.module.css';
 
 class InfoCard extends Component {
     render() {
-        const { id, name, prices, attributes, inputName } = this.props;
+        const { id, name, prices, attributes, inputName, isPage } = this.props;
 
         const selectedCurrency = this.props.currencies.find(
             (currency) => currency.selected
@@ -15,10 +15,20 @@ class InfoCard extends Component {
             (price) => price.currency.label === selectedCurrency.label
         );
 
+        const infoCardOverlayStyles = !this.props.isPage
+            ? styles.infoCardOverlay
+            : '';
+        const nameOverlayStyles = !this.props.isPage ? styles.nameOverlay : '';
+        const priceOverlayStyles = !this.props.isPage
+            ? styles.priceOverlay
+            : '';
+
         return (
-            <div className={styles.infoCard}>
-                <div className={styles.name}>{name}</div>
-                <div className={styles.price}>
+            <div className={`${styles.infoCard} ${infoCardOverlayStyles}`}>
+                <div className={`${styles.name} ${nameOverlayStyles}`}>
+                    {name}
+                </div>
+                <div className={`${styles.price} ${priceOverlayStyles}`}>
                     {price.currency.symbol} {price.amount}
                 </div>
                 {attributes.map((attributeSet, i) => {
@@ -29,6 +39,7 @@ class InfoCard extends Component {
                             prodId={id}
                             attributeSet={attributeSet}
                             inputName={inputName}
+                            isPage={isPage}
                         />
                     );
                 })}

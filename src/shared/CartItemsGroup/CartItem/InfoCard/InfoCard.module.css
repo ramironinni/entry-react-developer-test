@@ -6,16 +6,30 @@
     width: 136px;
 }
 
+.infoCardOverlay {
+    width: 39px;
+}
+
 .name {
     margin-bottom: 10px;
     font-size: 30px;
     font-weight: 600;
 }
 
+.nameOverlay {
+    font-weight: 300;
+    font-size: 16px;
+}
+
 .price {
     font-size: 24px;
     font-weight: 700;
     margin-bottom: 10px;
+}
+
+.priceOverlay {
+    font-weight: 500;
+    font-size: 16px;
 }
 
 .amountButton {

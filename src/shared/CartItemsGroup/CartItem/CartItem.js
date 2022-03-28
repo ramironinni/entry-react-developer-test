@@ -20,8 +20,10 @@ class CartItem extends Component {
 
         const { isPage, inputName } = this.props;
 
+        const cartItemOverlayStyles = !isPage ? styles.cartItemOverlay : '';
+
         return (
-            <div className={styles.cartItem}>
+            <div className={`${styles.cartItem} ${cartItemOverlayStyles}`}>
                 <InfoCard
                     id={id}
                     name={name}
@@ -31,12 +33,9 @@ class CartItem extends Component {
                     attributes={attributes}
                     prices={prices}
                     inputName={inputName}
+                    isPage={isPage}
                 />
-                <AmountController
-                    id={id}
-                    amount={amount}
-                    extraClasses={styles.amountButton}
-                />
+                <AmountController id={id} amount={amount} isPage={isPage} />
                 {isPage && <ImageSlider images={gallery} />}
                 {!isPage && <Thumbnail image={gallery[0]} />}
             </div>

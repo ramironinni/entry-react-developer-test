@@ -14,17 +14,27 @@ class AmountController extends Component {
         this.props.remove(id);
     }
     render() {
+        const buttonOverlayStyles = !this.props.page
+            ? styles.buttonOverlay
+            : '';
+
+        const amountOverlayStyles = !this.props.page
+            ? styles.amountOverlay
+            : '';
+
         return (
             <div className={styles.amountController}>
                 <button
-                    className={`${styles.button} ${this.props.extraClasses}`}
+                    className={`${styles.button} ${buttonOverlayStyles}`}
                     onClick={() => this.addToCartHandler(this.props.id)}
                 >
                     +
                 </button>
-                <div className={styles.amount}>{this.props.amount}</div>
+                <div className={`${styles.amount} ${amountOverlayStyles}`}>
+                    {this.props.amount}
+                </div>
                 <button
-                    className={`${styles.button} ${this.props.extraClasses}`}
+                    className={`${styles.button} ${buttonOverlayStyles}`}
                     onClick={() => this.removeFromCartHandler(this.props.id)}
                 >
                     -

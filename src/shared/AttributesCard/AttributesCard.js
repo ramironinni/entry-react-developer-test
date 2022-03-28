@@ -10,13 +10,16 @@ class AttributesCard extends Component {
             attributeSet,
             inputName,
             onGetSelectedAttributes,
+            isPage,
             // onGetProductAttribute,
         } = this.props;
 
+        const nameOverlayStyles = !isPage ? styles.nameOverlay : '';
+
         return (
             <div>
-                <p className={styles.sizeTitle}>
-                    {this.props.attributeSet.name.toUpperCase()}:
+                <p className={`${styles.name} ${nameOverlayStyles}`}>
+                    {this.props.attributeSet.name}:
                 </p>
                 <AttributesCheckboxGroup
                     index={index}
@@ -25,6 +28,7 @@ class AttributesCard extends Component {
                     items={attributeSet.items}
                     inputName={inputName}
                     onGetSelectedAttributes={onGetSelectedAttributes}
+                    isPage={isPage}
                     // onGetProductAttribute={onGetProductAttribute}
                 />
             </div>

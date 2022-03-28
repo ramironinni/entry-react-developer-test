@@ -17,12 +17,17 @@ class AttributeCheckboxItem extends Component {
             value,
             checked,
             inputName,
-            extraClasses,
             onChangeAttribute,
+            isPage,
         } = this.props;
 
+        const checkmarkOverlayStyles = !isPage ? styles.checkmarkOverlay : '';
+        const checkmarkColorOverlayStyles = !isPage
+            ? styles.checkmarkColorOverlay
+            : '';
+
         let valueToDisplay = (
-            <span className={`${styles.checkmark} ${this.extraClasses}`}>
+            <span className={`${styles.checkmark} ${checkmarkOverlayStyles}`}>
                 {value}
             </span>
         );
@@ -31,7 +36,7 @@ class AttributeCheckboxItem extends Component {
             valueToDisplay = (
                 <span
                     style={{ backgroundColor: value }}
-                    className={`${styles.checkmarkColor} ${this.extraClasses}`}
+                    className={`${styles.checkmarkColor} ${checkmarkColorOverlayStyles}`}
                 ></span>
             );
         }

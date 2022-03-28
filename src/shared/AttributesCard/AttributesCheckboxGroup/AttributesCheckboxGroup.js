@@ -35,7 +35,7 @@ class AttributesCheckboxGroup extends Component {
 
     render() {
         return (
-            <div className={styles.sizeGroup}>
+            <div className={styles.attributesCheckboxGroup}>
                 {this.props.items.map((item, i) => {
                     return (
                         <AttributeCheckboxItem
@@ -53,6 +53,7 @@ class AttributesCheckboxGroup extends Component {
                             onChangeAttribute={this.updateAttributesHandler.bind(
                                 this
                             )}
+                            isPage={this.props.isPage}
                         />
                     );
                 })}
