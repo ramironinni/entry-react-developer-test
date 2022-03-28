@@ -24,10 +24,7 @@ class ProductCard extends Component {
                         alt="cart icon"
                     />
                 </div>
-                <Link
-                    className={styles.article}
-                    to={`/product/${this.props.id}`}
-                >
+                <Link className={styles.info} to={`/product/${this.props.id}`}>
                     <div className={styles.imageContainer}>
                         {!this.props.inStock && <OutOfStock />}
                         <img
