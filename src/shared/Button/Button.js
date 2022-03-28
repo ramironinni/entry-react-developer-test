@@ -5,7 +5,7 @@ class Button extends Component {
     render() {
         return (
             <button className={`${styles.button} ${this.props.extraClasses}`}>
-                {this.props.text}
+                {this.props.children}
             </button>
         );
     }

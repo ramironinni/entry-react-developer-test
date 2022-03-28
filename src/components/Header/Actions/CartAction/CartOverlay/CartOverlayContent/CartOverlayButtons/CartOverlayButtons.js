@@ -12,9 +12,9 @@ class CartOverlayButtons extends Component {
                     to="/cart"
                     onClick={this.props.onCloseOverlayHandler}
                 >
-                    <Button text="view bag" />
+                    <Button>view bag</Button>
                 </Link>
-                <Button text="check out" extraClasses={styles.buttonCheckout} />
+                <Button extraClasses={styles.buttonCheckout}>check out</Button>
             </div>
         );
     }
