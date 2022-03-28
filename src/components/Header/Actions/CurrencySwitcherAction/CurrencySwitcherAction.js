@@ -5,9 +5,9 @@ import { currenciesActions } from '../../../../store/currencies-slice';
 
 import { GET_CURRENCIES } from '../../../../GraphQl/queries';
 
-import arrow from '../../../../assets/arrow.svg';
 import styles from './CurrencySwitcherAction.module.css';
 import CurrencyOverlay from './CurrencyOverlay/CurrencyOverlay';
+import CurrencySwitcherIcon from './CurrencySwitcherIcon/CurrencySwitcherIcon';
 
 class CurrencySwitcherAction extends Component {
     constructor(props) {
@@ -51,15 +51,10 @@ class CurrencySwitcherAction extends Component {
     render() {
         return (
             <>
-                <div
-                    className={styles.currencySwitcher}
-                    onClick={this.props.onToggleOverlayHandler}
-                >
-                    <div className={styles.currencyCurrent}>&#36;</div>
-                    <div>
-                        <img src={arrow} alt="currency switcher" />
-                    </div>
-                </div>
+                <CurrencySwitcherIcon
+                    onToggleOverlayHandler={this.props.onToggleOverlayHandler}
+                    showOverlay={this.props.showOverlay}
+                />
                 {this.props.showOverlay && (
                     <CurrencyOverlay
                         onBackdropClickHandler={

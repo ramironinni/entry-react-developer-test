@@ -1,0 +1,17 @@
+.currencySwitcherIcon {
+    display: flex;
+    align-items: center;
+    margin-right: 30px;
+    position: absolute;
+    right: 0px;
+    cursor: pointer;
+    z-index: 5;
+}
+
+.currencySwitcherIcon > div {
+    margin-right: 7px;
+}
+
+.invertedArrow {
+    transform: rotate(180deg);
+}

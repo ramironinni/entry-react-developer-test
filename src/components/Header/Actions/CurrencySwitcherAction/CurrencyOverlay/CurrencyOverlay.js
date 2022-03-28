@@ -1,6 +1,6 @@
 import { Component } from 'react';
 import Modal from '../../Modal/Modal';
-import CurrencyItem from '../CurrencyItem/CurrencyItem';
+import CurrencyItem from './CurrencyItem/CurrencyItem';
 import styles from './CurrencyOverlay.module.css';
 
 class CurrencyOverlay extends Component {
