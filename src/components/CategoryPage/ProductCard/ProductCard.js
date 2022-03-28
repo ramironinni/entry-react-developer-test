@@ -6,7 +6,7 @@ import { cartActions } from '../../../store/cart-slice';
 
 import cartGreenIcon from '../../../assets/cart-green-icon.svg';
 
-import OutOfStock from './OutOfStock';
+import OutOfStock from './OutOfStock/OutOfStock';
 
 import styles from './ProductCard.module.css';
 class ProductCard extends Component {

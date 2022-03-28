@@ -3,7 +3,7 @@ import { withApollo } from '@apollo/react-hoc';
 
 import { GET_CATEGORIES } from '../../../GraphQl/queries';
 
-import NavItem from './NavItem';
+import NavItem from './NavItem/NavItem';
 
 import styles from './NavCard.module.css';
 
