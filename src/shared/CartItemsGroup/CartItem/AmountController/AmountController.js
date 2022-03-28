@@ -14,13 +14,15 @@ class AmountController extends Component {
         this.props.remove(id);
     }
     render() {
-        const buttonOverlayStyles = !this.props.page
+        const buttonOverlayStyles = !this.props.isPage
             ? styles.buttonOverlay
             : '';
 
-        const amountOverlayStyles = !this.props.page
+        const amountOverlayStyles = !this.props.isPage
             ? styles.amountOverlay
             : '';
+
+        console.log('this.props.isPage', this.props.isPage);
 
         return (
             <div className={styles.amountController}>
