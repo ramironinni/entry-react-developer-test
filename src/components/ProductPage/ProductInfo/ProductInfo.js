@@ -70,6 +70,7 @@ class ProductInfo extends Component {
                             onGetSelectedAttributes={this.getSelectedAttributesHandler.bind(
                                 this
                             )}
+                            isPage={true}
                         />
                     );
                 })}

@@ -1,8 +1,9 @@
 import { Component } from 'react';
-import styles from './CartOverlayContent.module.css';
+
 import CartOverlayButtons from './CartOverlayButtons/CartOverlayButtons';
 import CartItemsGroup from '../../../../../../shared/CartItemsGroup/CartItemsGroup';
 
+import styles from './CartOverlayContent.module.css';
 class CartOverlayContent extends Component {
     render() {
         return (
