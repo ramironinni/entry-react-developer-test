@@ -1,0 +1,17 @@
+.descriptionContainer {
+    margin: 0;
+    size: 18px;
+    color: var(--c-black);
+}
+
+.descriptionName {
+    font-weight: 300;
+}
+
+.descriptionPrice {
+    font-weight: 500;
+}
+
+.outOfStockText {
+    color: var(--c-dark-grey);
+}

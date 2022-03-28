@@ -11,7 +11,6 @@
     right: 5%;
     width: 22%;
     z-index: 1;
-    cursor: pointer;
 }
 
 .productCard:hover .cartGreenIcon {
@@ -35,22 +34,6 @@
 .info:hover {
     box-shadow: 0px 4px 35px #a8acb030;
     cursor: pointer;
-}
-
-.imageContainer {
-    margin-bottom: 12%;
-    position: relative;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    overflow: hidden;
-}
-
-.image {
-    width: 354px;
-    height: 330px;
-    object-fit: cover;
-    object-position: 20% 10%;
 }
 
 .descriptionContainer {

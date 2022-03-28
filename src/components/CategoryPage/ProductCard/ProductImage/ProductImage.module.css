@@ -1,0 +1,15 @@
+.imageContainer {
+    margin-bottom: 12%;
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+}
+
+.image {
+    width: 354px;
+    height: 330px;
+    object-fit: cover;
+    object-position: 20% 10%;
+}
