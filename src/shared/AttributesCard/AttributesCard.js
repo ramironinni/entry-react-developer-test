@@ -16,7 +16,7 @@ class AttributesCard extends Component {
         return (
             <div>
                 <p className={styles.sizeTitle}>
-                    {this.props.attributeSet.name}:
+                    {this.props.attributeSet.name.toUpperCase()}:
                 </p>
                 <AttributesCheckboxGroup
                     index={index}

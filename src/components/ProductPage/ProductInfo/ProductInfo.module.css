@@ -6,57 +6,8 @@
     margin-left: 100px;
 }
 
-.productName,
-.productShortDesc {
+.productName {
     font-weight: 600;
     font-size: 30px;
     margin: 0;
-}
-
-.productShortDesc {
-    font-weight: 400;
-}
-
-.priceContainer {
-    margin: 40px 0 20px;
-}
-
-.priceTitle {
-    margin: 0 0 10px;
-    font-family: 'Roboto Condensed', sans-serif;
-    font-weight: 700;
-    font-size: 18px;
-}
-
-.price {
-    margin: 0;
-    font-size: 24px;
-    font-weight: 700;
-}
-
-.button {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    align-items: center;
-    padding: 13px 0;
-    border: none;
-    color: var(--c-white);
-    background-color: var(--c-primary);
-    font-size: 14px;
-    font-weight: 600;
-    text-transform: uppercase;
-    cursor: pointer;
-}
-
-.outOfStockButton {
-    background-color: var(--c-grey);
-
-    cursor: not-allowed;
-}
-
-@import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
-.productLongDesc {
-    font-family: 'Roboto', sans-serif;
-    margin-top: 40px;
 }

@@ -1,0 +1,19 @@
+.button {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    padding: 13px 0;
+    border: none;
+    color: var(--c-white);
+    background-color: var(--c-primary);
+    font-size: 14px;
+    font-weight: 600;
+    text-transform: uppercase;
+    cursor: pointer;
+}
+
+.outOfStock {
+    background-color: var(--c-grey);
+    cursor: not-allowed;
+}
