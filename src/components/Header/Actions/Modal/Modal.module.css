@@ -19,6 +19,7 @@
 
 .modalOverlay {
     position: absolute;
+    right: 101px;
     top: var(--header-height);
     background-color: var(--c-white);
     padding: 16px;
