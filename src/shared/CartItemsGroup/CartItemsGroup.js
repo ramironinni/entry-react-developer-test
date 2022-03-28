@@ -108,15 +108,15 @@ class CartItemsGroup extends Component {
                 <div>
                     {this.state.currentCart.length > 0 &&
                         this.state.currentCart.map((item, i) => {
-                            // console.log(item);
-                            // return (
-                            //     <CartItem
-                            //         key={i}
-                            //         item={item}
-                            //         inputName={`${i}-${inputNameComp}`}
-                            //         isPage={isPage}
-                            //     />
-                            // );
+                            console.log(item);
+                            return (
+                                <CartItem
+                                    key={i}
+                                    item={item}
+                                    inputName={`${i}-${inputNameComp}`}
+                                    isPage={isPage}
+                                />
+                            );
                         })}
                 </div>
             </div>

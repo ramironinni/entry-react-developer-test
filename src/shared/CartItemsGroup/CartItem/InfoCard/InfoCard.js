@@ -18,9 +18,8 @@ class InfoCard extends Component {
         return (
             <div className={styles.infoCard}>
                 <div className={styles.name}>{name}</div>
-                {/* <div className={styles.shortDesc}>{this.props.description}</div> */}
                 <div className={styles.price}>
-                    {price.currency.label} {price.amount}
+                    {price.currency.symbol} {price.amount}
                 </div>
                 {attributes.map((attributeSet, i) => {
                     return (

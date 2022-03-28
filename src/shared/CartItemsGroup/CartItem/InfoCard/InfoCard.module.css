@@ -6,19 +6,15 @@
     width: 136px;
 }
 
-.name,
-.shortDesc {
-    font-size: 30px;
-    margin-bottom: 10px;
-}
-
 .name {
+    margin-bottom: 10px;
+    font-size: 30px;
     font-weight: 600;
 }
 
 .price {
-    font-weight: 500;
-    font-weight: bold;
+    font-size: 24px;
+    font-weight: 700;
     margin-bottom: 10px;
 }
 

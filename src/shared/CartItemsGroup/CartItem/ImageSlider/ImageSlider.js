@@ -34,43 +34,45 @@ class ImageSlider extends Component {
 
     render() {
         return (
-            <div className={styles.slider}>
-                <div className={styles.arrowLeftContainer}>
-                    <img
-                        className={styles.arrowLeft}
-                        src={arrow}
-                        alt="arrow left"
-                        onClick={this.prevSlideHandler.bind(this)}
-                    />
+            <div className={styles.container}>
+                <div className={styles.slider}>
+                    <div className={styles.arrowLeftContainer}>
+                        <img
+                            className={styles.arrowLeft}
+                            src={arrow}
+                            alt="arrow left"
+                            onClick={this.prevSlideHandler.bind(this)}
+                        />
+                    </div>
+                    <div className={styles.arrowRightContainer}>
+                        <img
+                            className={styles.arrowRight}
+                            src={arrow}
+                            alt="arrow right"
+                            onClick={this.nextSlideHandler.bind(this)}
+                        />
+                    </div>
+                    {this.props.images.map((img, i) => {
+                        return (
+                            <div
+                                className={
+                                    i === this.state.currentImg
+                                        ? `${styles.slide} ${styles.current}`
+                                        : styles.slide
+                                }
+                                key={i}
+                            >
+                                {i === this.state.currentImg && (
+                                    <img
+                                        className={styles.image}
+                                        src={img}
+                                        alt="product"
+                                    />
+                                )}
+                            </div>
+                        );
+                    })}
                 </div>
-                <div className={styles.arrowRightContainer}>
-                    <img
-                        className={styles.arrowRight}
-                        src={arrow}
-                        alt="arrow right"
-                        onClick={this.nextSlideHandler.bind(this)}
-                    />
-                </div>
-                {this.props.images.map((img, i) => {
-                    return (
-                        <div
-                            className={
-                                i === this.state.currentImg
-                                    ? `${styles.slide} ${styles.current}`
-                                    : styles.slide
-                            }
-                            key={i}
-                        >
-                            {i === this.state.currentImg && (
-                                <img
-                                    className={styles.image}
-                                    src={img}
-                                    alt="product"
-                                />
-                            )}
-                        </div>
-                    );
-                })}
             </div>
         );
     }

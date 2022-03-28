@@ -4,12 +4,19 @@
     flex-direction: column;
     justify-content: space-between;
     align-items: center;
+    margin: 0 30px;
 }
 
 .button {
-    border: 1px solid var(--c-black);
     display: flex;
     justify-content: center;
     align-items: center;
+    border: 1px solid var(--c-black);
+    background-color: var(--c-white);
     cursor: pointer;
+}
+
+.amount {
+    font-size: 24px;
+    font-weight: 500;
 }

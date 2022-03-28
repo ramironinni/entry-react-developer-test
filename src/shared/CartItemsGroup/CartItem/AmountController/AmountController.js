@@ -22,7 +22,7 @@ class AmountController extends Component {
                 >
                     +
                 </button>
-                <div>{this.props.amount}</div>
+                <div className={styles.amount}>{this.props.amount}</div>
                 <button
                     className={`${styles.button} ${this.props.extraClasses}`}
                     onClick={() => this.removeFromCartHandler(this.props.id)}

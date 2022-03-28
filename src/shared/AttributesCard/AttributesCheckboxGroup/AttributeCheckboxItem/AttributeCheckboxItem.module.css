@@ -2,25 +2,17 @@
 
 .container {
     display: block;
-    /* position: relative; */
     cursor: pointer;
     font-size: 22px;
-    /* -webkit-user-select: none;
-    -moz-user-select: none;
-    -ms-user-select: none;
-    user-select: none; */
 }
 
-/* Hide the browser's default radio button */
 .container input {
     position: absolute;
     opacity: 0;
     cursor: pointer;
 }
 
-/* Create a custom radio button */
 .checkmark {
-    /* position: absolute; */
     display: flex;
     justify-content: center;
     align-items: center;
@@ -37,19 +29,13 @@
 
 .checkmarkColor {
     display: block;
-    width: 40px;
-    height: 40px;
+    width: 30px;
+    height: 30px;
     margin-right: 12px;
     border-radius: 20px;
     border: 3px solid var(--c-grey);
 }
 
-/* On mouse-over, add a grey background color */
-/* .container:hover input ~ .checkmark:not(.checkmarkUnavailable) {
-    background-color: #ccc;
-} */
-
-/* When the radio button is checked, add a blue background */
 .container input:checked ~ .checkmark {
     background-color: var(--c-black);
     color: var(--c-white);
@@ -59,10 +45,3 @@
     border: 3px solid var(--c-white);
     box-shadow: 0 0 4px 3px var(--c-black);
 }
-
-/* 
-.checkmarkUnavailable {
-    border: 1px solid var(--c-grey);
-    color: var(--c-grey);
-    cursor: not-allowed;
-} */
