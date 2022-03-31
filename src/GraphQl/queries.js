@@ -92,6 +92,64 @@ export const GET_ITEM_BY_ID = gql`
     }
 `;
 
+// export const GET_FILTERED_PRODUCTS = gql`
+//     query ProductInCartQuery($firstId: String!, $secondId: String!) {
+//         firstProduct: product(id: $firstId) {
+//             id
+//             id
+//             name
+//             inStock
+//             gallery
+//             description
+//             category
+//             attributes {
+//                 id
+//                 name
+//                 type
+//                 items {
+//                     id
+//                     displayValue
+//                     value
+//                 }
+//             }
+//             prices {
+//                 currency {
+//                     label
+//                     symbol
+//                 }
+//                 amount
+//             }
+//         }
+
+//         secondProduct: product(id: $secondId) {
+//             id
+//             id
+//             name
+//             inStock
+//             gallery
+//             description
+//             category
+//             attributes {
+//                 id
+//                 name
+//                 type
+//                 items {
+//                     id
+//                     displayValue
+//                     value
+//                 }
+//             }
+//             prices {
+//                 currency {
+//                     label
+//                     symbol
+//                 }
+//                 amount
+//             }
+//         }
+//     }
+// `;
+
 export const GET_CATEGORIES = gql`
     query {
         categories {

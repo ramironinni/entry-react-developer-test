@@ -6,13 +6,14 @@ import { withApollo } from '@apollo/react-hoc';
 import { GET_ITEM_BY_ID } from '../../GraphQl/queries';
 
 import CartItem from './CartItem/CartItem';
+import LoadingSpinner from '../Loading/LoadingSpinner';
 
 class CartItemsGroup extends Component {
     constructor(props) {
         super(props);
         this.state = {
             currentCart: [],
-            loading: true,
+            isLoading: true,
             error: false,
         };
         this.client = props.client;
@@ -20,6 +21,8 @@ class CartItemsGroup extends Component {
 
     async getItemById(itemId) {
         // console.log('itemId', itemId);
+        this.setState({ isLoading: true });
+
         const { loading, error, data } = await this.client.query({
             query: GET_ITEM_BY_ID,
             variables: {
@@ -28,15 +31,17 @@ class CartItemsGroup extends Component {
         });
 
         if (loading) {
-            this.setState({ loading: true, error: false });
+            this.setState({ isLoading: true, error: false });
         }
 
         if (error) {
-            this.setState({ loading: false, error: error });
+            this.setState({ isLoading: false, error: error });
             console.log(error);
         }
 
         // console.log(error, loading, data);
+
+        this.setState({ isLoading: false });
 
         return data;
     }
@@ -77,7 +82,6 @@ class CartItemsGroup extends Component {
 
             currentCart.push(newCartProduct);
         }
-
         // console.log('redux cart', this.props.cart);
         // console.log('currentCart', currentCart);
         return currentCart;
@@ -102,6 +106,11 @@ class CartItemsGroup extends Component {
 
     render() {
         const { isPage, inputNameComp } = this.props;
+
+        if (this.state.isLoading) {
+            return <LoadingSpinner />;
+        }
+
         return (
             <div>
                 {this.props.cart.length === 0 && <div>Cart is empty.</div>}

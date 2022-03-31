@@ -7,69 +7,12 @@ import App from './App';
 
 import './index.css';
 
-import {
-    ApolloClient,
-    InMemoryCache,
-    ApolloProvider,
-    useQuery,
-    gql,
-} from '@apollo/client';
+import { ApolloClient, InMemoryCache, ApolloProvider } from '@apollo/client';
 
 export const client = new ApolloClient({
     uri: 'http://localhost:4000/',
     cache: new InMemoryCache(),
 });
-
-// client
-//     .query({
-//         query: gql`
-//             query {
-//                 category {
-//                     products {
-//                         id
-//                         name
-//                         inStock
-//                         gallery
-//                         description
-//                         category
-//                         attributes {
-//                             id
-//                             name
-//                             type
-//                             items {
-//                                 displayValue
-//                                 value
-//                                 id
-//                             }
-//                         }
-//                         prices {
-//                             currency {
-//                                 label
-//                                 symbol
-//                             }
-//                             amount
-//                         }
-//                         brand
-//                     }
-//                 }
-//             }
-//         `,
-//     })
-//     .then((result) => console.log(result));
-
-// client
-//     .query({
-//         query: gql`
-//             query {
-//                 category(input: { title: "clothes" }) {
-//                     products {
-//                         id
-//                     }
-//                 }
-//             }
-//         `,
-//     })
-//     .then((result) => console.log(result));
 
 ReactDOM.render(
     <React.StrictMode>
@@ -80,9 +23,4 @@ ReactDOM.render(
         </Provider>
     </React.StrictMode>,
     document.getElementById('root')
-
-    //     <Provider store={store}>
-    //         <App />
-    //     </Provider>
-    // document.getElementById('root')
 );
