@@ -77,15 +77,7 @@ class ProductPage extends Component {
                 {this.state.product && (
                     <>
                         <ProductGallery gallery={this.state.product.gallery} />
-                        <ProductInfo
-                            id={this.state.product.id}
-                            name={this.state.product.name}
-                            inStock={this.state.product.inStock}
-                            description={this.state.product.description}
-                            category={this.state.product.category}
-                            attributes={this.state.product.attributes}
-                            prices={this.state.product.prices}
-                        />
+                        <ProductInfo product={this.state.product} />
                     </>
                 )}
             </Page>

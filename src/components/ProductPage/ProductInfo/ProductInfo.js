@@ -12,20 +12,22 @@ import styles from './ProductInfo.module.css';
 class ProductInfo extends Component {
     constructor(props) {
         super(props);
-        this.state = { selectedAtributtes: [] };
+        this.state = { selectedAttributes: [] };
     }
 
     getSelectedAttributesHandler = (setId, itemId) => {
+        // console.log(setId, itemId, this.state.selectedAttributes);
+
         this.setState((prevState) => {
             let updatedState;
 
-            const foundAttribute = prevState.selectedAtributtes.find(
+            const foundAttribute = prevState.selectedAttributes.find(
                 (att) => att.setId === setId
             );
 
             if (foundAttribute) {
                 const unmodifiedAttributes =
-                    prevState.selectedAtributtes.filter(
+                    prevState.selectedAttributes.filter(
                         (att) => att.setId !== setId
                     );
 
@@ -33,7 +35,7 @@ class ProductInfo extends Component {
                 foundAttribute.itemId = itemId;
 
                 updatedState = {
-                    selectedAtributtes: [
+                    selectedAttributes: [
                         ...unmodifiedAttributes,
                         foundAttribute,
                     ],
@@ -43,8 +45,8 @@ class ProductInfo extends Component {
             }
 
             updatedState = {
-                selectedAtributtes: [
-                    ...prevState.selectedAtributtes,
+                selectedAttributes: [
+                    ...prevState.selectedAttributes,
                     { setId, itemId },
                 ],
             };
@@ -54,7 +56,8 @@ class ProductInfo extends Component {
     };
 
     render() {
-        const { id, name, inStock, attributes, description } = this.props;
+        const { id, name, inStock, description, attributes, prices } =
+            this.props.product;
 
         return (
             <div className={styles.productInfo}>
@@ -74,12 +77,14 @@ class ProductInfo extends Component {
                         />
                     );
                 })}
-                <PriceCard prices={this.props.prices} />
+                <PriceCard prices={prices} />
                 <AddToCartButton
-                    inStock={inStock}
-                    id={id}
-                    selectedAtributtes={this.state.selectedAtributtes}
-                    onAddProduct={this.props.add}
+                    product={this.props.product}
+                    onAddProduct={this.props.add.bind(
+                        this,
+                        this.props.product,
+                        this.state.selectedAttributes
+                    )}
                 />
                 <Description description={description} />
             </div>
@@ -89,8 +94,8 @@ class ProductInfo extends Component {
 
 const mapDispatchToProps = (dispatch) => {
     return {
-        add: (id, selectedAttributes) =>
-            dispatch(cartActions.add({ id, selectedAttributes })),
+        add: (product, selectedAttributes) =>
+            dispatch(cartActions.add({ product, selectedAttributes })),
     };
 };
 

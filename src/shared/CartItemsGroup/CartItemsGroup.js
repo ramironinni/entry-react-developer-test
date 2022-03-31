@@ -7,6 +7,7 @@ import { GET_ITEM_BY_ID } from '../../GraphQl/queries';
 
 import CartItem from './CartItem/CartItem';
 import LoadingSpinner from '../Loading/LoadingSpinner';
+import { cartActions } from '../../store/cart-slice';
 
 class CartItemsGroup extends Component {
     constructor(props) {
@@ -20,7 +21,6 @@ class CartItemsGroup extends Component {
     }
 
     async getItemById(itemId) {
-        // console.log('itemId', itemId);
         this.setState({ isLoading: true });
 
         const { loading, error, data } = await this.client.query({
@@ -46,62 +46,29 @@ class CartItemsGroup extends Component {
         return data;
     }
 
-    async updateCart() {
-        const currentCart = [];
-        for (const cartProduct of this.props.cart) {
-            const productFromDb = {
-                ...(await this.getItemById(cartProduct.id)).product,
-            };
+    async checkOutOfStockItems() {
+        for (const item of this.props.cart) {
+            const foundItem = await this.getItemById(item.id);
 
-            // console.log('productFromDb', productFromDb);
+            console.log('foundItem', foundItem);
 
-            const newCartProduct = JSON.parse(JSON.stringify(productFromDb));
-
-            newCartProduct.amount = cartProduct.amount;
-
-            console.log('cartProduct.id', cartProduct.id);
-            console.log('newCartProduct', newCartProduct.attributes);
-
-            cartProduct.selectedAttributes.forEach((cartAttributeSet) => {
-                const foundProdDbAttribute = newCartProduct.attributes.find(
-                    (attribute) =>
-                        attribute.id.toUpperCase() ===
-                        cartAttributeSet.setId.toUpperCase()
-                );
-
-                // console.log('foundProdDbAttribute', foundProdDbAttribute);
-
-                foundProdDbAttribute.items.forEach((item) => {
-                    if (item.id === cartAttributeSet.itemId) {
-                        item.selected = true;
-                    } else {
-                        item.selected = false;
-                    }
-                });
-            });
-
-            currentCart.push(newCartProduct);
+            if (!foundItem.inStock) {
+                this.props.removeAll(foundItem.id);
+            }
         }
-        // console.log('redux cart', this.props.cart);
-        // console.log('currentCart', currentCart);
-        return currentCart;
     }
 
     async componentDidMount() {
-        const currentCart = await this.updateCart();
-        this.setState({ currentCart: currentCart });
-        // console.log('MOUNTED');
-        // const TEST = await this.getItemById('apple-imac-2021').product;
-        // console.log('TEST', TEST);
+        console.log('this.props.cart', this.props.cart);
+        if (this.props.cart) {
+            this.checkOutOfStockItems();
+            this.setState({ isLoading: false });
+        }
     }
 
     async componentDidUpdate(prevProps) {
         if (this.props.cart !== prevProps.cart) {
-            const currentCart = await this.updateCart();
-            this.setState({ currentCart: currentCart });
-            // console.log('CART HAS CHANGED', currentCart);
         }
-        // console.log('UPDATED');
     }
 
     render() {
@@ -119,8 +86,8 @@ class CartItemsGroup extends Component {
             <div>
                 {this.props.cart.length === 0 && <div>Cart is empty.</div>}
                 <div>
-                    {this.state.currentCart.length > 0 &&
-                        this.state.currentCart.map((item, i) => {
+                    {this.props.cart.length > 0 &&
+                        this.props.cart.map((item, i) => {
                             console.log(item);
                             return (
                                 <CartItem
@@ -143,4 +110,12 @@ const mapStateToProps = (state) => {
     };
 };
 
-export default withApollo(connect(mapStateToProps)(CartItemsGroup));
+const mapDispatchToProps = (dispatch) => {
+    return {
+        removeAll: (id) => dispatch(cartActions.removeAll({ id })),
+    };
+};
+
+export default withApollo(
+    connect(mapStateToProps, mapDispatchToProps)(CartItemsGroup)
+);

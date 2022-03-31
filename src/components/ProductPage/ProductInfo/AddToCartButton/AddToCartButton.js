@@ -11,15 +11,11 @@ class AddToCartButton extends Component {
             <Button
                 className={`${styles.button} ${outOfStock}`}
                 onAddProduct={() => {
-                    console.log(this.props.id, this.props.selectedAtributtes);
-                    this.props.onAddProduct(
-                        this.props.id,
-                        this.props.selectedAtributtes
-                    );
+                    this.props.onAddProduct();
                 }}
                 extraClasses={styles.addToCartButton}
             >
-                {this.props.inStock ? 'Add to cart' : 'Out of stock'}
+                {this.props.product.inStock ? 'Add to cart' : 'Out of stock'}
             </Button>
         );
     }

@@ -4,7 +4,12 @@ import styles from './Button.module.css';
 class Button extends Component {
     render() {
         return (
-            <button className={`${styles.button} ${this.props.extraClasses}`}>
+            <button
+                className={`${styles.button} ${this.props.extraClasses}`}
+                onClick={() => {
+                    this.props.onAddProduct();
+                }}
+            >
                 {this.props.children}
             </button>
         );
