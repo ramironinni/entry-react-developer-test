@@ -64,6 +64,14 @@ class ProductPage extends Component {
             );
         }
 
+        if (this.state.error) {
+            return (
+                <Page>
+                    <p>{this.state.error}</p>
+                </Page>
+            );
+        }
+
         return (
             <Page pageClasses={styles.page}>
                 {this.state.product && (

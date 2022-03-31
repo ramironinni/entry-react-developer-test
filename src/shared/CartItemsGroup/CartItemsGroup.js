@@ -111,6 +111,10 @@ class CartItemsGroup extends Component {
             return <LoadingSpinner />;
         }
 
+        if (this.state.error) {
+            return <p>{this.state.error}</p>;
+        }
+
         return (
             <div>
                 {this.props.cart.length === 0 && <div>Cart is empty.</div>}

@@ -76,6 +76,14 @@ class CategoryPage extends Component {
             );
         }
 
+        if (this.state.error) {
+            return (
+                <Page>
+                    <p>{this.state.error}</p>
+                </Page>
+            );
+        }
+
         return (
             <Page>
                 <div className={styles.title}>{categoryName}</div>
