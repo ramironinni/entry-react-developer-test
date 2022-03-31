@@ -17,7 +17,7 @@ class AttributeCheckboxItem extends Component {
             value,
             checked,
             inputName,
-            onChangeAttribute,
+            onUpdateAttributes,
             isPage,
         } = this.props;
 
@@ -48,7 +48,7 @@ class AttributeCheckboxItem extends Component {
                     checked={checked}
                     name={`${inputName}-${index}`}
                     onChange={() => {
-                        onChangeAttribute(setId, id, prodId);
+                        onUpdateAttributes(setId, id, prodId);
                     }}
                 />
                 {valueToDisplay}

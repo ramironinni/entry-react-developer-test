@@ -52,7 +52,7 @@ class AttributesCheckboxGroup extends Component {
                             }
                             inputName={this.props.inputName}
                             extraClasses={this.props.extraClasses}
-                            onChangeAttribute={this.updateAttributesHandler.bind(
+                            onUpdateAttributes={this.updateAttributesHandler.bind(
                                 this
                             )}
                             isPage={this.props.isPage}

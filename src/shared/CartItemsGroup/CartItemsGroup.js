@@ -46,11 +46,9 @@ class CartItemsGroup extends Component {
         return data;
     }
 
-    async checkOutOfStockItems() {
+    async checkItemsInStock() {
         for (const item of this.props.cart) {
-            const foundItem = await this.getItemById(item.id);
-
-            console.log('foundItem', foundItem);
+            const foundItem = (await this.getItemById(item.id)).product;
 
             if (!foundItem.inStock) {
                 this.props.removeAll(foundItem.id);
@@ -59,9 +57,8 @@ class CartItemsGroup extends Component {
     }
 
     async componentDidMount() {
-        console.log('this.props.cart', this.props.cart);
         if (this.props.cart) {
-            this.checkOutOfStockItems();
+            this.checkItemsInStock();
             this.setState({ isLoading: false });
         }
     }
@@ -88,7 +85,6 @@ class CartItemsGroup extends Component {
                 <div>
                     {this.props.cart.length > 0 &&
                         this.props.cart.map((item, i) => {
-                            console.log(item);
                             return (
                                 <CartItem
                                     key={i}
