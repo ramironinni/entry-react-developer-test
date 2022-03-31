@@ -10,19 +10,22 @@ import Page from '../Page';
 import ProductCard from './ProductCard/ProductCard';
 
 import styles from './CategoryPage.module.css';
+import LoadingSpinner from '../../shared/Loading/LoadingSpinner';
 class CategoryPage extends Component {
     constructor(props) {
         super(props);
         this.state = {
             categoryName: this.props.match.params.name,
             items: [],
-            loading: true,
+            isLoading: true,
             error: false,
         };
         this.client = props.client;
     }
 
     async getItemsByCategory() {
+        this.setState({ isLoading: true });
+
         const { loading, error, data } = await this.client.query({
             query: GET_ITEMS_BY_CATEGORY,
             variables: {
@@ -31,17 +34,17 @@ class CategoryPage extends Component {
         });
 
         if (loading) {
-            this.setState({ loading: true, error: false });
+            this.setState({ isLoading: true, error: false });
         }
 
         if (error) {
-            this.setState({ loading: false, error: error });
+            this.setState({ isLoading: false, error: error });
             console.log(error);
         }
 
         this.setState({
             items: data.category.products,
-            loading: data.loading,
+            isLoading: data.loading,
         });
 
         // console.log(error, loading, data);
@@ -64,6 +67,14 @@ class CategoryPage extends Component {
         const selectedCurrency = this.props.currencies.find(
             (currency) => currency.selected
         );
+
+        if (this.state.isLoading) {
+            return (
+                <Page>
+                    <LoadingSpinner />
+                </Page>
+            );
+        }
 
         return (
             <Page>

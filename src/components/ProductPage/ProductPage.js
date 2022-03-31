@@ -2,6 +2,7 @@ import { withApollo } from '@apollo/react-hoc';
 import { Component } from 'react';
 import { withRouter } from 'react-router-dom';
 import { GET_ITEM_BY_ID } from '../../GraphQl/queries';
+import LoadingSpinner from '../../shared/Loading/LoadingSpinner';
 
 import Page from '../Page';
 import ProductGallery from './ProductGallery/ProductGallery';
@@ -14,12 +15,14 @@ class ProductPage extends Component {
         super(props);
         this.state = {
             product: null,
-            loading: true,
+            isLoading: true,
             error: false,
         };
     }
 
     async getItemById() {
+        this.setState({ isLoading: true });
+
         const { loading, error, data } = await this.props.client.query({
             query: GET_ITEM_BY_ID,
             variables: {
@@ -28,11 +31,11 @@ class ProductPage extends Component {
         });
 
         if (loading) {
-            this.setState({ loading: true, error: false });
+            this.setState({ isLoading: true, error: false });
         }
 
         if (error) {
-            this.setState({ loading: false, error: error });
+            this.setState({ isLoading: false, error: error });
             console.log(error);
         }
 
@@ -42,7 +45,7 @@ class ProductPage extends Component {
 
         this.setState({
             product: data.product,
-            loading: data.loading,
+            isLoading: data.loading,
         });
 
         // console.log(error, loading, data);
@@ -53,6 +56,14 @@ class ProductPage extends Component {
     }
 
     render() {
+        if (this.state.isLoading) {
+            return (
+                <Page>
+                    <LoadingSpinner />
+                </Page>
+            );
+        }
+
         return (
             <Page pageClasses={styles.page}>
                 {this.state.product && (
