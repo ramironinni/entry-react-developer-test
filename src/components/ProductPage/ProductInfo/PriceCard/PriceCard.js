@@ -16,7 +16,7 @@ class PriceCard extends Component {
             <div className={styles.priceCard}>
                 <p className={styles.priceTitle}>PRICE: </p>
                 <p className={styles.price}>
-                    {price.currency.label} {price.amount}
+                    {price.currency.symbol} {price.amount}
                 </p>
             </div>
         );
