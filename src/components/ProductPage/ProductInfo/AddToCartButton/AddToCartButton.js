@@ -5,15 +5,16 @@ import styles from './AddToCartButton.module.css';
 
 class AddToCartButton extends Component {
     render() {
-        const outOfStock = !this.props.inStock ? styles.outOfStock : '';
+        const extraClasses = this.props.product.inStock
+            ? styles.addToCartButton
+            : styles.outOfStock;
 
         return (
             <Button
-                className={`${styles.button} ${outOfStock}`}
-                onAddProduct={() => {
-                    this.props.onAddProduct();
-                }}
-                extraClasses={styles.addToCartButton}
+                onAddProduct={this.props.onAddProduct}
+                isProductPage={true}
+                inStock={this.props.product.inStock}
+                extraClasses={`${extraClasses}`}
             >
                 {this.props.product.inStock ? 'Add to cart' : 'Out of stock'}
             </Button>

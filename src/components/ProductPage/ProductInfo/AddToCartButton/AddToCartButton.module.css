@@ -7,6 +7,9 @@
 }
 
 .outOfStock {
+    width: 100%;
+    border: none;
+    color: var(--c-white);
     background-color: var(--c-grey);
     cursor: not-allowed;
 }

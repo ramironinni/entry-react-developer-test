@@ -10,7 +10,7 @@ class CartOverlay extends Component {
 
         return (
             <Modal
-                overlayClasses={styles.modalOverlay}
+                // overlayClasses={styles.modalOverlay}
                 onBackdropClickHandler={onToggleOverlayHandler}
                 backdropGrey={true}
             >

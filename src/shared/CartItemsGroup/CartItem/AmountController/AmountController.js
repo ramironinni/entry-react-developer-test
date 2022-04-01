@@ -23,8 +23,6 @@ class AmountController extends Component {
             ? styles.amountOverlay
             : '';
 
-        console.log('this.props.isPage', this.props.isPage);
-
         return (
             <div className={styles.amountController}>
                 <button
