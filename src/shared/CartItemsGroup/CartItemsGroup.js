@@ -51,7 +51,7 @@ class CartItemsGroup extends Component {
             const foundItem = (await this.getItemById(item.id)).product;
 
             if (!foundItem.inStock) {
-                this.props.removeAll(foundItem.id);
+                this.props.remove(foundItem.id);
             }
         }
     }
@@ -108,7 +108,7 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
     return {
-        removeAll: (id) => dispatch(cartActions.removeAll({ id })),
+        remove: (id) => dispatch(cartActions.remove({ id })),
     };
 };
 
