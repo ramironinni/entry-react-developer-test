@@ -1,7 +1,9 @@
-import { createSlice } from '@reduxjs/toolkit';
+import { createSlice, current } from '@reduxjs/toolkit';
+
+const localStorageCart = JSON.parse(localStorage.getItem('cart'));
 
 const initialCartState = {
-    cart: [],
+    cart: (localStorageCart.length && localStorageCart) || [],
 };
 
 const cartSlice = createSlice({
@@ -51,6 +53,8 @@ const cartSlice = createSlice({
                 attributes: customizedAttributesSet,
                 amount: 1,
             });
+
+            localStorage.setItem('cart', JSON.stringify(current(state.cart)));
         },
         remove(state, action) {
             const itemToUpdateIndex = state.cart.findIndex(
@@ -58,6 +62,8 @@ const cartSlice = createSlice({
             );
 
             state.cart.splice(itemToUpdateIndex, 1);
+
+            localStorage.setItem('cart', JSON.stringify(current(state.cart)));
         },
         update(state, action) {
             const itemToUpdateIndex = state.cart.findIndex(
@@ -93,12 +99,16 @@ const cartSlice = createSlice({
             state.cart[itemToUpdateIndex].attributes[
                 attributeSetFoundIndex
             ].items = attributeSetItemsToBeUpdated;
+
+            localStorage.setItem('cart', JSON.stringify(current(state.cart)));
         },
         increment(state, action) {
             const itemToUpdateIndex = state.cart.findIndex(
                 (item) => item.id === action.payload.id
             );
             state.cart[itemToUpdateIndex].amount++;
+
+            localStorage.setItem('cart', JSON.stringify(current(state.cart)));
         },
         decrement(state, action) {
             const itemToUpdateIndex = state.cart.findIndex(
@@ -111,11 +121,21 @@ const cartSlice = createSlice({
 
             if (state.cart[itemToUpdateIndex].amount > 1) {
                 state.cart[itemToUpdateIndex].amount--;
+                localStorage.setItem(
+                    'cart',
+                    JSON.stringify(current(state.cart))
+                );
+
                 return;
             }
 
             if (state.cart[itemToUpdateIndex].amount === 1) {
                 state.cart.splice(itemToUpdateIndex, 1);
+                localStorage.setItem(
+                    'cart',
+                    JSON.stringify(current(state.cart))
+                );
+
                 return;
             }
         },
