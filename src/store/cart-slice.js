@@ -1,9 +1,16 @@
 import { createSlice, current } from '@reduxjs/toolkit';
 
 const localStorageCart = JSON.parse(localStorage.getItem('cart'));
+const localStorageGrandTotal = JSON.parse(localStorage.getItem('grandTotal'));
 
 const initialCartState = {
-    cart: (localStorageCart.length && localStorageCart) || [],
+    cart:
+        (localStorageCart && localStorageCart.length && localStorageCart) || [],
+    cartGrandTotalPrices:
+        (localStorageGrandTotal &&
+            localStorageGrandTotal.length &&
+            localStorageGrandTotal) ||
+        [],
 };
 
 const cartSlice = createSlice({
@@ -48,13 +55,45 @@ const cartSlice = createSlice({
                 customizedAttributesSet.push(productAttributeSetUpdated);
             });
 
+            const totalProductPrices = action.payload.product.prices.map(
+                (price) => {
+                    return { ...price };
+                }
+            );
+
             state.cart.push({
                 ...action.payload.product,
                 attributes: customizedAttributesSet,
                 amount: 1,
+                totalProductPrices,
             });
 
+            if (state.cartGrandTotalPrices.length === 0) {
+                state.cartGrandTotalPrices = totalProductPrices;
+                return;
+            }
+
+            const grandTotalPricesUpdated = state.cartGrandTotalPrices.map(
+                (grandTotalPrice) => {
+                    const newProductPrice = action.payload.product.prices.find(
+                        (price) =>
+                            price.currency.label ===
+                            grandTotalPrice.currency.label
+                    );
+                    return {
+                        ...grandTotalPrice,
+                        amount: grandTotalPrice.amount + newProductPrice.amount,
+                    };
+                }
+            );
+
+            state.cartGrandTotalPrices = grandTotalPricesUpdated;
+
             localStorage.setItem('cart', JSON.stringify(current(state.cart)));
+            localStorage.setItem(
+                'grandTotal',
+                JSON.stringify(state.cartGrandTotalPrices)
+            );
         },
         remove(state, action) {
             const itemToUpdateIndex = state.cart.findIndex(
@@ -63,7 +102,16 @@ const cartSlice = createSlice({
 
             state.cart.splice(itemToUpdateIndex, 1);
 
+            //
+            // remove from grand total
+            //
+            //
+
             localStorage.setItem('cart', JSON.stringify(current(state.cart)));
+            localStorage.setItem(
+                'grandTotal',
+                JSON.stringify(state.cartGrandTotalPrices)
+            );
         },
         update(state, action) {
             const itemToUpdateIndex = state.cart.findIndex(
@@ -106,9 +154,46 @@ const cartSlice = createSlice({
             const itemToUpdateIndex = state.cart.findIndex(
                 (item) => item.id === action.payload.id
             );
+
             state.cart[itemToUpdateIndex].amount++;
 
+            const totalProductPrices = state.cart[itemToUpdateIndex].prices.map(
+                (price) => {
+                    return {
+                        ...price,
+                        amount:
+                            price.amount * state.cart[itemToUpdateIndex].amount,
+                    };
+                }
+            );
+
+            state.cart[itemToUpdateIndex].totalProductPrices =
+                totalProductPrices;
+
+            const grandTotalPricesUpdated = state.cartGrandTotalPrices.map(
+                (grandTotalPrice) => {
+                    const newProductPrice = state.cart[
+                        itemToUpdateIndex
+                    ].prices.find(
+                        (price) =>
+                            price.currency.label ===
+                            grandTotalPrice.currency.label
+                    );
+
+                    return {
+                        ...grandTotalPrice,
+                        amount: grandTotalPrice.amount + newProductPrice.amount,
+                    };
+                }
+            );
+
+            state.cartGrandTotalPrices = grandTotalPricesUpdated;
+
             localStorage.setItem('cart', JSON.stringify(current(state.cart)));
+            localStorage.setItem(
+                'grandTotal',
+                JSON.stringify(state.cartGrandTotalPrices)
+            );
         },
         decrement(state, action) {
             const itemToUpdateIndex = state.cart.findIndex(
@@ -121,22 +206,89 @@ const cartSlice = createSlice({
 
             if (state.cart[itemToUpdateIndex].amount > 1) {
                 state.cart[itemToUpdateIndex].amount--;
+
+                const totalProductPrices = state.cart[
+                    itemToUpdateIndex
+                ].prices.map((price) => {
+                    return {
+                        ...price,
+                        amount:
+                            price.amount * state.cart[itemToUpdateIndex].amount,
+                    };
+                });
+
+                state.cart[itemToUpdateIndex].totalProductPrices =
+                    totalProductPrices;
+
+                const grandTotalPricesUpdated = state.cartGrandTotalPrices.map(
+                    (grandTotalPrice) => {
+                        const toBeRemovedProductPrice = state.cart[
+                            itemToUpdateIndex
+                        ].prices.find(
+                            (price) =>
+                                price.currency.label ===
+                                grandTotalPrice.currency.label
+                        );
+
+                        return {
+                            ...grandTotalPrice,
+                            amount:
+                                grandTotalPrice.amount -
+                                toBeRemovedProductPrice.amount,
+                        };
+                    }
+                );
+
+                state.cartGrandTotalPrices = grandTotalPricesUpdated;
+
+                //
+
                 localStorage.setItem(
                     'cart',
                     JSON.stringify(current(state.cart))
+                );
+
+                localStorage.setItem(
+                    'grandTotal',
+                    JSON.stringify(state.cartGrandTotalPrices)
                 );
 
                 return;
             }
 
             if (state.cart[itemToUpdateIndex].amount === 1) {
+                const grandTotalPricesUpdated = state.cartGrandTotalPrices.map(
+                    (grandTotalPrice) => {
+                        const toBeRemovedProductPrice = state.cart[
+                            itemToUpdateIndex
+                        ].prices.find(
+                            (price) =>
+                                price.currency.label ===
+                                grandTotalPrice.currency.label
+                        );
+
+                        return {
+                            ...grandTotalPrice,
+                            amount:
+                                grandTotalPrice.amount -
+                                toBeRemovedProductPrice.amount,
+                        };
+                    }
+                );
+
+                state.cartGrandTotalPrices = grandTotalPricesUpdated;
+
                 state.cart.splice(itemToUpdateIndex, 1);
+
                 localStorage.setItem(
                     'cart',
                     JSON.stringify(current(state.cart))
                 );
 
-                return;
+                localStorage.setItem(
+                    'grandTotal',
+                    JSON.stringify(state.cartGrandTotalPrices)
+                );
             }
         },
     },
