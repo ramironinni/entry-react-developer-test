@@ -11,8 +11,6 @@ class CartOverlayContent extends Component {
             (currency) => currency.selected
         );
 
-        console.log(this.props.cartGrandTotalPrices);
-
         const grandTotalPrice = this.props.cartGrandTotalPrices.find(
             (price) => price.currency.label === selectedCurrency.label
         );

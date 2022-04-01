@@ -102,11 +102,6 @@ const cartSlice = createSlice({
 
             state.cart.splice(itemToUpdateIndex, 1);
 
-            //
-            // remove from grand total
-            //
-            //
-
             localStorage.setItem('cart', JSON.stringify(current(state.cart)));
             localStorage.setItem(
                 'grandTotal',

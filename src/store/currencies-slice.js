@@ -1,7 +1,13 @@
 import { createSlice } from '@reduxjs/toolkit';
 
+const localStorageCurrencies = JSON.parse(localStorage.getItem('currencies'));
+
 const initialCurrenciesState = {
-    currencies: [],
+    currencies:
+        (localStorageCurrencies &&
+            localStorageCurrencies.length &&
+            localStorageCurrencies) ||
+        [],
 };
 
 const currenciesSlice = createSlice({
@@ -30,6 +36,11 @@ const currenciesSlice = createSlice({
                     selected: currency.label === 'USD' ? true : false,
                 };
             });
+
+            localStorage.setItem(
+                'currencies',
+                JSON.stringify(state.currencies)
+            );
         },
     },
 });
