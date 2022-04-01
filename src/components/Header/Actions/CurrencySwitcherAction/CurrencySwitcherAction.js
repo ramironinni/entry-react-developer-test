@@ -22,6 +22,7 @@ class CurrencySwitcherAction extends Component {
 
     switchCurrencyHandler(label) {
         this.props.change(label);
+        this.props.onToggleOverlayHandler();
     }
 
     async getCurrencies() {
