@@ -13,6 +13,129 @@ const initialCartState = {
         [],
 };
 
+const saveToLocalStorage = (state) => {
+    localStorage.setItem('cart', JSON.stringify(current(state.cart)));
+
+    localStorage.setItem(
+        'grandTotal',
+        JSON.stringify(state.cartGrandTotalPrices)
+    );
+};
+
+// add(state, action) {
+//             const itemIndex = state.cart.findIndex(
+//                 (item) => item.id === action.payload.product.id
+//             );
+
+//             let customizedAttributesSet = [];
+
+//             action.payload.selectedAttributes.forEach((selectedAttribute) => {
+//                 const attributeSetToBeUpdated =
+//                     action.payload.product.attributes.find(
+//                         (setAtt) => setAtt.id === selectedAttribute.setId
+//                     );
+
+//                 const itemAttSelected = attributeSetToBeUpdated.items.find(
+//                     (item) => item.id === selectedAttribute.itemId
+//                 );
+
+//                 const attributeItemsUpdated = attributeSetToBeUpdated.items.map(
+//                     (item) => {
+//                         const selected =
+//                             item.id === itemAttSelected.id ? true : false;
+//                         return { ...item, selected };
+//                     }
+//                 );
+
+//                 const productAttributeSetUpdated = {
+//                     ...attributeSetToBeUpdated,
+//                 };
+
+//                 productAttributeSetUpdated.items = attributeItemsUpdated;
+
+//                 customizedAttributesSet.push(productAttributeSetUpdated);
+//             });
+
+//             if (itemIndex > -1) {
+//                 const isSameProductWithSameOpts = isEqual(
+//                     current(state.cart[itemIndex].attributes),
+//                     customizedAttributesSet
+//                 );
+
+//                 if (isSameProductWithSameOpts) {
+//                     state.cart[itemIndex].amount++;
+
+//                     const grandTotalPricesUpdated =
+//                         state.cartGrandTotalPrices.map((grandTotalPrice) => {
+//                             const newProductPrice =
+//                                 action.payload.product.prices.find(
+//                                     (price) =>
+//                                         price.currency.label ===
+//                                         grandTotalPrice.currency.label
+//                                 );
+//                             return {
+//                                 ...grandTotalPrice,
+//                                 amount:
+//                                     grandTotalPrice.amount +
+//                                     newProductPrice.amount,
+//                             };
+//                         });
+
+//                     state.cartGrandTotalPrices = grandTotalPricesUpdated;
+
+//                     localStorage.setItem(
+//                         'cart',
+//                         JSON.stringify(current(state.cart))
+//                     );
+//                     localStorage.setItem(
+//                         'grandTotal',
+//                         JSON.stringify(state.cartGrandTotalPrices)
+//                     );
+//                 }
+//                 return;
+//             }
+
+//             const totalProductPrices = action.payload.product.prices.map(
+//                 (price) => {
+//                     return { ...price };
+//                 }
+//             );
+
+//             state.cart.push({
+//                 ...action.payload.product,
+//                 attributes: customizedAttributesSet,
+//                 amount: 1,
+//                 totalProductPrices,
+//             });
+
+//             if (state.cartGrandTotalPrices.length === 0) {
+//                 state.cartGrandTotalPrices = totalProductPrices;
+//                 return;
+//             }
+
+//             const grandTotalPricesUpdated = state.cartGrandTotalPrices.map(
+//                 (grandTotalPrice) => {
+//                     const newProductPrice = action.payload.product.prices.find(
+//                         (price) =>
+//                             price.currency.label ===
+//                             grandTotalPrice.currency.label
+//                     );
+//                     return {
+//                         ...grandTotalPrice,
+//                         amount: grandTotalPrice.amount + newProductPrice.amount,
+//                     };
+//                 }
+//             );
+
+//             state.cartGrandTotalPrices = grandTotalPricesUpdated;
+
+//             localStorage.setItem('cart', JSON.stringify(current(state.cart)));
+//             localStorage.setItem(
+//                 'grandTotal',
+//                 JSON.stringify(state.cartGrandTotalPrices)
+//             );
+//         },
+
 const cartSlice = createSlice({
     name: 'cart',
     initialState: initialCartState,
@@ -26,74 +149,97 @@ const cartSlice = createSlice({
                 return;
             }
 
-            let customizedAttributesSet = [];
+            const getCustomizedAttributesSet = () => {
+                let customizedAttributesSet = [];
 
-            action.payload.selectedAttributes.forEach((selectedAttribute) => {
-                const attributeSetToBeUpdated =
-                    action.payload.product.attributes.find(
-                        (setAtt) => setAtt.id === selectedAttribute.setId
-                    );
+                action.payload.selectedAttributes.forEach(
+                    (selectedAttribute) => {
+                        const attributeSetToBeUpdated =
+                            action.payload.product.attributes.find(
+                                (setAtt) =>
+                                    setAtt.id === selectedAttribute.setId
+                            );
 
-                const itemAttSelected = attributeSetToBeUpdated.items.find(
-                    (item) => item.id === selectedAttribute.itemId
-                );
+                        const itemAttSelected =
+                            attributeSetToBeUpdated.items.find(
+                                (item) => item.id === selectedAttribute.itemId
+                            );
 
-                const attributeItemsUpdated = attributeSetToBeUpdated.items.map(
-                    (item) => {
-                        const selected =
-                            item.id === itemAttSelected.id ? true : false;
-                        return { ...item, selected };
+                        const attributeItemsUpdated =
+                            attributeSetToBeUpdated.items.map((item) => {
+                                const selected =
+                                    item.id === itemAttSelected.id
+                                        ? true
+                                        : false;
+                                return { ...item, selected };
+                            });
+
+                        const productAttributeSetUpdated = {
+                            ...attributeSetToBeUpdated,
+                        };
+
+                        productAttributeSetUpdated.items =
+                            attributeItemsUpdated;
+
+                        customizedAttributesSet.push(
+                            productAttributeSetUpdated
+                        );
                     }
                 );
 
-                const productAttributeSetUpdated = {
-                    ...attributeSetToBeUpdated,
-                };
+                return customizedAttributesSet;
+            };
 
-                productAttributeSetUpdated.items = attributeItemsUpdated;
-
-                customizedAttributesSet.push(productAttributeSetUpdated);
-            });
-
-            const totalProductPrices = action.payload.product.prices.map(
-                (price) => {
-                    return { ...price };
-                }
-            );
+            const getTotalProductPrices = () => {
+                const totalProductPrices = action.payload.product.prices.map(
+                    (price) => {
+                        return { ...price };
+                    }
+                );
+                return totalProductPrices;
+            };
 
             state.cart.push({
                 ...action.payload.product,
-                attributes: customizedAttributesSet,
+                attributes: getCustomizedAttributesSet(),
                 amount: 1,
-                totalProductPrices,
+                totalProductPrices: getTotalProductPrices(),
             });
 
             if (state.cartGrandTotalPrices.length === 0) {
-                state.cartGrandTotalPrices = totalProductPrices;
+                state.cartGrandTotalPrices = getTotalProductPrices();
                 return;
             }
 
-            const grandTotalPricesUpdated = state.cartGrandTotalPrices.map(
-                (grandTotalPrice) => {
-                    const newProductPrice = action.payload.product.prices.find(
-                        (price) =>
-                            price.currency.label ===
-                            grandTotalPrice.currency.label
-                    );
-                    return {
-                        ...grandTotalPrice,
-                        amount: grandTotalPrice.amount + newProductPrice.amount,
-                    };
-                }
-            );
+            const getGrandTotalPricesUpdated = () => {
+                const grandTotalPricesUpdated = state.cartGrandTotalPrices.map(
+                    (grandTotalPrice) => {
+                        const newProductPrice =
+                            action.payload.product.prices.find(
+                                (price) =>
+                                    price.currency.label ===
+                                    grandTotalPrice.currency.label
+                            );
+                        return {
+                            ...grandTotalPrice,
+                            amount:
+                                grandTotalPrice.amount + newProductPrice.amount,
+                        };
+                    }
+                );
 
-            state.cartGrandTotalPrices = grandTotalPricesUpdated;
+                return grandTotalPricesUpdated;
+            };
 
-            localStorage.setItem('cart', JSON.stringify(current(state.cart)));
-            localStorage.setItem(
-                'grandTotal',
-                JSON.stringify(state.cartGrandTotalPrices)
-            );
+            state.cartGrandTotalPrices = getGrandTotalPricesUpdated();
+
+            saveToLocalStorage(state);
+
+            // localStorage.setItem('cart', JSON.stringify(current(state.cart)));
+            // localStorage.setItem(
+            //     'grandTotal',
+            //     JSON.stringify(state.cartGrandTotalPrices)
+            // );
         },
         remove(state, action) {
             const itemToUpdateIndex = state.cart.findIndex(
@@ -102,11 +248,13 @@ const cartSlice = createSlice({
 
             state.cart.splice(itemToUpdateIndex, 1);
 
-            localStorage.setItem('cart', JSON.stringify(current(state.cart)));
-            localStorage.setItem(
-                'grandTotal',
-                JSON.stringify(state.cartGrandTotalPrices)
-            );
+            saveToLocalStorage(state);
+
+            // localStorage.setItem('cart', JSON.stringify(current(state.cart)));
+            // localStorage.setItem(
+            //     'grandTotal',
+            //     JSON.stringify(state.cartGrandTotalPrices)
+            // );
         },
         update(state, action) {
             const itemToUpdateIndex = state.cart.findIndex(
@@ -143,7 +291,8 @@ const cartSlice = createSlice({
                 attributeSetFoundIndex
             ].items = attributeSetItemsToBeUpdated;
 
-            localStorage.setItem('cart', JSON.stringify(current(state.cart)));
+            saveToLocalStorage(state);
+            // localStorage.setItem('cart', JSON.stringify(current(state.cart)));
         },
         increment(state, action) {
             const itemToUpdateIndex = state.cart.findIndex(
@@ -165,30 +314,36 @@ const cartSlice = createSlice({
             state.cart[itemToUpdateIndex].totalProductPrices =
                 totalProductPrices;
 
-            const grandTotalPricesUpdated = state.cartGrandTotalPrices.map(
-                (grandTotalPrice) => {
-                    const newProductPrice = state.cart[
-                        itemToUpdateIndex
-                    ].prices.find(
-                        (price) =>
-                            price.currency.label ===
-                            grandTotalPrice.currency.label
-                    );
+            const getGrandTotalPricesUpdated = () => {
+                const grandTotalPricesUpdated = state.cartGrandTotalPrices.map(
+                    (grandTotalPrice) => {
+                        const newProductPrice = state.cart[
+                            itemToUpdateIndex
+                        ].prices.find(
+                            (price) =>
+                                price.currency.label ===
+                                grandTotalPrice.currency.label
+                        );
 
-                    return {
-                        ...grandTotalPrice,
-                        amount: grandTotalPrice.amount + newProductPrice.amount,
-                    };
-                }
-            );
+                        return {
+                            ...grandTotalPrice,
+                            amount:
+                                grandTotalPrice.amount + newProductPrice.amount,
+                        };
+                    }
+                );
+                return grandTotalPricesUpdated;
+            };
 
-            state.cartGrandTotalPrices = grandTotalPricesUpdated;
+            state.cartGrandTotalPrices = getGrandTotalPricesUpdated();
 
-            localStorage.setItem('cart', JSON.stringify(current(state.cart)));
-            localStorage.setItem(
-                'grandTotal',
-                JSON.stringify(state.cartGrandTotalPrices)
-            );
+            saveToLocalStorage(state);
+
+            // localStorage.setItem('cart', JSON.stringify(current(state.cart)));
+            // localStorage.setItem(
+            //     'grandTotal',
+            //     JSON.stringify(state.cartGrandTotalPrices)
+            // );
         },
         decrement(state, action) {
             const itemToUpdateIndex = state.cart.findIndex(
@@ -215,38 +370,40 @@ const cartSlice = createSlice({
                 state.cart[itemToUpdateIndex].totalProductPrices =
                     totalProductPrices;
 
-                const grandTotalPricesUpdated = state.cartGrandTotalPrices.map(
-                    (grandTotalPrice) => {
-                        const toBeRemovedProductPrice = state.cart[
-                            itemToUpdateIndex
-                        ].prices.find(
-                            (price) =>
-                                price.currency.label ===
-                                grandTotalPrice.currency.label
-                        );
+                const getGrandTotalPricesUpdated = () => {
+                    const grandTotalPricesUpdated =
+                        state.cartGrandTotalPrices.map((grandTotalPrice) => {
+                            const toBeRemovedProductPrice = state.cart[
+                                itemToUpdateIndex
+                            ].prices.find(
+                                (price) =>
+                                    price.currency.label ===
+                                    grandTotalPrice.currency.label
+                            );
 
-                        return {
-                            ...grandTotalPrice,
-                            amount:
-                                grandTotalPrice.amount -
-                                toBeRemovedProductPrice.amount,
-                        };
-                    }
-                );
+                            return {
+                                ...grandTotalPrice,
+                                amount:
+                                    grandTotalPrice.amount -
+                                    toBeRemovedProductPrice.amount,
+                            };
+                        });
+                    return grandTotalPricesUpdated;
+                };
 
-                state.cartGrandTotalPrices = grandTotalPricesUpdated;
+                state.cartGrandTotalPrices = getGrandTotalPricesUpdated();
 
-                //
+                saveToLocalStorage(state);
 
-                localStorage.setItem(
-                    'cart',
-                    JSON.stringify(current(state.cart))
-                );
+                // localStorage.setItem(
+                //     'cart',
+                //     JSON.stringify(current(state.cart))
+                // );
 
-                localStorage.setItem(
-                    'grandTotal',
-                    JSON.stringify(state.cartGrandTotalPrices)
-                );
+                // localStorage.setItem(
+                //     'grandTotal',
+                //     JSON.stringify(state.cartGrandTotalPrices)
+                // );
 
                 return;
             }
@@ -275,15 +432,17 @@ const cartSlice = createSlice({
 
                 state.cart.splice(itemToUpdateIndex, 1);
 
-                localStorage.setItem(
-                    'cart',
-                    JSON.stringify(current(state.cart))
-                );
+                saveToLocalStorage(state);
 
-                localStorage.setItem(
-                    'grandTotal',
-                    JSON.stringify(state.cartGrandTotalPrices)
-                );
+                // localStorage.setItem(
+                //     'cart',
+                //     JSON.stringify(current(state.cart))
+                // );
+
+                // localStorage.setItem(
+                //     'grandTotal',
+                //     JSON.stringify(state.cartGrandTotalPrices)
+                // );
             }
         },
     },
