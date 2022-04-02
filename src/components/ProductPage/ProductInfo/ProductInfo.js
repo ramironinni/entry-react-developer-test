@@ -97,7 +97,7 @@ class ProductInfo extends Component {
     }
 
     render() {
-        const { id, name, inStock, description, attributes, prices } =
+        const { id, name, description, attributes, prices } =
             this.props.product;
 
         return (

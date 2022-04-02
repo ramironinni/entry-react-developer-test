@@ -13,7 +13,6 @@ class CurrencySwitcherAction extends Component {
     constructor(props) {
         super(props);
         this.state = { loading: true, error: false };
-        this.client = props.client;
     }
 
     storeCurrencies(currencies) {
@@ -26,7 +25,7 @@ class CurrencySwitcherAction extends Component {
     }
 
     async getCurrencies() {
-        const { loading, error, data } = await this.client.query({
+        const { loading, error, data } = await this.props.client.query({
             query: GET_CURRENCIES,
         });
 
@@ -41,8 +40,6 @@ class CurrencySwitcherAction extends Component {
 
         this.setState({ loading: false, error: false });
         this.storeCurrencies(data.currencies);
-
-        // console.log(error, loading, data);
     }
 
     componentDidMount() {

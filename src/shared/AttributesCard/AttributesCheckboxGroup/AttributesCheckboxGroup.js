@@ -35,6 +35,8 @@ class AttributesCheckboxGroup extends Component {
     }
 
     render() {
+        const { setId, index, prodId, inputName, extraClasses, isPage } =
+            this.props;
         return (
             <div className={styles.attributesCheckboxGroup}>
                 {this.props.items.map((item, i) => {
@@ -42,19 +44,19 @@ class AttributesCheckboxGroup extends Component {
                         <AttributeCheckboxItem
                             key={i}
                             id={item.id}
-                            setId={this.props.setId}
-                            index={this.props.index}
-                            prodId={this.props.prodId}
+                            setId={setId}
+                            index={index}
+                            prodId={prodId}
                             value={item.value}
                             checked={
                                 this.state.checked === item.id ? 'checked' : ''
                             }
-                            inputName={this.props.inputName}
-                            extraClasses={this.props.extraClasses}
+                            inputName={inputName}
+                            extraClasses={extraClasses}
                             onUpdateAttributes={this.updateAttributesHandler.bind(
                                 this
                             )}
-                            isPage={this.props.isPage}
+                            isPage={isPage}
                         />
                     );
                 })}

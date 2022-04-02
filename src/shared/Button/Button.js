@@ -3,12 +3,14 @@ import styles from './Button.module.css';
 
 class Button extends Component {
     render() {
+        const { extraClasses, onClickHandler, children } = this.props;
+
         return (
             <button
-                className={`${styles.button} ${this.props.extraClasses}`}
-                onClick={this.props.onClickHandler}
+                className={`${styles.button} ${extraClasses}`}
+                onClick={onClickHandler}
             >
-                {this.props.children}
+                {children}
             </button>
         );
     }

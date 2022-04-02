@@ -13,17 +13,15 @@ class CartItemsGroup extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            currentCart: [],
             isLoading: true,
             error: false,
         };
-        this.client = props.client;
     }
 
     async getItemById(itemId) {
         this.setState({ isLoading: true });
 
-        const { loading, error, data } = await this.client.query({
+        const { loading, error, data } = await this.props.client.query({
             query: GET_ITEM_BY_ID,
             variables: {
                 id: itemId,
@@ -38,8 +36,6 @@ class CartItemsGroup extends Component {
             this.setState({ isLoading: false, error: error });
             console.log(error);
         }
-
-        // console.log(error, loading, data);
 
         this.setState({ isLoading: false });
 
@@ -63,11 +59,6 @@ class CartItemsGroup extends Component {
         }
     }
 
-    async componentDidUpdate(prevProps) {
-        if (this.props.cart !== prevProps.cart) {
-        }
-    }
-
     render() {
         const { isPage, inputNameComp } = this.props;
 
@@ -79,22 +70,23 @@ class CartItemsGroup extends Component {
             return <p>{this.state.error}</p>;
         }
 
+        if (this.props.cart.length === 0) {
+            return <div>Cart is empty.</div>;
+        }
+
         return (
             <div>
-                {this.props.cart.length === 0 && <div>Cart is empty.</div>}
-                <div>
-                    {this.props.cart.length > 0 &&
-                        this.props.cart.map((item, i) => {
-                            return (
-                                <CartItem
-                                    key={i}
-                                    item={item}
-                                    inputName={`${i}-${inputNameComp}`}
-                                    isPage={isPage}
-                                />
-                            );
-                        })}
-                </div>
+                {this.props.cart.length > 0 &&
+                    this.props.cart.map((item, i) => {
+                        return (
+                            <CartItem
+                                key={i}
+                                item={item}
+                                inputName={`${i}-${inputNameComp}`}
+                                isPage={isPage}
+                            />
+                        );
+                    })}
             </div>
         );
     }

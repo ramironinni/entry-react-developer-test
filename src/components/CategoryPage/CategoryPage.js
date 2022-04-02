@@ -11,6 +11,7 @@ import ProductCard from './ProductCard/ProductCard';
 import styles from './CategoryPage.module.css';
 import LoadingSpinner from '../../shared/Loading/LoadingSpinner';
 import Page from '../../shared/Page/Page';
+import NotFound from '../NotFound/NotFound';
 class CategoryPage extends Component {
     constructor(props) {
         super(props);
@@ -20,13 +21,12 @@ class CategoryPage extends Component {
             isLoading: true,
             error: false,
         };
-        this.client = props.client;
     }
 
     async getItemsByCategory() {
         this.setState({ isLoading: true });
 
-        const { loading, error, data } = await this.client.query({
+        const { loading, error, data } = await this.props.client.query({
             query: GET_ITEMS_BY_CATEGORY,
             variables: {
                 title: this.props.match.params.name,
@@ -39,15 +39,12 @@ class CategoryPage extends Component {
 
         if (error) {
             this.setState({ isLoading: false, error: error });
-            console.log(error);
         }
 
         this.setState({
-            items: data.category.products,
+            items: (data.category && data.category.products) || null,
             isLoading: data.loading,
         });
-
-        // console.log(error, loading, data);
     }
 
     componentDidMount() {
@@ -82,6 +79,10 @@ class CategoryPage extends Component {
                     <p>{this.state.error}</p>
                 </Page>
             );
+        }
+
+        if (!this.state.items) {
+            return <NotFound />;
         }
 
         return (

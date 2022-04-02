@@ -11,11 +11,10 @@ class NavCard extends Component {
     constructor(props) {
         super(props);
         this.state = { categories: [], loading: true, error: false };
-        this.client = props.client;
     }
 
     async getCategories() {
-        const { loading, error, data } = await this.client.query({
+        const { loading, error, data } = await this.props.client.query({
             query: GET_CATEGORIES,
         });
 
@@ -32,8 +31,6 @@ class NavCard extends Component {
             categories: data.categories,
             loading: data.loading,
         });
-
-        // console.log(error, loading, data);
     }
 
     componentDidMount() {

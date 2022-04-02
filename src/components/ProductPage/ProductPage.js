@@ -44,8 +44,6 @@ class ProductPage extends Component {
             product: data.product,
             isLoading: data.loading,
         });
-
-        // console.log(error, loading, data);
     }
 
     componentDidMount() {
