@@ -11,3 +11,8 @@
     font-size: 30px;
     margin: 0;
 }
+
+.selectVariantMessage {
+    margin: 15px 0;
+    font-style: italic;
+}

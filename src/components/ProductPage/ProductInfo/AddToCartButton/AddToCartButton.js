@@ -11,7 +11,7 @@ class AddToCartButton extends Component {
 
         return (
             <Button
-                onAddProduct={this.props.onAddProduct}
+                onClickHandler={this.props.onAddProduct}
                 isProductPage={true}
                 inStock={this.props.product.inStock}
                 extraClasses={`${extraClasses}`}

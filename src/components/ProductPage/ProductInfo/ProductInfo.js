@@ -12,12 +12,14 @@ import styles from './ProductInfo.module.css';
 class ProductInfo extends Component {
     constructor(props) {
         super(props);
-        this.state = { selectedAttributes: [] };
+        this.state = {
+            selectedAttributes: [],
+            isAllAttributesConfigured: false,
+            isAddProductButtonTouched: false,
+        };
     }
 
     getSelectedAttributesHandler = (setId, itemId) => {
-        // console.log(setId, itemId, this.state.selectedAttributes);
-
         this.setState((prevState) => {
             let updatedState;
 
@@ -55,6 +57,45 @@ class ProductInfo extends Component {
         });
     };
 
+    addProductHandler = () => {
+        if (!this.state.isAddProductButtonTouched) {
+            this.setState({ isAddProductButtonTouched: true });
+        }
+
+        if (!this.state.isAllAttributesConfigured) {
+            return;
+        }
+
+        if (!this.props.product.inStock) {
+            return;
+        }
+
+        this.props.add(this.props.product, this.state.selectedAttributes);
+    };
+
+    componentDidMount() {
+        if (this.props.product.attributes.length === 0) {
+            this.setState({ isAllAttributesConfigured: true });
+        }
+    }
+
+    componentDidUpdate(prevProps, prevState) {
+        if (
+            prevState.selectedAttributes.length ===
+            this.state.selectedAttributes.length
+        ) {
+            return;
+        }
+
+        if (
+            !this.state.isAllAttributesConfigured &&
+            this.state.selectedAttributes.length ===
+                this.props.product.attributes.length
+        ) {
+            this.setState({ isAllAttributesConfigured: true });
+        }
+    }
+
     render() {
         const { id, name, inStock, description, attributes, prices } =
             this.props.product;
@@ -80,12 +121,15 @@ class ProductInfo extends Component {
                 <PriceCard prices={prices} />
                 <AddToCartButton
                     product={this.props.product}
-                    onAddProduct={this.props.add.bind(
-                        this,
-                        this.props.product,
-                        this.state.selectedAttributes
-                    )}
+                    onAddProduct={this.addProductHandler.bind(this)}
+                    selectedAttributes={this.state.selectedAttributes}
                 />
+                {this.state.isAddProductButtonTouched &&
+                    !this.state.isAllAttributesConfigured && (
+                        <p className={styles.selectVariantMessage}>
+                            Please select an option for each variant.
+                        </p>
+                    )}
                 <Description description={description} />
             </div>
         );
