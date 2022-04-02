@@ -22,6 +22,35 @@ const saveToLocalStorage = (state) => {
     );
 };
 
+const getGrandTotalPricesUpdated = (state, itemToUpdateIndex, operation) => {
+    const grandTotalPricesUpdated = state.cartGrandTotalPrices.map(
+        (grandTotalPrice) => {
+            const toBeUpdatedProductPrice = state.cart[
+                itemToUpdateIndex
+            ].prices.find(
+                (price) =>
+                    price.currency.label === grandTotalPrice.currency.label
+            );
+
+            if (operation === 'increment') {
+                return {
+                    ...grandTotalPrice,
+                    amount:
+                        grandTotalPrice.amount + toBeUpdatedProductPrice.amount,
+                };
+            }
+            if (operation === 'decrement') {
+                return {
+                    ...grandTotalPrice,
+                    amount:
+                        grandTotalPrice.amount - toBeUpdatedProductPrice.amount,
+                };
+            }
+        }
+    );
+    return grandTotalPricesUpdated;
+};
+
 // add(state, action) {
 //             const itemIndex = state.cart.findIndex(
 //                 (item) => item.id === action.payload.product.id
@@ -234,12 +263,6 @@ const cartSlice = createSlice({
             state.cartGrandTotalPrices = getGrandTotalPricesUpdated();
 
             saveToLocalStorage(state);
-
-            // localStorage.setItem('cart', JSON.stringify(current(state.cart)));
-            // localStorage.setItem(
-            //     'grandTotal',
-            //     JSON.stringify(state.cartGrandTotalPrices)
-            // );
         },
         remove(state, action) {
             const itemToUpdateIndex = state.cart.findIndex(
@@ -249,12 +272,6 @@ const cartSlice = createSlice({
             state.cart.splice(itemToUpdateIndex, 1);
 
             saveToLocalStorage(state);
-
-            // localStorage.setItem('cart', JSON.stringify(current(state.cart)));
-            // localStorage.setItem(
-            //     'grandTotal',
-            //     JSON.stringify(state.cartGrandTotalPrices)
-            // );
         },
         update(state, action) {
             const itemToUpdateIndex = state.cart.findIndex(
@@ -292,7 +309,6 @@ const cartSlice = createSlice({
             ].items = attributeSetItemsToBeUpdated;
 
             saveToLocalStorage(state);
-            // localStorage.setItem('cart', JSON.stringify(current(state.cart)));
         },
         increment(state, action) {
             const itemToUpdateIndex = state.cart.findIndex(
@@ -314,36 +330,34 @@ const cartSlice = createSlice({
             state.cart[itemToUpdateIndex].totalProductPrices =
                 totalProductPrices;
 
-            const getGrandTotalPricesUpdated = () => {
-                const grandTotalPricesUpdated = state.cartGrandTotalPrices.map(
-                    (grandTotalPrice) => {
-                        const newProductPrice = state.cart[
-                            itemToUpdateIndex
-                        ].prices.find(
-                            (price) =>
-                                price.currency.label ===
-                                grandTotalPrice.currency.label
-                        );
+            // const getGrandTotalPricesUpdated = () => {
+            //     const grandTotalPricesUpdated = state.cartGrandTotalPrices.map(
+            //         (grandTotalPrice) => {
+            //             const newProductPrice = state.cart[
+            //                 itemToUpdateIndex
+            //             ].prices.find(
+            //                 (price) =>
+            //                     price.currency.label ===
+            //                     grandTotalPrice.currency.label
+            //             );
 
-                        return {
-                            ...grandTotalPrice,
-                            amount:
-                                grandTotalPrice.amount + newProductPrice.amount,
-                        };
-                    }
-                );
-                return grandTotalPricesUpdated;
-            };
+            //             return {
+            //                 ...grandTotalPrice,
+            //                 amount:
+            //                     grandTotalPrice.amount + newProductPrice.amount,
+            //             };
+            //         }
+            //     );
+            //     return grandTotalPricesUpdated;
+            // };
 
-            state.cartGrandTotalPrices = getGrandTotalPricesUpdated();
+            state.cartGrandTotalPrices = getGrandTotalPricesUpdated(
+                state,
+                itemToUpdateIndex,
+                'increment'
+            );
 
             saveToLocalStorage(state);
-
-            // localStorage.setItem('cart', JSON.stringify(current(state.cart)));
-            // localStorage.setItem(
-            //     'grandTotal',
-            //     JSON.stringify(state.cartGrandTotalPrices)
-            // );
         },
         decrement(state, action) {
             const itemToUpdateIndex = state.cart.findIndex(
@@ -370,40 +384,34 @@ const cartSlice = createSlice({
                 state.cart[itemToUpdateIndex].totalProductPrices =
                     totalProductPrices;
 
-                const getGrandTotalPricesUpdated = () => {
-                    const grandTotalPricesUpdated =
-                        state.cartGrandTotalPrices.map((grandTotalPrice) => {
-                            const toBeRemovedProductPrice = state.cart[
-                                itemToUpdateIndex
-                            ].prices.find(
-                                (price) =>
-                                    price.currency.label ===
-                                    grandTotalPrice.currency.label
-                            );
+                // const getGrandTotalPricesUpdated = () => {
+                //     const grandTotalPricesUpdated =
+                //         state.cartGrandTotalPrices.map((grandTotalPrice) => {
+                //             const toBeRemovedProductPrice = state.cart[
+                //                 itemToUpdateIndex
+                //             ].prices.find(
+                //                 (price) =>
+                //                     price.currency.label ===
+                //                     grandTotalPrice.currency.label
+                //             );
 
-                            return {
-                                ...grandTotalPrice,
-                                amount:
-                                    grandTotalPrice.amount -
-                                    toBeRemovedProductPrice.amount,
-                            };
-                        });
-                    return grandTotalPricesUpdated;
-                };
+                //             return {
+                //                 ...grandTotalPrice,
+                //                 amount:
+                //                     grandTotalPrice.amount -
+                //                     toBeRemovedProductPrice.amount,
+                //             };
+                //         });
+                //     return grandTotalPricesUpdated;
+                // };
 
-                state.cartGrandTotalPrices = getGrandTotalPricesUpdated();
+                state.cartGrandTotalPrices = getGrandTotalPricesUpdated(
+                    state,
+                    itemToUpdateIndex,
+                    'decrement'
+                );
 
                 saveToLocalStorage(state);
-
-                // localStorage.setItem(
-                //     'cart',
-                //     JSON.stringify(current(state.cart))
-                // );
-
-                // localStorage.setItem(
-                //     'grandTotal',
-                //     JSON.stringify(state.cartGrandTotalPrices)
-                // );
 
                 return;
             }
@@ -433,16 +441,6 @@ const cartSlice = createSlice({
                 state.cart.splice(itemToUpdateIndex, 1);
 
                 saveToLocalStorage(state);
-
-                // localStorage.setItem(
-                //     'cart',
-                //     JSON.stringify(current(state.cart))
-                // );
-
-                // localStorage.setItem(
-                //     'grandTotal',
-                //     JSON.stringify(state.cartGrandTotalPrices)
-                // );
             }
         },
     },
