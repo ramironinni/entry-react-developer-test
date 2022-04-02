@@ -1,7 +1,7 @@
 import { Component } from 'react';
 
-import Page from '../Page';
 import CartItemsGroup from '../../shared/CartItemsGroup/CartItemsGroup';
+import Page from '../../shared/Page/Page';
 
 import styles from './Cart.module.css';
 

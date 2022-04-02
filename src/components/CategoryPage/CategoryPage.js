@@ -6,11 +6,11 @@ import { connect } from 'react-redux';
 import { GET_ITEMS_BY_CATEGORY } from '../../GraphQl/queries';
 import capitalizeString from '../../utils/capitalizeString';
 
-import Page from '../Page';
 import ProductCard from './ProductCard/ProductCard';
 
 import styles from './CategoryPage.module.css';
 import LoadingSpinner from '../../shared/Loading/LoadingSpinner';
+import Page from '../../shared/Page/Page';
 class CategoryPage extends Component {
     constructor(props) {
         super(props);

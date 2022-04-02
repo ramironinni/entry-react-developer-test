@@ -1,6 +1,5 @@
 import { Component } from 'react';
-
-import Page from '../Page';
+import Page from '../../shared/Page/Page';
 
 class NotFound extends Component {
     render() {

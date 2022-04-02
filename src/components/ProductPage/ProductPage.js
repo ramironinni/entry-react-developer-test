@@ -3,8 +3,8 @@ import { Component } from 'react';
 import { withRouter } from 'react-router-dom';
 import { GET_ITEM_BY_ID } from '../../GraphQl/queries';
 import LoadingSpinner from '../../shared/Loading/LoadingSpinner';
+import Page from '../../shared/Page/Page';
 
-import Page from '../Page';
 import ProductGallery from './ProductGallery/ProductGallery';
 import ProductInfo from './ProductInfo/ProductInfo';
 
