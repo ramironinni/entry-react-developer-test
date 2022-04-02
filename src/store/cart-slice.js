@@ -22,15 +22,29 @@ const saveToLocalStorage = (state) => {
     );
 };
 
-const getGrandTotalPricesUpdated = (state, itemToUpdateIndex, operation) => {
+const getGrandTotalPricesUpdated = (
+    state,
+    action,
+    itemToUpdateIndex,
+    operation
+) => {
     const grandTotalPricesUpdated = state.cartGrandTotalPrices.map(
         (grandTotalPrice) => {
-            const toBeUpdatedProductPrice = state.cart[
-                itemToUpdateIndex
-            ].prices.find(
-                (price) =>
-                    price.currency.label === grandTotalPrice.currency.label
-            );
+            let toBeUpdatedProductPrice;
+
+            if (action) {
+                toBeUpdatedProductPrice = action.payload.product.prices.find(
+                    (price) =>
+                        price.currency.label === grandTotalPrice.currency.label
+                );
+            } else {
+                toBeUpdatedProductPrice = state.cart[
+                    itemToUpdateIndex
+                ].prices.find(
+                    (price) =>
+                        price.currency.label === grandTotalPrice.currency.label
+                );
+            }
 
             if (operation === 'increment') {
                 return {
@@ -50,7 +64,6 @@ const getGrandTotalPricesUpdated = (state, itemToUpdateIndex, operation) => {
     );
     return grandTotalPricesUpdated;
 };
-
 // add(state, action) {
 //             const itemIndex = state.cart.findIndex(
 //                 (item) => item.id === action.payload.product.id
@@ -240,27 +253,12 @@ const cartSlice = createSlice({
                 return;
             }
 
-            const getGrandTotalPricesUpdated = () => {
-                const grandTotalPricesUpdated = state.cartGrandTotalPrices.map(
-                    (grandTotalPrice) => {
-                        const newProductPrice =
-                            action.payload.product.prices.find(
-                                (price) =>
-                                    price.currency.label ===
-                                    grandTotalPrice.currency.label
-                            );
-                        return {
-                            ...grandTotalPrice,
-                            amount:
-                                grandTotalPrice.amount + newProductPrice.amount,
-                        };
-                    }
-                );
-
-                return grandTotalPricesUpdated;
-            };
-
-            state.cartGrandTotalPrices = getGrandTotalPricesUpdated();
+            state.cartGrandTotalPrices = getGrandTotalPricesUpdated(
+                state,
+                action,
+                null,
+                'increment'
+            );
 
             saveToLocalStorage(state);
         },
@@ -330,29 +328,9 @@ const cartSlice = createSlice({
             state.cart[itemToUpdateIndex].totalProductPrices =
                 totalProductPrices;
 
-            // const getGrandTotalPricesUpdated = () => {
-            //     const grandTotalPricesUpdated = state.cartGrandTotalPrices.map(
-            //         (grandTotalPrice) => {
-            //             const newProductPrice = state.cart[
-            //                 itemToUpdateIndex
-            //             ].prices.find(
-            //                 (price) =>
-            //                     price.currency.label ===
-            //                     grandTotalPrice.currency.label
-            //             );
-
-            //             return {
-            //                 ...grandTotalPrice,
-            //                 amount:
-            //                     grandTotalPrice.amount + newProductPrice.amount,
-            //             };
-            //         }
-            //     );
-            //     return grandTotalPricesUpdated;
-            // };
-
             state.cartGrandTotalPrices = getGrandTotalPricesUpdated(
                 state,
+                null,
                 itemToUpdateIndex,
                 'increment'
             );
@@ -384,29 +362,9 @@ const cartSlice = createSlice({
                 state.cart[itemToUpdateIndex].totalProductPrices =
                     totalProductPrices;
 
-                // const getGrandTotalPricesUpdated = () => {
-                //     const grandTotalPricesUpdated =
-                //         state.cartGrandTotalPrices.map((grandTotalPrice) => {
-                //             const toBeRemovedProductPrice = state.cart[
-                //                 itemToUpdateIndex
-                //             ].prices.find(
-                //                 (price) =>
-                //                     price.currency.label ===
-                //                     grandTotalPrice.currency.label
-                //             );
-
-                //             return {
-                //                 ...grandTotalPrice,
-                //                 amount:
-                //                     grandTotalPrice.amount -
-                //                     toBeRemovedProductPrice.amount,
-                //             };
-                //         });
-                //     return grandTotalPricesUpdated;
-                // };
-
                 state.cartGrandTotalPrices = getGrandTotalPricesUpdated(
                     state,
+                    null,
                     itemToUpdateIndex,
                     'decrement'
                 );
