@@ -1,5 +1,4 @@
 import { Component } from 'react';
-import { withApollo } from '@apollo/react-hoc';
 import { connect } from 'react-redux';
 
 import { cartActions } from '../../../../store/cart-slice';
@@ -58,6 +57,4 @@ const mapDispatchToProps = (dispatch) => {
     };
 };
 
-export default withApollo(
-    connect(mapStateToProps, mapDispatchToProps)(AmountController)
-);
+export default connect(mapStateToProps, mapDispatchToProps)(AmountController);
