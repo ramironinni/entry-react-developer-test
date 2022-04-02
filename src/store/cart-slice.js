@@ -1,5 +1,11 @@
 import { createSlice, current } from '@reduxjs/toolkit';
 
+import {
+    getGrandTotalPricesUpdated,
+    getTotalProductPrices,
+    saveToLocalStorage,
+} from './utils';
+
 const localStorageCart = JSON.parse(localStorage.getItem('cart'));
 const localStorageGrandTotal = JSON.parse(localStorage.getItem('grandTotal'));
 
@@ -13,57 +19,6 @@ const initialCartState = {
         [],
 };
 
-const saveToLocalStorage = (state) => {
-    localStorage.setItem('cart', JSON.stringify(current(state.cart)));
-
-    localStorage.setItem(
-        'grandTotal',
-        JSON.stringify(state.cartGrandTotalPrices)
-    );
-};
-
-const getGrandTotalPricesUpdated = (
-    state,
-    action,
-    itemToUpdateIndex,
-    operation
-) => {
-    const grandTotalPricesUpdated = state.cartGrandTotalPrices.map(
-        (grandTotalPrice) => {
-            let toBeUpdatedProductPrice;
-
-            if (action) {
-                toBeUpdatedProductPrice = action.payload.product.prices.find(
-                    (price) =>
-                        price.currency.label === grandTotalPrice.currency.label
-                );
-            } else {
-                toBeUpdatedProductPrice = state.cart[
-                    itemToUpdateIndex
-                ].prices.find(
-                    (price) =>
-                        price.currency.label === grandTotalPrice.currency.label
-                );
-            }
-
-            if (operation === 'increment') {
-                return {
-                    ...grandTotalPrice,
-                    amount:
-                        grandTotalPrice.amount + toBeUpdatedProductPrice.amount,
-                };
-            }
-            if (operation === 'decrement') {
-                return {
-                    ...grandTotalPrice,
-                    amount:
-                        grandTotalPrice.amount - toBeUpdatedProductPrice.amount,
-                };
-            }
-        }
-    );
-    return grandTotalPricesUpdated;
-};
 // add(state, action) {
 //             const itemIndex = state.cart.findIndex(
 //                 (item) => item.id === action.payload.product.id
@@ -315,18 +270,8 @@ const cartSlice = createSlice({
 
             state.cart[itemToUpdateIndex].amount++;
 
-            const totalProductPrices = state.cart[itemToUpdateIndex].prices.map(
-                (price) => {
-                    return {
-                        ...price,
-                        amount:
-                            price.amount * state.cart[itemToUpdateIndex].amount,
-                    };
-                }
-            );
-
             state.cart[itemToUpdateIndex].totalProductPrices =
-                totalProductPrices;
+                getTotalProductPrices(state, itemToUpdateIndex);
 
             state.cartGrandTotalPrices = getGrandTotalPricesUpdated(
                 state,
@@ -349,18 +294,8 @@ const cartSlice = createSlice({
             if (state.cart[itemToUpdateIndex].amount > 1) {
                 state.cart[itemToUpdateIndex].amount--;
 
-                const totalProductPrices = state.cart[
-                    itemToUpdateIndex
-                ].prices.map((price) => {
-                    return {
-                        ...price,
-                        amount:
-                            price.amount * state.cart[itemToUpdateIndex].amount,
-                    };
-                });
-
                 state.cart[itemToUpdateIndex].totalProductPrices =
-                    totalProductPrices;
+                    getTotalProductPrices(state, itemToUpdateIndex);
 
                 state.cartGrandTotalPrices = getGrandTotalPricesUpdated(
                     state,
@@ -375,26 +310,12 @@ const cartSlice = createSlice({
             }
 
             if (state.cart[itemToUpdateIndex].amount === 1) {
-                const grandTotalPricesUpdated = state.cartGrandTotalPrices.map(
-                    (grandTotalPrice) => {
-                        const toBeRemovedProductPrice = state.cart[
-                            itemToUpdateIndex
-                        ].prices.find(
-                            (price) =>
-                                price.currency.label ===
-                                grandTotalPrice.currency.label
-                        );
-
-                        return {
-                            ...grandTotalPrice,
-                            amount:
-                                grandTotalPrice.amount -
-                                toBeRemovedProductPrice.amount,
-                        };
-                    }
+                state.cartGrandTotalPrices = getGrandTotalPricesUpdated(
+                    state,
+                    null,
+                    itemToUpdateIndex,
+                    'decrement'
                 );
-
-                state.cartGrandTotalPrices = grandTotalPricesUpdated;
 
                 state.cart.splice(itemToUpdateIndex, 1);
 
