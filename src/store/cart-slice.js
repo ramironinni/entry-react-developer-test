@@ -1,4 +1,5 @@
 import { createSlice, current } from '@reduxjs/toolkit';
+import isEqual from '../utils/isEqual';
 
 import {
     getGrandTotalPricesUpdated,
@@ -138,11 +139,11 @@ const cartSlice = createSlice({
     initialState: initialCartState,
     reducers: {
         add(state, action) {
-            const itemToUpdateIndex = state.cart.findIndex(
+            const itemIndex = state.cart.findIndex(
                 (item) => item.id === action.payload.product.id
             );
 
-            if (itemToUpdateIndex > -1) {
+            if (itemIndex > -1) {
                 return;
             }
 
@@ -187,24 +188,18 @@ const cartSlice = createSlice({
                 return customizedAttributesSet;
             };
 
-            const getTotalProductPrices = () => {
-                const totalProductPrices = action.payload.product.prices.map(
-                    (price) => {
-                        return { ...price };
-                    }
-                );
-                return totalProductPrices;
-            };
-
             state.cart.push({
                 ...action.payload.product,
                 attributes: getCustomizedAttributesSet(),
                 amount: 1,
-                totalProductPrices: getTotalProductPrices(),
+                totalProductPrices: getTotalProductPrices(null, action),
             });
 
             if (state.cartGrandTotalPrices.length === 0) {
-                state.cartGrandTotalPrices = getTotalProductPrices();
+                state.cartGrandTotalPrices = getTotalProductPrices(
+                    null,
+                    action
+                );
                 return;
             }
 
@@ -271,7 +266,7 @@ const cartSlice = createSlice({
             state.cart[itemToUpdateIndex].amount++;
 
             state.cart[itemToUpdateIndex].totalProductPrices =
-                getTotalProductPrices(state, itemToUpdateIndex);
+                getTotalProductPrices(state, null, itemToUpdateIndex);
 
             state.cartGrandTotalPrices = getGrandTotalPricesUpdated(
                 state,
@@ -295,7 +290,7 @@ const cartSlice = createSlice({
                 state.cart[itemToUpdateIndex].amount--;
 
                 state.cart[itemToUpdateIndex].totalProductPrices =
-                    getTotalProductPrices(state, itemToUpdateIndex);
+                    getTotalProductPrices(state, null, itemToUpdateIndex);
 
                 state.cartGrandTotalPrices = getGrandTotalPricesUpdated(
                     state,

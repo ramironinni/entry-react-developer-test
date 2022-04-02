@@ -52,7 +52,16 @@ export const getGrandTotalPricesUpdated = (
     return grandTotalPricesUpdated;
 };
 
-export const getTotalProductPrices = (state, itemToUpdateIndex) => {
+export const getTotalProductPrices = (state, action, itemToUpdateIndex) => {
+    if (action) {
+        const totalProductPrices = action.payload.product.prices.map(
+            (price) => {
+                return { ...price };
+            }
+        );
+        return totalProductPrices;
+    }
+
     const totalProductPrices = state.cart[itemToUpdateIndex].prices.map(
         (price) => {
             return {
