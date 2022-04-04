@@ -47,6 +47,8 @@ class CurrencySwitcherAction extends Component {
     }
 
     render() {
+        console.log(this.props.currencies);
+
         const selectedCurrency = this.props.currencies.find(
             (currency) => currency.selected
         );
@@ -56,7 +58,7 @@ class CurrencySwitcherAction extends Component {
                 <CurrencySwitcherIcon
                     onToggleOverlayHandler={this.props.onToggleOverlayHandler}
                     showOverlay={this.props.showOverlay}
-                    currencySymbol={selectedCurrency.symbol}
+                    currencySymbol={selectedCurrency && selectedCurrency.symbol}
                 />
                 {this.props.showOverlay && (
                     <CurrencyOverlay

@@ -59,6 +59,12 @@ class CartItemsGroup extends Component {
         }
     }
 
+    componentDidUpdate(prevProps, prevState) {
+        if (prevProps !== this.props) {
+            console.log(this.props.cart);
+        }
+    }
+
     render() {
         const { isPage, inputNameComp } = this.props;
 

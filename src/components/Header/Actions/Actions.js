@@ -12,7 +12,6 @@ class Actions extends Component {
     }
 
     toggleCurrencyOverlayHandler() {
-        console.log('backdrop clicked');
         this.setState((curState) => {
             if (curState.showCartOverlay) {
                 return {
