@@ -34,7 +34,6 @@ class CartItemsGroup extends Component {
 
         if (error) {
             this.setState({ isLoading: false, error: error });
-            console.log(error);
         }
 
         this.setState({ isLoading: false });
@@ -56,12 +55,6 @@ class CartItemsGroup extends Component {
         if (this.props.cart) {
             this.checkItemsInStock();
             this.setState({ isLoading: false });
-        }
-    }
-
-    componentDidUpdate(prevProps, prevState) {
-        if (prevProps !== this.props) {
-            console.log(this.props.cart);
         }
     }
 

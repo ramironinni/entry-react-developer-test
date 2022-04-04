@@ -47,8 +47,6 @@ class CurrencySwitcherAction extends Component {
     }
 
     render() {
-        console.log(this.props.currencies);
-
         const selectedCurrency = this.props.currencies.find(
             (currency) => currency.selected
         );
