@@ -3,9 +3,11 @@ import styles from './CurrencyItem.module.css';
 
 class CurrencyItem extends Component {
     render() {
+        const selectedStyles = this.props.selected ? styles.selected : '';
+
         return (
             <button
-                className={styles.currencyItem}
+                className={`${styles.currencyItem} ${selectedStyles}`}
                 onClick={() => {
                     this.props.onSwitchCurrency(this.props.label);
                 }}

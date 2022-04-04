@@ -7,3 +7,7 @@
     border: none;
     background-color: var(--c-white);
 }
+
+.selected {
+    font-weight: 900;
+}

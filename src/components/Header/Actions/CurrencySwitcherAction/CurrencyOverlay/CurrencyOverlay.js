@@ -20,6 +20,7 @@ class CurrencyOverlay extends Component {
                                     key={i}
                                     symbol={currency.symbol}
                                     label={currency.label}
+                                    selected={currency.selected}
                                     onSwitchCurrency={
                                         this.props.onSwitchCurrency
                                     }
