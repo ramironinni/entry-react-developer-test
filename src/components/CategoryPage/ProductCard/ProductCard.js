@@ -1,7 +1,7 @@
 import { Component } from 'react';
 import { Link } from 'react-router-dom';
 
-import cartGreenIcon from '../../../assets/cart-green-icon.svg';
+import CartGreenIcon from './CartGreenIcon/CartGreenIcon';
 
 import styles from './ProductCard.module.css';
 import ProductDescription from './ProductDescription/ProductDescription';
@@ -25,14 +25,11 @@ class ProductCard extends Component {
                         priceSymbol={priceSymbol}
                         priceAmount={priceAmount}
                     />
-                    <div>
-                        <img
-                            className={styles.cartGreenIcon}
-                            src={cartGreenIcon}
-                            alt="cart icon"
-                        />
-                    </div>
                 </Link>
+                <CartGreenIcon
+                    className={styles.cartGreenIcon}
+                    product={this.props.product}
+                />
             </div>
         );
     }

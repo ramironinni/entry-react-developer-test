@@ -70,6 +70,8 @@ class ProductInfo extends Component {
             return;
         }
 
+        console.log(this.props.product, this.state.selectedAttributes);
+
         this.props.add(this.props.product, this.state.selectedAttributes);
     };
 

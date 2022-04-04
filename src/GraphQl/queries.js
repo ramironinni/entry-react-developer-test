@@ -50,6 +50,16 @@ export const GET_ITEMS_BY_CATEGORY = gql`
                 name
                 inStock
                 gallery
+                attributes {
+                    id
+                    name
+                    type
+                    items {
+                        displayValue
+                        value
+                        id
+                    }
+                }
                 prices {
                     currency {
                         label

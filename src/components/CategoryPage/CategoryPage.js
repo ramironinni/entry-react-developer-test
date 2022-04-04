@@ -100,9 +100,11 @@ class CategoryPage extends Component {
                                 name={product.name}
                                 id={product.id}
                                 inStock={product.inStock}
+                                attributes={product.attributes}
                                 image={product.gallery[0]}
                                 priceSymbol={price.currency.symbol}
                                 priceAmount={price.amount}
+                                product={product}
                             />
                         );
                     })}
