@@ -34,9 +34,20 @@ class AttributesCheckboxGroup extends Component {
         }
     }
 
+    componentDidUpdate(prevProps, prevState) {
+        if (
+            prevProps !== this.props &&
+            this.props.inputName !== 'ProductPage'
+        ) {
+            const selectedItem = this.props.items.find((item) => item.selected);
+            this.setState({ checked: selectedItem.id });
+        }
+    }
+
     render() {
         const { setId, index, prodId, inputName, extraClasses, isPage } =
             this.props;
+
         return (
             <div className={styles.attributesCheckboxGroup}>
                 {this.props.items.map((item, i) => {

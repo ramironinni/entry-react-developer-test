@@ -2,10 +2,6 @@ import { Component } from 'react';
 import styles from './AttributeCheckboxItem.module.css';
 
 class AttributeCheckboxItem extends Component {
-    // unavailableStyles = !this.props.available
-    //     ? styles.checkmarkUnavailable
-    //     : '';
-
     extraClasses = this.props.extraClasses ? this.props.extraClasses : '';
 
     render() {
