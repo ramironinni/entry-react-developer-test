@@ -1,0 +1,6 @@
+.cart {
+    position: absolute;
+    right: 0px;
+    cursor: pointer;
+    z-index: 5;
+}
