@@ -2,7 +2,7 @@ import { withApollo } from '@apollo/react-hoc';
 import { Component } from 'react';
 import { withRouter } from 'react-router-dom';
 import { GET_ITEM_BY_ID } from '../../GraphQl/queries';
-import LoadingSpinner from '../../shared/Loading/LoadingSpinner';
+import LoadingSpinner from '../../shared/LoadingSpinner/LoadingSpinner';
 import Page from '../../shared/Page/Page';
 import NotFound from '../NotFound/NotFound';
 

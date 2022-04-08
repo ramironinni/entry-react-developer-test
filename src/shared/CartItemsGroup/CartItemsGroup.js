@@ -6,7 +6,7 @@ import { withApollo } from '@apollo/react-hoc';
 import { GET_ITEM_BY_ID } from '../../GraphQl/queries';
 
 import CartItem from './CartItem/CartItem';
-import LoadingSpinner from '../Loading/LoadingSpinner';
+import LoadingSpinner from '../LoadingSpinner/LoadingSpinner';
 import { cartActions } from '../../store/cart-slice';
 
 class CartItemsGroup extends Component {
@@ -53,8 +53,7 @@ class CartItemsGroup extends Component {
 
     async componentDidMount() {
         if (this.props.cart) {
-            this.checkItemsInStock();
-            this.setState({ isLoading: false });
+            await this.checkItemsInStock();
         }
     }
 

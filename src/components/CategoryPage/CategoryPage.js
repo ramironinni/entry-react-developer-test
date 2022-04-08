@@ -9,7 +9,7 @@ import capitalizeString from '../../utils/capitalizeString';
 import ProductCard from './ProductCard/ProductCard';
 
 import styles from './CategoryPage.module.css';
-import LoadingSpinner from '../../shared/Loading/LoadingSpinner';
+import LoadingSpinner from '../../shared/LoadingSpinner/LoadingSpinner';
 import Page from '../../shared/Page/Page';
 import NotFound from '../NotFound/NotFound';
 class CategoryPage extends Component {
