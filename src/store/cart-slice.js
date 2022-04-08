@@ -1,5 +1,4 @@
-import { createSlice, current } from '@reduxjs/toolkit';
-import isEqual from '../utils/isEqual';
+import { createSlice } from '@reduxjs/toolkit';
 
 import {
     getGrandTotalPricesUpdated,
