@@ -10,6 +10,7 @@ class CartItem extends Component {
     render() {
         const {
             id,
+            uid,
             name,
             inStock,
             gallery,
@@ -26,7 +27,7 @@ class CartItem extends Component {
         return (
             <div className={`${styles.cartItem} ${cartItemOverlayStyles}`}>
                 <InfoCard
-                    id={id}
+                    // id={id}
                     name={name}
                     inStock={inStock}
                     gallery={gallery}
@@ -37,7 +38,12 @@ class CartItem extends Component {
                     isPage={isPage}
                     isCart={isCart}
                 />
-                <AmountController id={id} amount={amount} isPage={isPage} />
+                <AmountController
+                    id={id}
+                    uid={uid}
+                    amount={amount}
+                    isPage={isPage}
+                />
                 {isPage && <ImageSlider images={gallery} />}
                 {!isPage && <Thumbnail image={gallery[0]} />}
             </div>

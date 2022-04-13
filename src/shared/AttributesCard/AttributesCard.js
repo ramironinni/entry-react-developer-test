@@ -8,7 +8,6 @@ class AttributesCard extends Component {
     render() {
         const {
             index,
-            prodId,
             attributeSet,
             inputName,
             onGetSelectedAttributes,
@@ -25,7 +24,6 @@ class AttributesCard extends Component {
                 </p>
                 <AttributesCheckboxGroup
                     index={index}
-                    prodId={prodId}
                     setId={attributeSet.id}
                     items={attributeSet.items}
                     inputName={inputName}

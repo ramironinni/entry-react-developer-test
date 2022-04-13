@@ -73,3 +73,34 @@ export const getTotalProductPrices = (state, action, itemToUpdateIndex) => {
 
     return totalProductPrices;
 };
+
+export const getCustomizedAttributesSet = (action) => {
+    let customizedAttributesSet = [];
+
+    action.payload.selectedAttributes.forEach((selectedAttribute) => {
+        const attributeSetToBeUpdated = action.payload.product.attributes.find(
+            (setAtt) => setAtt.id === selectedAttribute.setId
+        );
+
+        const itemAttSelected = attributeSetToBeUpdated.items.find(
+            (item) => item.id === selectedAttribute.itemId
+        );
+
+        const attributeItemsUpdated = attributeSetToBeUpdated.items.map(
+            (item) => {
+                const selected = item.id === itemAttSelected.id ? true : false;
+                return { ...item, selected };
+            }
+        );
+
+        const productAttributeSetUpdated = {
+            ...attributeSetToBeUpdated,
+        };
+
+        productAttributeSetUpdated.items = attributeItemsUpdated;
+
+        customizedAttributesSet.push(productAttributeSetUpdated);
+    });
+
+    return customizedAttributesSet;
+};

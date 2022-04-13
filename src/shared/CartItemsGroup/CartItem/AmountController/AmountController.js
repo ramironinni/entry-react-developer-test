@@ -6,12 +6,12 @@ import { cartActions } from '../../../../store/cart-slice';
 import styles from './AmountController.module.css';
 
 class AmountController extends Component {
-    onIncrementHandler(id) {
-        this.props.increment(id);
+    onIncrementHandler(uid) {
+        this.props.increment(uid);
     }
 
-    onDecrementHandler(id) {
-        this.props.decrement(id);
+    onDecrementHandler(uid) {
+        this.props.decrement(uid);
     }
     render() {
         const buttonOverlayStyles = !this.props.isPage
@@ -26,7 +26,7 @@ class AmountController extends Component {
             <div className={styles.amountController}>
                 <button
                     className={`${styles.button} ${buttonOverlayStyles}`}
-                    onClick={() => this.onIncrementHandler(this.props.id)}
+                    onClick={() => this.onIncrementHandler(this.props.uid)}
                 >
                     +
                 </button>
@@ -35,7 +35,7 @@ class AmountController extends Component {
                 </div>
                 <button
                     className={`${styles.button} ${buttonOverlayStyles}`}
-                    onClick={() => this.onDecrementHandler(this.props.id)}
+                    onClick={() => this.onDecrementHandler(this.props.uid)}
                 >
                     -
                 </button>
@@ -52,8 +52,8 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
     return {
-        increment: (id) => dispatch(cartActions.increment({ id })),
-        decrement: (id) => dispatch(cartActions.decrement({ id })),
+        increment: (uid) => dispatch(cartActions.increment({ uid })),
+        decrement: (uid) => dispatch(cartActions.decrement({ uid })),
     };
 };
 
