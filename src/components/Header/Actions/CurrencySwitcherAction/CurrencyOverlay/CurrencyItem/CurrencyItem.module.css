@@ -1,11 +1,18 @@
 .currencyItem {
     margin: 0;
+    width: 100%;
     font-weight: 500;
     size: 18px;
+    text-align: left;
     line-height: 40px;
     cursor: pointer;
     border: none;
     background-color: var(--c-white);
+}
+
+.currencyItem:hover {
+    background-color: var(--c-light-grey);
+    border-radius: 5px;
 }
 
 .selected {
