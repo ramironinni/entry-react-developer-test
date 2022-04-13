@@ -1,21 +1,14 @@
 import { Component } from 'react';
-import DOMPurify from 'dompurify';
+import parse from 'html-react-parser';
 
 import styles from './Description.module.css';
 
 class Description extends Component {
-    dirty = this.props.description;
-
-    getHTMLDescription() {
-        return { __html: DOMPurify.sanitize(this.dirty) };
-    }
-
     render() {
         return (
-            <div
-                className={styles.description}
-                dangerouslySetInnerHTML={this.getHTMLDescription()}
-            ></div>
+            <div className={styles.description}>
+                {parse(this.props.description)}
+            </div>
         );
     }
 }
