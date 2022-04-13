@@ -10,7 +10,11 @@ class CartPage extends Component {
         return (
             <Page>
                 <p className={styles.title}>Cart </p>
-                <CartItemsGroup isPage={true} inputNameComp={'CartPage'} />
+                <CartItemsGroup
+                    isPage={true}
+                    isCart={true}
+                    inputNameComp={'CartPage'}
+                />
             </Page>
         );
     }

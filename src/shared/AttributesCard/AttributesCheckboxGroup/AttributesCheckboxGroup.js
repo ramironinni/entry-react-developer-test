@@ -18,12 +18,8 @@ class AttributesCheckboxGroup extends Component {
     updateAttributesHandler(setId, itemId, prodId) {
         this.setState({ checked: itemId });
 
-        if (this.props.inputName === 'ProductPage') {
+        if (!this.props.isCart) {
             this.props.onGetSelectedAttributes(setId, itemId);
-        }
-
-        if (this.props.inputName !== 'ProductPage') {
-            this.props.update(setId, itemId, prodId);
         }
     }
 
@@ -34,19 +30,16 @@ class AttributesCheckboxGroup extends Component {
         }
     }
 
-    componentDidUpdate(prevProps, prevState) {
-        if (
-            prevProps !== this.props &&
-            this.props.inputName !== 'ProductPage'
-        ) {
-            const selectedItem = this.props.items.find((item) => item.selected);
-            this.setState({ checked: selectedItem.id });
-        }
-    }
-
     render() {
-        const { setId, index, prodId, inputName, extraClasses, isPage } =
-            this.props;
+        const {
+            setId,
+            index,
+            prodId,
+            inputName,
+            extraClasses,
+            isPage,
+            isCart,
+        } = this.props;
 
         return (
             <div className={styles.attributesCheckboxGroup}>
@@ -68,6 +61,7 @@ class AttributesCheckboxGroup extends Component {
                                 this
                             )}
                             isPage={isPage}
+                            isCart={isCart}
                         />
                     );
                 })}

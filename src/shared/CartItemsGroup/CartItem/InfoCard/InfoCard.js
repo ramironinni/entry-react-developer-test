@@ -7,7 +7,8 @@ import styles from './InfoCard.module.css';
 
 class InfoCard extends Component {
     render() {
-        const { id, name, prices, attributes, inputName, isPage } = this.props;
+        const { id, name, prices, attributes, inputName, isPage, isCart } =
+            this.props;
 
         const selectedCurrency = this.props.currencies.find(
             (currency) => currency.selected
@@ -42,6 +43,7 @@ class InfoCard extends Component {
                             attributeSet={attributeSet}
                             inputName={inputName}
                             isPage={isPage}
+                            isCart={isCart}
                         />
                     );
                 })}

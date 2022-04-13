@@ -6,10 +6,18 @@
     font-size: 22px;
 }
 
+.containerCart {
+    cursor: not-allowed;
+}
+
 .container input {
     position: absolute;
     opacity: 0;
     cursor: pointer;
+}
+
+.containerCart input {
+    cursor: not-allowed;
 }
 
 .checkmark {

@@ -19,7 +19,7 @@ class CartItem extends Component {
             amount,
         } = this.props.item;
 
-        const { isPage, inputName } = this.props;
+        const { isPage, inputName, isCart } = this.props;
 
         const cartItemOverlayStyles = !isPage ? styles.cartItemOverlay : '';
 
@@ -35,6 +35,7 @@ class CartItem extends Component {
                     prices={prices}
                     inputName={inputName}
                     isPage={isPage}
+                    isCart={isCart}
                 />
                 <AmountController id={id} amount={amount} isPage={isPage} />
                 {isPage && <ImageSlider images={gallery} />}

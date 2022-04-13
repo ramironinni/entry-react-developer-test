@@ -13,6 +13,7 @@ class AttributesCard extends Component {
             inputName,
             onGetSelectedAttributes,
             isPage,
+            isCart,
         } = this.props;
 
         const nameOverlayStyles = !isPage ? styles.nameOverlay : '';
@@ -30,6 +31,7 @@ class AttributesCard extends Component {
                     inputName={inputName}
                     onGetSelectedAttributes={onGetSelectedAttributes}
                     isPage={isPage}
+                    isCart={isCart}
                 />
             </div>
         );

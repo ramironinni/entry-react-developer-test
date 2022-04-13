@@ -58,7 +58,7 @@ class CartItemsGroup extends Component {
     }
 
     render() {
-        const { isPage, inputNameComp } = this.props;
+        const { isPage, inputNameComp, isCart } = this.props;
 
         if (this.state.isLoading) {
             return <LoadingSpinner />;
@@ -82,6 +82,7 @@ class CartItemsGroup extends Component {
                                 item={item}
                                 inputName={`${i}-${inputNameComp}`}
                                 isPage={isPage}
+                                isCart={isCart}
                             />
                         );
                     })}

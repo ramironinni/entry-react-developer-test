@@ -21,7 +21,11 @@ class CartOverlayContent extends Component {
                     <span className={styles.myBag}>My Bag,&nbsp;</span>
                     {this.props.cart.length} items
                 </p>
-                <CartItemsGroup isPage={false} inputNameComp={'CartOverlay'} />
+                <CartItemsGroup
+                    isPage={false}
+                    isCart={true}
+                    inputNameComp={'CartOverlay'}
+                />
                 <div className={styles.grandTotal}>
                     <p>Total</p>
                     <p>

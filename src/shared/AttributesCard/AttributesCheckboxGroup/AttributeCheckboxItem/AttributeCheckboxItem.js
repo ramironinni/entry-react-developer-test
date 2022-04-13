@@ -9,13 +9,15 @@ class AttributeCheckboxItem extends Component {
             id,
             setId,
             index,
-            prodId,
             value,
             checked,
             inputName,
             onUpdateAttributes,
             isPage,
+            isCart,
         } = this.props;
+
+        const containerCartStyles = isCart ? styles.containerCart : '';
 
         const checkmarkOverlayStyles = !isPage ? styles.checkmarkOverlay : '';
         const checkmarkColorOverlayStyles = !isPage
@@ -37,15 +39,19 @@ class AttributeCheckboxItem extends Component {
             );
         }
 
+        const updateAttributesHandler = () => {
+            if (!isCart) {
+                onUpdateAttributes(setId, id);
+            }
+        };
+
         return (
-            <label className={styles.container}>
+            <label className={`${styles.container} ${containerCartStyles}`}>
                 <input
                     type="radio"
                     checked={checked}
                     name={`${inputName}-${index}`}
-                    onChange={() => {
-                        onUpdateAttributes(setId, id, prodId);
-                    }}
+                    onChange={updateAttributesHandler}
                 />
                 {valueToDisplay}
             </label>
