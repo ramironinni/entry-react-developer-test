@@ -1,8 +1,6 @@
 import { Component } from 'react';
 import { connect } from 'react-redux';
 
-import { cartActions } from '../../../store/cart-slice';
-
 import AttributeCheckboxItem from './AttributeCheckboxItem/AttributeCheckboxItem';
 
 import styles from './AttributesCheckboxGroup.module.css';
@@ -15,7 +13,7 @@ class AttributesCheckboxGroup extends Component {
         };
     }
 
-    updateAttributesHandler(setId, itemId, prodId) {
+    updateAttributesHandler(setId, itemId) {
         this.setState({ checked: itemId });
 
         if (!this.props.isCart) {
@@ -76,14 +74,4 @@ const mapStateToProps = (state) => {
     };
 };
 
-const mapDispatchToProps = (dispatch) => {
-    return {
-        update: (setId, itemId, prodId) =>
-            dispatch(cartActions.update({ setId, itemId, prodId })),
-    };
-};
-
-export default connect(
-    mapStateToProps,
-    mapDispatchToProps
-)(AttributesCheckboxGroup);
+export default connect(mapStateToProps)(AttributesCheckboxGroup);

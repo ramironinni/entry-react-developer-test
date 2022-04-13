@@ -106,43 +106,6 @@ const cartSlice = createSlice({
 
             saveToLocalStorage(state);
         },
-        update(state, action) {
-            const itemToUpdateIndex = state.cart.findIndex(
-                (item) => item.id === action.payload.prodId
-            );
-
-            const attributeSetFound = state.cart[
-                itemToUpdateIndex
-            ].attributes.find((attributeSet) => {
-                return attributeSet.id === action.payload.setId;
-            });
-
-            const attributeSetFoundIndex = state.cart[
-                itemToUpdateIndex
-            ].attributes.findIndex((attributeSet) => {
-                return attributeSet.id === action.payload.setId;
-            });
-
-            const attributeItemToBeSelected = attributeSetFound.items.find(
-                (item) => {
-                    return item.id === action.payload.itemId;
-                }
-            );
-
-            const attributeSetItemsToBeUpdated = attributeSetFound.items.map(
-                (item) => {
-                    const selected =
-                        item.id === attributeItemToBeSelected.id ? true : false;
-                    return { ...item, selected };
-                }
-            );
-
-            state.cart[itemToUpdateIndex].attributes[
-                attributeSetFoundIndex
-            ].items = attributeSetItemsToBeUpdated;
-
-            saveToLocalStorage(state);
-        },
         increment(state, action) {
             const itemToUpdateIndex = state.cart.findIndex(
                 (item) => item.id === action.payload.id
