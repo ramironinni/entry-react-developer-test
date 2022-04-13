@@ -11,6 +11,7 @@
     right: 5%;
     width: 22%;
     z-index: 2;
+    cursor: pointer;
 }
 
 .productCard:hover .cartGreenIcon {
