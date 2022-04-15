@@ -5,26 +5,37 @@ import BackdropGrey from './BackdropGrey/BackdropGrey';
 
 import Overlay from './Overlay/Overlay';
 
+const modalRoot = document.getElementById('modal-root');
 class Modal extends Component {
-    portalElement = document.getElementById('overlays');
+    constructor(props) {
+        super(props);
+        this.element = document.createElement('div');
+    }
+
+    componentDidMount() {
+        modalRoot.appendChild(this.element);
+    }
+
+    componentWillUnmount() {
+        modalRoot.removeChild(this.element);
+    }
+
     render() {
-        return (
+        return ReactDOM.createPortal(
             <>
-                {ReactDOM.createPortal(
-                    <div>
-                        <BackdropTransparent
-                            onBackdropClickHandler={
-                                this.props.onBackdropClickHandler
-                            }
-                        />
-                        {this.props.backdropGrey && <BackdropGrey />}
-                        <Overlay overlayClasses={this.props.overlayClasses}>
-                            {this.props.children}
-                        </Overlay>
-                    </div>,
-                    this.portalElement
-                )}
-            </>
+                <div>
+                    <BackdropTransparent
+                        onBackdropClickHandler={
+                            this.props.onBackdropClickHandler
+                        }
+                    />
+                    {this.props.backdropGrey && <BackdropGrey />}
+                    <Overlay overlayClasses={this.props.overlayClasses}>
+                        {this.props.children}
+                    </Overlay>
+                </div>
+            </>,
+            this.element
         );
     }
 }
