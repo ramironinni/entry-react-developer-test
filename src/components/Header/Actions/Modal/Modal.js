@@ -1,6 +1,6 @@
 import { Component } from 'react';
 import ReactDOM from 'react-dom';
-import Backdrop from './Backdrop/Backdrop';
+import BackdropTransparent from './BackdropTransparent/BackdropTransparent';
 import BackdropGrey from './BackdropGrey/BackdropGrey';
 
 import Overlay from './Overlay/Overlay';
@@ -12,8 +12,7 @@ class Modal extends Component {
             <>
                 {ReactDOM.createPortal(
                     <div>
-                        <Backdrop
-                            backdropClasses={this.props.backdropClasses}
+                        <BackdropTransparent
                             onBackdropClickHandler={
                                 this.props.onBackdropClickHandler
                             }

@@ -1,8 +1,8 @@
 import { Component } from 'react';
 
-import styles from './Backdrop.module.css';
+import styles from './BackdropTransparent.module.css';
 
-class Backdrop extends Component {
+class BackdropTransparent extends Component {
     render() {
         return (
             <div
@@ -13,4 +13,4 @@ class Backdrop extends Component {
     }
 }
 
-export default Backdrop;
+export default BackdropTransparent;
