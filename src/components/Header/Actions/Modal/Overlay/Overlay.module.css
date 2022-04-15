@@ -5,6 +5,6 @@
     background-color: var(--c-white);
     padding: 16px;
     z-index: 5;
-    max-height: 460px;
+    max-height: 550px;
     overflow-y: auto;
 }
