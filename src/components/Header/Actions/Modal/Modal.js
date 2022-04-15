@@ -1,42 +1,17 @@
 import { Component } from 'react';
 import ReactDOM from 'react-dom';
+import Backdrop from './Backdrop/Backdrop';
+import BackdropGrey from './BackdropGrey/BackdropGrey';
 
-import styles from './Modal.module.css';
-class Backdrop extends Component {
-    render() {
-        return (
-            <div
-                className={styles.backdropTransparent}
-                onClick={this.props.onBackdropClickHandler}
-            ></div>
-        );
-    }
-}
+import Overlay from './Overlay/Overlay';
 
-class BackdropGrey extends Component {
-    render() {
-        return <div className={styles.backdropGrey}></div>;
-    }
-}
-class ModalOverlay extends Component {
-    render() {
-        return (
-            <div
-                className={`${styles.modalOverlay} ${this.props.overlayClasses}`}
-            >
-                <div className={styles.content}>{this.props.children}</div>
-            </div>
-        );
-    }
-}
 class Modal extends Component {
     portalElement = document.getElementById('overlays');
-
     render() {
         return (
             <>
                 {ReactDOM.createPortal(
-                    <div className={styles.modal}>
+                    <div>
                         <Backdrop
                             backdropClasses={this.props.backdropClasses}
                             onBackdropClickHandler={
@@ -44,11 +19,9 @@ class Modal extends Component {
                             }
                         />
                         {this.props.backdropGrey && <BackdropGrey />}
-                        <ModalOverlay
-                            overlayClasses={this.props.overlayClasses}
-                        >
+                        <Overlay overlayClasses={this.props.overlayClasses}>
                             {this.props.children}
-                        </ModalOverlay>
+                        </Overlay>
                     </div>,
                     this.portalElement
                 )}

@@ -1,0 +1,10 @@
+.overlay {
+    position: absolute;
+    right: 101px;
+    top: var(--header-height);
+    background-color: var(--c-white);
+    padding: 16px;
+    z-index: 5;
+    max-height: 460px;
+    overflow-y: auto;
+}
