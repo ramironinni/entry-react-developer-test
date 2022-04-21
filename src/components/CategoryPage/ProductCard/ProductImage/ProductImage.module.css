@@ -10,6 +10,5 @@
 .image {
     width: 354px;
     height: 330px;
-    object-fit: cover;
-    object-position: 20% 10%;
+    object-fit: contain;
 }
