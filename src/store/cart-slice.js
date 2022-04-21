@@ -51,6 +51,22 @@ const cartSlice = createSlice({
                     current(state.cart[itemIndex].attributes)
                 );
 
+                if (hasSameAttributes) {
+                    state.cart[itemIndex].amount++;
+
+                    state.cart[itemIndex].totalProductPrices =
+                        getTotalProductPrices(state, null, itemIndex);
+
+                    state.cartGrandTotalPrices = getGrandTotalPricesUpdated(
+                        state,
+                        null,
+                        itemIndex,
+                        'increment'
+                    );
+
+                    saveToLocalStorage(state);
+                }
+
                 if (!hasSameAttributes) {
                     addToCart();
 
@@ -68,12 +84,6 @@ const cartSlice = createSlice({
             }
 
             addToCart();
-            // state.cart.push({
-            //     ...action.payload.product,
-            //     attributes: getCustomizedAttributesSet(action),
-            //     amount: 1,
-            //     totalProductPrices: getTotalProductPrices(null, action),
-            // });
 
             if (state.cartGrandTotalPrices.length === 0) {
                 state.cartGrandTotalPrices = getTotalProductPrices(
