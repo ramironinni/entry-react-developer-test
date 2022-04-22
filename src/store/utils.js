@@ -40,13 +40,11 @@ export const getGrandTotalPricesUpdated = (
                         grandTotalPrice.amount + toBeUpdatedProductPrice.amount,
                 };
             }
-            if (operation === 'decrement') {
-                return {
-                    ...grandTotalPrice,
-                    amount:
-                        grandTotalPrice.amount - toBeUpdatedProductPrice.amount,
-                };
-            }
+
+            return {
+                ...grandTotalPrice,
+                amount: grandTotalPrice.amount - toBeUpdatedProductPrice.amount,
+            };
         }
     );
     return grandTotalPricesUpdated;
