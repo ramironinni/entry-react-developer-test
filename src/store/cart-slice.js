@@ -28,10 +28,6 @@ const cartSlice = createSlice({
     initialState: initialCartState,
     reducers: {
         add(state, action) {
-            const itemIndex = state.cart.findIndex(
-                (item) => item.id === action.payload.product.id
-            );
-
             const addToCart = () => {
                 state.cart.push({
                     ...action.payload.product,
@@ -42,65 +38,74 @@ const cartSlice = createSlice({
                 });
             };
 
-            if (itemIndex > -1) {
-                const hasSameAttributes = isEqual(
-                    {
-                        ...action.payload.product,
-                        attributes: getCustomizedAttributesSet(action),
-                    }.attributes,
-                    current(state.cart[itemIndex].attributes)
-                );
-
-                if (hasSameAttributes) {
-                    state.cart[itemIndex].amount++;
-
-                    state.cart[itemIndex].totalProductPrices =
-                        getTotalProductPrices(state, null, itemIndex);
-
-                    state.cartGrandTotalPrices = getGrandTotalPricesUpdated(
-                        state,
-                        null,
-                        itemIndex,
-                        'increment'
-                    );
-
-                    saveToLocalStorage(state);
-                }
-
-                if (!hasSameAttributes) {
-                    addToCart();
-
-                    state.cartGrandTotalPrices = getGrandTotalPricesUpdated(
-                        state,
-                        action,
-                        null,
-                        'increment'
-                    );
-
-                    saveToLocalStorage(state);
-                }
-
-                return;
-            }
-
-            addToCart();
-
-            if (state.cartGrandTotalPrices.length === 0) {
-                state.cartGrandTotalPrices = getTotalProductPrices(
-                    null,
-                    action
-                );
-                return;
-            }
-
-            state.cartGrandTotalPrices = getGrandTotalPricesUpdated(
-                state,
-                action,
-                null,
-                'increment'
+            const itemIndex = state.cart.findIndex(
+                (item) => item.id === action.payload.product.id
             );
 
-            saveToLocalStorage(state);
+            if (itemIndex === -1) {
+                addToCart();
+
+                if (state.cartGrandTotalPrices.length === 0) {
+                    state.cartGrandTotalPrices = getTotalProductPrices(
+                        null,
+                        action
+                    );
+                    return;
+                }
+
+                state.cartGrandTotalPrices = getGrandTotalPricesUpdated(
+                    state,
+                    action,
+                    null,
+                    'increment'
+                );
+
+                saveToLocalStorage(state);
+                return;
+            }
+
+            const foundIndexWithSameAtt = current(state.cart).findIndex(
+                (item, index) =>
+                    item.id === action.payload.product.id &&
+                    isEqual(
+                        {
+                            ...action.payload.product,
+                            attributes: getCustomizedAttributesSet(action),
+                        }.attributes,
+                        current(state.cart[index].attributes)
+                    )
+            );
+
+            const hasSameAttributes = foundIndexWithSameAtt > -1 ? true : false;
+
+            if (hasSameAttributes) {
+                state.cart[foundIndexWithSameAtt].amount++;
+
+                state.cart[foundIndexWithSameAtt].totalProductPrices =
+                    getTotalProductPrices(state, null, foundIndexWithSameAtt);
+
+                state.cartGrandTotalPrices = getGrandTotalPricesUpdated(
+                    state,
+                    null,
+                    foundIndexWithSameAtt,
+                    'increment'
+                );
+
+                saveToLocalStorage(state);
+            }
+
+            if (!hasSameAttributes) {
+                addToCart();
+
+                state.cartGrandTotalPrices = getGrandTotalPricesUpdated(
+                    state,
+                    action,
+                    null,
+                    'increment'
+                );
+
+                saveToLocalStorage(state);
+            }
         },
         remove(state, action) {
             const itemToUpdateIndex = state.cart.findIndex(
