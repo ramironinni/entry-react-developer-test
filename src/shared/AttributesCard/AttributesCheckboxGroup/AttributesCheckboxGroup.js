@@ -13,11 +13,11 @@ class AttributesCheckboxGroup extends Component {
         };
     }
 
-    updateAttributesHandler(setId, itemId) {
+    updateAttributesHandler(setId, itemId, index) {
         this.setState({ checked: itemId });
 
         if (!this.props.isCart) {
-            this.props.onGetSelectedAttributes(setId, itemId);
+            this.props.onGetSelectedAttributes(setId, itemId, index);
         }
     }
 

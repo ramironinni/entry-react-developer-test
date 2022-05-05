@@ -97,7 +97,8 @@ export const getCustomizedAttributesSet = (action) => {
 
         productAttributeSetUpdated.items = attributeItemsUpdated;
 
-        customizedAttributesSet.push(productAttributeSetUpdated);
+        customizedAttributesSet[selectedAttribute.index] =
+            productAttributeSetUpdated;
     });
 
     return customizedAttributesSet;

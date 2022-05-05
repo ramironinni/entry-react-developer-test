@@ -19,7 +19,7 @@ class ProductInfo extends Component {
         };
     }
 
-    getSelectedAttributesHandler = (setId, itemId) => {
+    getSelectedAttributesHandler = (setId, itemId, index) => {
         this.setState((prevState) => {
             let updatedState;
 
@@ -35,6 +35,7 @@ class ProductInfo extends Component {
 
                 foundAttribute.setId = setId;
                 foundAttribute.itemId = itemId;
+                foundAttribute.index = index;
 
                 updatedState = {
                     selectedAttributes: [
@@ -49,7 +50,7 @@ class ProductInfo extends Component {
             updatedState = {
                 selectedAttributes: [
                     ...prevState.selectedAttributes,
-                    { setId, itemId },
+                    { setId, itemId, index },
                 ],
             };
 

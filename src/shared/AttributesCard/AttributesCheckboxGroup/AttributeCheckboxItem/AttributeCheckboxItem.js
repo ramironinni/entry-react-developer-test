@@ -41,7 +41,7 @@ class AttributeCheckboxItem extends Component {
 
         const updateAttributesHandler = () => {
             if (!isCart) {
-                onUpdateAttributes(setId, id);
+                onUpdateAttributes(setId, id, index);
             }
         };
 
