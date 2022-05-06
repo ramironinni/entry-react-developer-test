@@ -10,7 +10,7 @@ class CartGreenIcon extends Component {
 
         this.props.product.attributes.forEach((attSet) => {
             const item = attSet.items[0];
-            attributes.push({ setId: attSet.id, itemId: item.id });
+            attributes.push({ setId: attSet.id, itemId: item.id, index: 0 });
         });
 
         this.props.add(this.props.product, attributes);
