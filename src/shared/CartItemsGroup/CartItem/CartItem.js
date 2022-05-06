@@ -27,7 +27,6 @@ class CartItem extends Component {
         return (
             <div className={`${styles.cartItem} ${cartItemOverlayStyles}`}>
                 <InfoCard
-                    // id={id}
                     name={name}
                     inStock={inStock}
                     gallery={gallery}

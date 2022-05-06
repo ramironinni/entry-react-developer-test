@@ -28,6 +28,13 @@ class AttributesCheckboxGroup extends Component {
         }
     }
 
+    componentDidUpdate(prevProps, prevState) {
+        if (prevProps.cart !== this.props.cart) {
+            const selectedItem = this.props.items.find((item) => item.selected);
+            this.setState({ checked: selectedItem.id });
+        }
+    }
+
     render() {
         const { setId, index, inputName, extraClasses, isPage, isCart } =
             this.props;
