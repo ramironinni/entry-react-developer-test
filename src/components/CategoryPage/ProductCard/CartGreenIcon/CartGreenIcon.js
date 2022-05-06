@@ -8,9 +8,9 @@ class CartGreenIcon extends Component {
     onAddToCartHandler = () => {
         const attributes = [];
 
-        this.props.product.attributes.forEach((attSet) => {
+        this.props.product.attributes.forEach((attSet, index) => {
             const item = attSet.items[0];
-            attributes.push({ setId: attSet.id, itemId: item.id, index: 0 });
+            attributes.push({ setId: attSet.id, itemId: item.id, index });
         });
 
         this.props.add(this.props.product, attributes);
